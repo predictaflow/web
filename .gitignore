@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build
+dist/
+build/
+.netlify/
+
+# Logs
+*.log
+
+# Python (por si usamos scripts de datos/tendencias)
+__pycache__/
+*.pyc
+.venv/
+venv/
