@@ -1,108 +1,143 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 720" width="1440" height="720">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a0d06;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#3d2010;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#1a0d06"/>
+      <stop offset="100%" style="stop-color:#3d2010"/>
     </linearGradient>
-    <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#D4B6A4;stop-opacity:0.5" />
-      <stop offset="100%" style="stop-color:#D4B6A4;stop-opacity:0.02" />
-    </linearGradient>
-    <linearGradient id="chartGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#F7E19B;stop-opacity:0.3" />
-      <stop offset="100%" style="stop-color:#F7E19B;stop-opacity:0.02" />
+    <linearGradient id="curveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4B6A4;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#D4B6A4;stop-opacity:0.02"/>
     </linearGradient>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="12" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="cardShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="rgba(0,0,0,0.4)"/>
     </filter>
+    <clipPath id="roundRect1">
+      <rect width="160" height="180" rx="12"/>
+    </clipPath>
+    <clipPath id="roundRect2">
+      <rect width="180" height="100" rx="12"/>
+    </clipPath>
   </defs>
 
   <!-- Background -->
   <rect width="1440" height="720" fill="url(#bgGrad)"/>
 
   <!-- Subtle grid -->
-  <g opacity="0.04" stroke="#D4B6A4" stroke-width="1">
+  <g opacity="0.035" stroke="#D4B6A4" stroke-width="1">
     <line x1="0" y1="144" x2="1440" y2="144"/>
     <line x1="0" y1="288" x2="1440" y2="288"/>
     <line x1="0" y1="432" x2="1440" y2="432"/>
     <line x1="0" y1="576" x2="1440" y2="576"/>
-    <line x1="180" y1="0" x2="180" y2="720"/>
-    <line x1="360" y1="0" x2="360" y2="720"/>
-    <line x1="540" y1="0" x2="540" y2="720"/>
-    <line x1="720" y1="0" x2="720" y2="720"/>
-    <line x1="900" y1="0" x2="900" y2="720"/>
-    <line x1="1080" y1="0" x2="1080" y2="720"/>
-    <line x1="1260" y1="0" x2="1260" y2="720"/>
+    <line x1="288" y1="0" x2="288" y2="720"/>
+    <line x1="576" y1="0" x2="576" y2="720"/>
+    <line x1="864" y1="0" x2="864" y2="720"/>
+    <line x1="1152" y1="0" x2="1152" y2="720"/>
   </g>
 
-  <!-- ── MAIN TREND CURVE ── -->
-  <!-- Area fill -->
-  <path d="M 0,680 C 100,660 200,630 320,580 C 440,530 500,510 600,460 C 700,410 780,380 880,310 C 980,240 1060,190 1160,130 C 1260,70 1360,40 1440,20 L1440,720 L0,720 Z"
-    fill="url(#chartGrad)" opacity="0.8"/>
+  <!-- ── BACKGROUND TREND CURVE (subtle, full width) ── -->
+  <path d="M 0,680 C 200,640 400,580 600,500 C 800,420 1000,320 1200,200 C 1320,130 1400,80 1440,55 L1440,720 L0,720 Z"
+    fill="url(#curveGrad)"/>
+  <path d="M 0,680 C 200,640 400,580 600,500 C 800,420 1000,320 1200,200 C 1320,130 1400,80 1440,55"
+    fill="none" stroke="#D4B6A4" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
 
-  <!-- Secondary curve fill -->
-  <path d="M 0,720 C 150,700 300,680 450,650 C 600,620 720,590 880,555 C 1040,520 1200,490 1440,460 L1440,720 Z"
-    fill="url(#chartGrad2)" opacity="0.4"/>
+  <!-- Trend label -->
+  <text x="900" y="56" fill="rgba(255,255,255,0.2)" font-family="sans-serif" font-size="10" letter-spacing="2.5">TENDENCIA · ÚLTIMAS 12 SEMANAS</text>
+  <circle cx="1100" cy="51" r="3.5" fill="#4ade80" opacity="0.6"/>
+  <text x="1110" y="56" fill="rgba(255,255,255,0.2)" font-family="sans-serif" font-size="10">EN VIVO</text>
 
-  <!-- Main curve line -->
-  <path d="M 0,680 C 100,660 200,630 320,580 C 440,530 500,510 600,460 C 700,410 780,380 880,310 C 980,240 1060,190 1160,130 C 1260,70 1360,40 1440,20"
-    fill="none" stroke="#D4B6A4" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <!-- ── INSTAGRAM POST CARD ── -->
+  <g transform="translate(730, 80)" filter="url(#cardShadow)">
+    <rect width="170" height="230" rx="14" fill="rgba(25,15,8,0.85)" stroke="rgba(212,182,164,0.2)" stroke-width="1"/>
+    <!-- Header -->
+    <circle cx="24" cy="24" r="12" fill="rgba(212,182,164,0.25)"/>
+    <text x="24" y="28" fill="#D4B6A4" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">PF</text>
+    <text x="42" y="21" fill="rgba(255,255,255,0.7)" font-family="sans-serif" font-size="10" font-weight="600">predictaflow</text>
+    <text x="42" y="33" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="9">Instagram</text>
+    <!-- Image placeholder -->
+    <rect x="10" y="48" width="150" height="110" rx="8" fill="rgba(212,182,164,0.08)" stroke="rgba(212,182,164,0.1)" stroke-width="1"/>
+    <text x="85" y="108" fill="rgba(212,182,164,0.3)" font-family="sans-serif" font-size="28" text-anchor="middle">📈</text>
+    <!-- Caption -->
+    <text x="12" y="176" fill="rgba(255,255,255,0.6)" font-family="sans-serif" font-size="10">El contenido sobre IA</text>
+    <text x="12" y="190" fill="rgba(255,255,255,0.6)" font-family="sans-serif" font-size="10">creativa explota esta</text>
+    <text x="12" y="204" fill="rgba(255,255,255,0.6)" font-family="sans-serif" font-size="10">semana 🚀</text>
+    <!-- Stats -->
+    <text x="12" y="222" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="9">❤️ 4.8K  💬 312  ↗ 1.2K</text>
+    <!-- Viral badge -->
+    <rect x="110" y="210" width="50" height="18" rx="9" fill="rgba(247,225,155,0.15)" stroke="rgba(247,225,155,0.35)" stroke-width="1"/>
+    <text x="135" y="222" fill="#F7E19B" font-family="sans-serif" font-size="9" font-weight="bold" text-anchor="middle">VIRAL</text>
+  </g>
 
-  <!-- Secondary dashed curve -->
-  <path d="M 0,720 C 150,700 300,680 450,650 C 600,620 720,590 880,555 C 1040,520 1200,490 1440,460"
-    fill="none" stroke="#F7E19B" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="8,5" opacity="0.35"/>
+  <!-- ── TIKTOK / REEL CARD ── -->
+  <g transform="translate(930, 50)" filter="url(#cardShadow)">
+    <rect width="110" height="195" rx="14" fill="rgba(25,15,8,0.85)" stroke="rgba(212,182,164,0.2)" stroke-width="1"/>
+    <!-- Video area -->
+    <rect x="8" y="8" width="94" height="145" rx="10" fill="rgba(212,182,164,0.07)" stroke="rgba(212,182,164,0.1)" stroke-width="1"/>
+    <!-- Play button -->
+    <circle cx="55" cy="80" r="18" fill="rgba(212,182,164,0.15)"/>
+    <polygon points="50,72 50,88 66,80" fill="rgba(212,182,164,0.6)"/>
+    <!-- TikTok label -->
+    <text x="55" y="168" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="9" text-anchor="middle">TikTok · Reel</text>
+    <!-- Views -->
+    <text x="55" y="183" fill="#F7E19B" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">2.4M views</text>
+    <!-- Trending arrow -->
+    <text x="10" y="15" fill="#4ade80" font-family="sans-serif" font-size="9">▲ trending</text>
+  </g>
 
-  <!-- ── DATA POINTS on main curve ── -->
-  <circle cx="320" cy="580" r="5" fill="#D4B6A4" opacity="0.6"/>
-  <circle cx="600" cy="460" r="5" fill="#D4B6A4" opacity="0.7"/>
-  <circle cx="880" cy="310" r="6" fill="#D4B6A4" filter="url(#glow)" opacity="0.85"/>
-  <circle cx="1160" cy="130" r="7" fill="#F7E19B" filter="url(#glow)"/>
-  <circle cx="1440" cy="20" r="6" fill="#D4B6A4" filter="url(#glow)" opacity="0.9"/>
+  <!-- ── TWEET / X POST ── -->
+  <g transform="translate(740, 340)" filter="url(#cardShadow)">
+    <rect width="290" height="110" rx="14" fill="rgba(25,15,8,0.85)" stroke="rgba(212,182,164,0.15)" stroke-width="1"/>
+    <!-- Header -->
+    <circle cx="24" cy="28" r="14" fill="rgba(212,182,164,0.2)"/>
+    <text x="24" y="32" fill="#D4B6A4" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">PF</text>
+    <text x="46" y="24" fill="rgba(255,255,255,0.75)" font-family="sans-serif" font-size="11" font-weight="600">Predictaflow</text>
+    <text x="46" y="38" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="10">@predictaflow · 2h</text>
+    <!-- Tweet text -->
+    <text x="16" y="64" fill="rgba(255,255,255,0.65)" font-family="sans-serif" font-size="11">Detectamos 14 tendencias nuevas hoy.</text>
+    <text x="16" y="80" fill="rgba(255,255,255,0.65)" font-family="sans-serif" font-size="11">¿Tu contenido ya las está usando? 🎯</text>
+    <!-- Hashtags -->
+    <text x="16" y="96" fill="#D4B6A4" font-family="sans-serif" font-size="10">#ContentMarketing  #TendenciasIA</text>
+    <!-- Stats -->
+    <text x="200" y="96" fill="rgba(255,255,255,0.25)" font-family="sans-serif" font-size="9">↗ 847  ❤ 2.1K</text>
+  </g>
 
-  <!-- ── SPIKE ANNOTATION at 1160 ── -->
-  <line x1="1160" y1="130" x2="1160" y2="480" stroke="rgba(247,225,155,0.12)" stroke-width="1" stroke-dasharray="5,4"/>
-  <rect x="1090" y="80" width="145" height="32" rx="8" fill="rgba(247,225,155,0.12)" stroke="rgba(247,225,155,0.35)" stroke-width="1"/>
-  <text x="1162" y="100" fill="#F7E19B" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle">+847% reach</text>
+  <!-- ── YOUTUBE THUMBNAIL ── -->
+  <g transform="translate(1060, 290)" filter="url(#cardShadow)">
+    <rect width="200" height="120" rx="12" fill="rgba(25,15,8,0.85)" stroke="rgba(212,182,164,0.15)" stroke-width="1"/>
+    <!-- Thumbnail image area -->
+    <rect x="0" y="0" width="200" height="90" rx="12" fill="rgba(212,182,164,0.07)"/>
+    <!-- Play button YouTube style -->
+    <rect x="80" y="30" width="42" height="30" rx="8" fill="rgba(212,182,164,0.2)"/>
+    <polygon points="90,38 90,52 108,45" fill="rgba(212,182,164,0.7)"/>
+    <!-- Title -->
+    <text x="10" y="106" fill="rgba(255,255,255,0.6)" font-family="sans-serif" font-size="10" font-weight="600">Cómo predecimos tendencias</text>
+    <text x="10" y="118" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="9">94K vistas · hace 3 días</text>
+  </g>
 
-  <!-- ── CHART HEADER (top right) ── -->
-  <text x="820" y="72" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="11" letter-spacing="2.5">TENDENCIA · ÚLTIMAS 12 SEMANAS</text>
-  <circle cx="1390" cy="67" r="4" fill="#4ade80" opacity="0.75"/>
-  <text x="1400" y="72" fill="rgba(255,255,255,0.3)" font-family="sans-serif" font-size="11">EN VIVO</text>
+  <!-- ── METRIC BADGE floating ── -->
+  <g transform="translate(960, 260)">
+    <rect width="80" height="46" rx="10" fill="rgba(247,225,155,0.12)" stroke="rgba(247,225,155,0.3)" stroke-width="1"/>
+    <text x="40" y="18" fill="rgba(255,255,255,0.4)" font-family="sans-serif" font-size="8" letter-spacing="1" text-anchor="middle">REACH</text>
+    <text x="40" y="38" fill="#F7E19B" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">2.4M</text>
+  </g>
 
-  <!-- ── X AXIS LABELS ── -->
-  <text x="120"  y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 1</text>
-  <text x="320"  y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 3</text>
-  <text x="540"  y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 5</text>
-  <text x="740"  y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 7</text>
-  <text x="940"  y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 9</text>
-  <text x="1130" y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 11</text>
-  <text x="1350" y="700" fill="rgba(255,255,255,0.18)" font-family="sans-serif" font-size="10">Sem 12</text>
+  <!-- ── +847% annotation on curve ── -->
+  <g transform="translate(1175, 170)">
+    <rect width="110" height="28" rx="8" fill="rgba(247,225,155,0.12)" stroke="rgba(247,225,155,0.3)" stroke-width="1"/>
+    <text x="55" y="18" fill="#F7E19B" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">+847% reach</text>
+  </g>
+  <line x1="1230" y1="198" x2="1230" y2="230" stroke="rgba(247,225,155,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
+  <circle cx="1230" cy="236" r="4" fill="#F7E19B" opacity="0.6" filter="url(#glow)"/>
 
-  <!-- ── METRIC PILLS (floating along the curve) ── -->
-  <!-- Alcance -->
-  <rect x="820" y="280" width="130" height="52" rx="10" fill="rgba(255,255,255,0.06)" stroke="rgba(212,182,164,0.2)" stroke-width="1"/>
-  <text x="836" y="302" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="9" letter-spacing="1.5">ALCANCE</text>
-  <text x="836" y="325" fill="#D4B6A4" font-family="sans-serif" font-size="22" font-weight="bold">2.4M</text>
-  <text x="900" y="325" fill="#4ade80" font-family="sans-serif" font-size="10">▲ 12%</text>
+  <!-- ── CONNECTING DOTS (subtle) ── -->
+  <circle cx="900"  cy="390" r="3" fill="#D4B6A4" opacity="0.25"/>
+  <circle cx="1050" cy="320" r="2.5" fill="#D4B6A4" opacity="0.2"/>
+  <circle cx="1100" cy="420" r="2" fill="#F7E19B" opacity="0.2"/>
 
-  <!-- Engagement -->
-  <rect x="1060" y="180" width="140" height="52" rx="10" fill="rgba(255,255,255,0.06)" stroke="rgba(247,225,155,0.2)" stroke-width="1"/>
-  <text x="1076" y="202" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="9" letter-spacing="1.5">ENGAGEMENT</text>
-  <text x="1076" y="225" fill="#F7E19B" font-family="sans-serif" font-size="22" font-weight="bold">8.7%</text>
-  <text x="1136" y="225" fill="#4ade80" font-family="sans-serif" font-size="10">▲ 3.2%</text>
-
-  <!-- Viral score -->
-  <rect x="1290" y="100" width="120" height="52" rx="10" fill="rgba(255,255,255,0.06)" stroke="rgba(212,182,164,0.2)" stroke-width="1"/>
-  <text x="1306" y="122" fill="rgba(255,255,255,0.35)" font-family="sans-serif" font-size="9" letter-spacing="1.5">VIRAL SCORE</text>
-  <text x="1306" y="145" fill="#D4B6A4" font-family="sans-serif" font-size="22" font-weight="bold">94</text>
-  <text x="1338" y="145" fill="#F7E19B" font-family="sans-serif" font-size="11">★ Top 5%</text>
-
-  <!-- ── DECORATIVE GLOW at peak ── -->
-  <circle cx="1160" cy="130" r="40" fill="rgba(247,225,155,0.04)" filter="url(#softglow)"/>
-  <circle cx="1440" cy="20"  r="30" fill="rgba(212,182,164,0.05)" filter="url(#softglow)"/>
+  <!-- ── DECORATIVE GLOW behind cards ── -->
+  <circle cx="870" cy="240" r="120" fill="rgba(212,182,164,0.03)" filter="url(#glow)"/>
+  <circle cx="1150" cy="400" r="100" fill="rgba(247,225,155,0.03)" filter="url(#glow)"/>
 </svg>
