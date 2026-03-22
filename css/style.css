@@ -21,7 +21,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -30,7 +30,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-weight: 700;
   line-height: 1.15;
 }
@@ -123,7 +123,7 @@ strong { font-weight: 600; }
 }
 
 .nav-logo {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 22px;
   font-weight: 700;
   color: var(--text);
@@ -268,7 +268,7 @@ strong { font-weight: 600; }
 }
 
 .stat-number {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 48px;
   font-weight: 700;
   color: var(--primary);
@@ -276,7 +276,7 @@ strong { font-weight: 600; }
 }
 
 .stat-unit {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 24px;
   font-weight: 600;
   color: var(--primary);
@@ -373,7 +373,7 @@ strong { font-weight: 600; }
 }
 
 .process-number {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 48px;
   font-weight: 700;
   color: var(--primary);
@@ -614,7 +614,7 @@ strong { font-weight: 600; }
 
 .faq-item summary {
   padding: 24px 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Bodoni Moda', serif;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
