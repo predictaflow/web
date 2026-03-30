@@ -134,13 +134,19 @@ strong { font-weight: 600; }
 }
 
 .nav-logo {
-  font-family: 'EB Garamond', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
+  display: flex;
+  align-items: center;
 }
 
-.nav-logo span { color: var(--vibrant); }
+.nav-logo img { display: block; width: auto; }
+
+/* Por defecto (hero): logo claro visible, oscuro oculto */
+.logo-light { display: block; }
+.logo-dark  { display: none; }
+
+/* Al hacer scroll: logo oscuro visible, claro oculto */
+.nav.scrolled .logo-light { display: none; }
+.nav.scrolled .logo-dark  { display: block; }
 
 .nav-links {
   display: flex;
