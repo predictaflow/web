@@ -141,7 +141,7 @@ strong { font-weight: 600; }
 .nav-logo img {
   display: block;
   width: auto;
-  max-height: 52px;
+  max-height: 68px;
 }
 
 /* Por defecto (hero, fondo oscuro): logo claro visible, oscuro oculto */
@@ -228,10 +228,10 @@ strong { font-weight: 600; }
 }
 
 .hero-tag {
-  background: rgba(237,114,169,0.15);
-  color: #ED72A9;
+  background: rgba(121,165,175,0.15);
+  color: var(--primary);
   margin-bottom: 24px;
-  border: 1px solid rgba(237,114,169,0.35);
+  border: 1px solid rgba(121,165,175,0.4);
 }
 
 .hero h1 {
@@ -243,7 +243,7 @@ strong { font-weight: 600; }
 
 .hero h1 em {
   font-style: italic;
-  color: var(--vibrant);
+  color: var(--primary);
 }
 
 .hero-sub {
