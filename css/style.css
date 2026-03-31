@@ -81,8 +81,8 @@ strong { font-weight: 600; }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--primary); color: #4A2A0A; }
 .btn-primary:hover { box-shadow: 0 8px 24px rgba(212,182,164,0.4); }
-.btn-accent { background: var(--vibrant); color: #FFFFFF; }
-.btn-accent:hover { box-shadow: 0 8px 24px rgba(237,114,169,0.4); }
+.btn-accent { background: var(--primary); color: #FFFFFF; }
+.btn-accent:hover { box-shadow: 0 8px 24px rgba(121,165,175,0.4); }
 .btn-outline {
   background: transparent;
   color: var(--text);
