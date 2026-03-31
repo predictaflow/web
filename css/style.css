@@ -2,20 +2,20 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary: #D4B6A4;
-  --primary-light: #F1ECE1;
-  --accent: #F7E19B;
-  --accent-bg: #FDF5DC;
-  --vibrant: #ED72A9;
-  --vibrant-light: rgba(237,114,169,0.1);
-  --highlight: #F1ECE1;
-  --bg: #FFFFFF;
-  --bg-alt: #FAF6F2;
-  --bg-dark: #2C1A0E;
-  --text: #000000;
-  --text-light: #FFFFFF;
-  --text-muted: #6B7280;
-  --border: #E8DDD5;
+  --primary: #79a5af;
+  --primary-light: #d4e6ea;
+  --accent: #f7e19a;
+  --accent-bg: #fdf8e5;
+  --vibrant: #d37214;
+  --vibrant-light: rgba(211,114,20,0.1);
+  --highlight: #fad3b4;
+  --bg: #ffffff;
+  --bg-alt: #f1ece1;
+  --bg-dark: #311b11;
+  --text: #311b11;
+  --text-light: #f1ece1;
+  --text-muted: #8a7468;
+  --border: #d4b6a5;
   --radius: 8px;
   --radius-pill: 47px;
 }
@@ -141,19 +141,20 @@ strong { font-weight: 600; }
 .nav-logo img {
   display: block;
   width: auto;
-  max-height: 40px;
+  max-height: 52px;
 }
 
 /* Por defecto (hero, fondo oscuro): logo claro visible, oscuro oculto */
-.logo-light { display: block; }
-.logo-dark  { display: none; }
+/* Nota: especificidad .nav-logo .logo-* (0,2,0) > .nav-logo img (0,1,1) */
+.nav-logo .logo-light { display: block; }
+.nav-logo .logo-dark  { display: none; }
 
 /* Al hacer scroll (nav blanca): logo oscuro visible, claro oculto */
-.nav.scrolled .logo-light { display: none; }
-.nav.scrolled .logo-dark  { display: block; }
+.nav.scrolled .nav-logo .logo-light { display: none; }
+.nav.scrolled .nav-logo .logo-dark  { display: block; }
 
 /* Footer: logo claro siempre */
-.footer .nav-logo img { max-height: 36px; }
+.footer .nav-logo img { max-height: 44px; }
 
 .nav-links {
   display: flex;
