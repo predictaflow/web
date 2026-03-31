@@ -128,26 +128,124 @@
         <h2>Todo lo que necesitas para liderar tu sector en contenido</h2>
       </div>
       <div class="services-grid">
+
+        <!-- Card 1: Tendencias -->
         <div class="service-card fade-in">
           <div class="service-icon">📡</div>
           <h3>Inteligencia de tendencias</h3>
           <p>Cada lunes te llega un briefing con los 3 temas que van a explotar esa semana en tu sector. No lo que ya está petando — lo que todavía no está. Para cuando tu competencia lo publique, tú ya tienes el contenido hecho.</p>
+          <div class="svc-mockup">
+            <div class="mockup-label">Trend Briefing · Lunes 31 mar</div>
+            <div class="trend-row">
+              <span class="trend-topic">#colágeno marino</span>
+              <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:86%"></div></div>
+              <span class="trend-pct">↑ 340%</span>
+            </div>
+            <div class="trend-row">
+              <span class="trend-topic">#gut health</span>
+              <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:60%"></div></div>
+              <span class="trend-pct">↑ 180%</span>
+            </div>
+            <div class="trend-row">
+              <span class="trend-topic">#fermentados</span>
+              <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:37%"></div></div>
+              <span class="trend-pct">↑ 92%</span>
+            </div>
+            <div class="mockup-footer">⏱ Pico estimado: 3–5 días</div>
+          </div>
         </div>
+
+        <!-- Card 2: Producción -->
         <div class="service-card fade-in">
           <div class="service-icon">🎬</div>
           <h3>Producción de contenido</h3>
-          <p>Sabemos en qué segundo exacto la gente abandona un Reel. Sabemos qué hook retiene más en cada plataforma. Sabemos qué el algoritmo está priorizando esta semana. Producimos con eso encima de la mesa, no solo con creatividad.</p>
+          <p>Sabemos en qué segundo exacto la gente abandona un Reel. Sabemos qué hook retiene más en cada plataforma. Producimos con eso encima de la mesa, no solo con creatividad.</p>
+          <div class="svc-mockup">
+            <div class="mockup-label">Retención de espectadores — Reel de 30s</div>
+            <svg viewBox="0 0 245 80" xmlns="http://www.w3.org/2000/svg" class="retention-svg">
+              <!-- ejes -->
+              <line x1="28" y1="8" x2="28" y2="66" stroke="#d4b6a5" stroke-width="0.8"/>
+              <line x1="28" y1="66" x2="185" y2="66" stroke="#d4b6a5" stroke-width="0.8"/>
+              <!-- etiquetas Y -->
+              <text x="24" y="11" text-anchor="end" font-size="6.5" fill="#8a7468">100%</text>
+              <text x="24" y="38" text-anchor="end" font-size="6.5" fill="#8a7468">50%</text>
+              <text x="24" y="66" text-anchor="end" font-size="6.5" fill="#8a7468">0%</text>
+              <!-- etiquetas X -->
+              <text x="28" y="74" text-anchor="middle" font-size="6.5" fill="#8a7468">0s</text>
+              <text x="107" y="74" text-anchor="middle" font-size="6.5" fill="#8a7468">15s</text>
+              <text x="185" y="74" text-anchor="middle" font-size="6.5" fill="#8a7468">30s</text>
+              <!-- área rellena curva buena -->
+              <path d="M 28,8 C 68,9 108,22 142,34 C 160,40 174,43 185,45 L 185,66 L 28,66 Z" fill="rgba(121,165,175,0.12)"/>
+              <!-- curva mala (sin datos) — discontinua -->
+              <path d="M 28,8 C 38,8 42,48 58,56 C 74,62 125,64 185,65" fill="none" stroke="#d4b6a5" stroke-width="1.5" stroke-dasharray="3,2"/>
+              <!-- curva buena (con datos) — sólida -->
+              <path d="M 28,8 C 68,9 108,22 142,34 C 160,40 174,43 185,45" fill="none" stroke="#79a5af" stroke-width="2"/>
+              <!-- etiqueta fin curva buena -->
+              <text x="188" y="48" font-size="7" font-weight="bold" fill="#79a5af">38%</text>
+              <!-- etiqueta fin curva mala -->
+              <text x="188" y="67" font-size="7" fill="#d4b6a5">8%</text>
+              <!-- anotación punto de abandono en curva mala -->
+              <circle cx="50" cy="36" r="3" fill="none" stroke="#d4b6a5" stroke-width="1"/>
+              <line x1="50" y1="33" x2="56" y2="19" stroke="#8a7468" stroke-width="0.7"/>
+              <text x="58" y="18" font-size="6.5" fill="#8a7468">aquí se van (seg. 3)</text>
+            </svg>
+            <div class="retention-legend">
+              <span class="ret-leg ret-leg-good">Con datos</span>
+              <span class="ret-leg ret-leg-bad">Sin datos</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Card 3: Calendario -->
         <div class="service-card fade-in">
           <div class="service-icon">📊</div>
           <h3>Estrategia de publicación</h3>
-          <p>No hay "mejor hora para publicar" universal. La tuya depende de tu audiencia, tu sector y lo que el algoritmo esté priorizando ahora. Te damos un calendario basado en esos datos, no en plantillas genéricas de internet.</p>
+          <p>No hay "mejor hora para publicar" universal. La tuya depende de tu audiencia, tu sector y lo que el algoritmo esté priorizando ahora. Te damos un calendario basado en esos datos, no en plantillas genéricas.</p>
+          <div class="svc-mockup">
+            <div class="mockup-label">Semana del 31 mar — Publicaciones programadas</div>
+            <div class="cal-head"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+            <div class="cal-row">
+              <div class="cal-slot slot-ig"><b>IG</b><small>9h</small></div>
+              <div class="cal-slot slot-tt"><b>TT</b><small>18h</small></div>
+              <div class="cal-slot slot-empty"></div>
+              <div class="cal-slot slot-ig"><b>IG</b><small>11h</small></div>
+              <div class="cal-slot slot-tt"><b>TT</b><small>20h</small></div>
+              <div class="cal-slot slot-yt"><b>YT</b><small>15h</small></div>
+              <div class="cal-slot slot-empty"></div>
+            </div>
+            <div class="cal-legend">
+              <span class="cl-ig">Instagram</span>
+              <span class="cl-tt">TikTok</span>
+              <span class="cl-yt">YouTube</span>
+              <span class="cl-note">— franjas óptimas por datos</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Card 4: Optimización -->
         <div class="service-card fade-in">
           <div class="service-icon">🔄</div>
           <h3>Optimización continua</h3>
-          <p>Después de cada mes sabemos qué formato te funciona, qué copy convierte y qué temas generan guardados vs. comentarios. Eso no se improvisa — se construye iterando. Cuanto antes empieces, antes tienes ese activo.</p>
+          <p>Después de cada mes sabemos qué formato te funciona, qué copy convierte y qué temas generan guardados vs. comentarios. Eso no se improvisa — se construye iterando.</p>
+          <div class="svc-mockup">
+            <div class="mockup-label">Evolución de métricas</div>
+            <div class="ba-grid">
+              <div class="ba-col">
+                <div class="ba-col-label">Mes 1</div>
+                <div class="ba-metric"><div class="ba-val ba-muted">4.2K</div><div class="ba-key">alcance medio</div></div>
+                <div class="ba-metric"><div class="ba-val ba-muted">1.8%</div><div class="ba-key">engagement</div></div>
+                <div class="ba-metric"><div class="ba-val ba-muted">23</div><div class="ba-key">guardados</div></div>
+              </div>
+              <div class="ba-col ba-after">
+                <div class="ba-col-label">Mes 3</div>
+                <div class="ba-metric"><div class="ba-val ba-good">18.7K</div><div class="ba-key">alcance medio</div></div>
+                <div class="ba-metric"><div class="ba-val ba-good">6.4%</div><div class="ba-key">engagement</div></div>
+                <div class="ba-metric"><div class="ba-val ba-good">312</div><div class="ba-key">guardados</div></div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
