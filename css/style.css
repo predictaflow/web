@@ -390,14 +390,14 @@ strong { font-weight: 600; }
   font-family: 'EB Garamond', serif;
   font-size: 48px;
   font-weight: 700;
-  color: var(--vibrant);
+  color: var(--primary);
   margin-bottom: 16px;
 }
 
 .process-card h3 {
   font-size: 20px;
   margin-bottom: 12px;
-  color: var(--vibrant);
+  color: var(--text);
 }
 
 .process-card p {
