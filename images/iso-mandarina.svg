@@ -1,0 +1,26 @@
+<svg viewBox="0 0 108 105" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Rabito orgánico en la cima -->
+  <path d="M 46,32 C 48,25 53,21 51,16 C 48,19 43,24 46,32 Z" fill="#F06B9B"/>
+
+  <!-- Cuerpo de la mandarina -->
+  <!-- Círculo con muesca en forma de cuña (sector extraído) a la derecha -->
+  <!-- Centro: (46, 66), radio: 34 -->
+  <!-- Muesca: de (78, 54) a (78, 78), vértice interior en (66, 66) -->
+  <path d="
+    M 78,54
+    A 34,34 0 1,0 78,78
+    L 66,66
+    Z
+  " fill="#F06B9B"/>
+
+  <!-- Gajo suelto: cuña con arco exterior que sigue la curvatura de la mandarina -->
+  <!-- Separado ~10px del cuerpo, vértice interior en (82, 66) -->
+  <path d="
+    M 88,52
+    A 34,34 0 0,1 88,80
+    L 82,66
+    Z
+  " fill="#F06B9B"/>
+
+</svg>
