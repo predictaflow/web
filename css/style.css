@@ -149,7 +149,7 @@ strong { font-weight: 600; }
 .nav-logo img {
   display: block;
   width: auto;
-  max-height: 68px;
+  max-height: 44px;
 }
 
 /* Por defecto (hero, fondo oscuro): logo claro visible, oscuro oculto */
