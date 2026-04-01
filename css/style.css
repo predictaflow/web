@@ -179,7 +179,7 @@ strong { font-weight: 600; }
 }
 
 .nav-links a:hover { color: var(--text); }
-.nav-cta { margin-left: 8px; }
+.nav-cta { margin-left: 8px; color: #ffffff !important; }
 
 .nav-toggle {
   display: none;
