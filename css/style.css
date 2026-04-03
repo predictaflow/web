@@ -471,7 +471,7 @@ strong { font-weight: 600; }
 /* ── Para quién ── */
 .pq-section {
   position: relative;
-  background: #1c0e07 url('../images/para-quien-bg.svg') center/cover no-repeat;
+  background: #0a0a28 url('../images/para-quien-bg.svg') center/cover no-repeat;
   padding: 100px 0;
 }
 
