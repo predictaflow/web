@@ -557,7 +557,6 @@ strong { font-weight: 600; }
 
 .diff-content h2 em {
   color: var(--primary);
-  font-style: normal;
 }
 
 .diff-content > p {
