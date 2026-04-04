@@ -720,8 +720,8 @@ strong { font-weight: 600; }
 .cta {
   text-align: center;
   padding: 140px 0;
-  background: var(--primary);
-  color: var(--text-light);
+  background: var(--highlight);
+  color: var(--text);
   position: relative;
   overflow: hidden;
 }
@@ -729,18 +729,18 @@ strong { font-weight: 600; }
 .cta h2 {
   font-size: clamp(36px, 5vw, 68px);
   margin-bottom: 24px;
-  color: var(--text-light);
+  color: var(--text);
 }
 
 .cta h2 em {
   font-family: 'EB Garamond', serif;
   font-style: italic;
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .cta > .container > p {
   font-size: 18px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(0,0,0,0.6);
   margin-bottom: 40px;
   max-width: 520px;
   margin-left: auto;
@@ -751,7 +751,7 @@ strong { font-weight: 600; }
 
 .cta-note {
   font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  color: rgba(0,0,0,0.45);
 }
 
 /* ── Work Showcase ── */
