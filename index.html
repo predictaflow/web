@@ -336,26 +336,42 @@
       <p class="work-label" style="background:var(--accent);color:var(--text);">TRABAJO REAL</p>
       <h2 class="work-title">Contenido que ya <em>está funcionando</em></h2>
     </div>
-    <div class="work-cards">
-      <div class="work-card wc-1">
-        <img src="images/work-card-1.jpg" alt="Vídeo producto luces">
-        <span class="wc-tag">Vídeo</span>
+    <div class="work-flow">
+      <!-- Columna 1 — rápida, 20s -->
+      <div class="work-col">
+        <div class="work-col-track" style="animation-duration:20s;">
+          <div class="work-flow-card"><img src="images/work-card-1.jpg" alt="Vídeo producto luces"><span class="wf-tag">Vídeo</span></div>
+          <div class="work-flow-card"><img src="images/work-card-3.jpg" alt="Iluminación exterior lifestyle"><span class="wf-tag">Lifestyle</span></div>
+          <div class="work-flow-card"><img src="images/work-card-5.jpg" alt="Jardín inteligente UGC"><span class="wf-tag">UGC</span></div>
+          <!-- duplicado para loop infinito -->
+          <div class="work-flow-card"><img src="images/work-card-1.jpg" alt="Vídeo producto luces"><span class="wf-tag">Vídeo</span></div>
+          <div class="work-flow-card"><img src="images/work-card-3.jpg" alt="Iluminación exterior lifestyle"><span class="wf-tag">Lifestyle</span></div>
+          <div class="work-flow-card"><img src="images/work-card-5.jpg" alt="Jardín inteligente UGC"><span class="wf-tag">UGC</span></div>
+        </div>
       </div>
-      <div class="work-card wc-2">
-        <img src="images/work-card-2.jpg" alt="Charlas Garza branded">
-        <span class="wc-tag">Branded</span>
+      <!-- Columna 2 — media, 16s, desplazada hacia abajo -->
+      <div class="work-col">
+        <div class="work-col-track" style="animation-duration:16s;margin-top:-180px;">
+          <div class="work-flow-card"><img src="images/work-card-2.jpg" alt="Charlas Garza branded"><span class="wf-tag">Branded</span></div>
+          <div class="work-flow-card"><img src="images/work-card-4.jpg" alt="Producto smart home"><span class="wf-tag">Producto</span></div>
+          <div class="work-flow-card"><img src="images/work-card-1.jpg" alt="Vídeo producto luces"><span class="wf-tag">Vídeo</span></div>
+          <!-- duplicado -->
+          <div class="work-flow-card"><img src="images/work-card-2.jpg" alt="Charlas Garza branded"><span class="wf-tag">Branded</span></div>
+          <div class="work-flow-card"><img src="images/work-card-4.jpg" alt="Producto smart home"><span class="wf-tag">Producto</span></div>
+          <div class="work-flow-card"><img src="images/work-card-1.jpg" alt="Vídeo producto luces"><span class="wf-tag">Vídeo</span></div>
+        </div>
       </div>
-      <div class="work-card wc-3">
-        <img src="images/work-card-3.jpg" alt="Iluminación exterior lifestyle">
-        <span class="wc-tag">Lifestyle</span>
-      </div>
-      <div class="work-card wc-4">
-        <img src="images/work-card-4.jpg" alt="Producto smart home">
-        <span class="wc-tag">Producto</span>
-      </div>
-      <div class="work-card wc-5">
-        <img src="images/work-card-5.jpg" alt="Jardín inteligente UGC">
-        <span class="wc-tag">UGC</span>
+      <!-- Columna 3 — lenta, 28s -->
+      <div class="work-col">
+        <div class="work-col-track" style="animation-duration:28s;">
+          <div class="work-flow-card"><img src="images/work-card-3.jpg" alt="Iluminación exterior lifestyle"><span class="wf-tag">Lifestyle</span></div>
+          <div class="work-flow-card"><img src="images/work-card-5.jpg" alt="Jardín inteligente UGC"><span class="wf-tag">UGC</span></div>
+          <div class="work-flow-card"><img src="images/work-card-2.jpg" alt="Charlas Garza branded"><span class="wf-tag">Branded</span></div>
+          <!-- duplicado -->
+          <div class="work-flow-card"><img src="images/work-card-3.jpg" alt="Iluminación exterior lifestyle"><span class="wf-tag">Lifestyle</span></div>
+          <div class="work-flow-card"><img src="images/work-card-5.jpg" alt="Jardín inteligente UGC"><span class="wf-tag">UGC</span></div>
+          <div class="work-flow-card"><img src="images/work-card-2.jpg" alt="Charlas Garza branded"><span class="wf-tag">Branded</span></div>
+        </div>
       </div>
     </div>
   </section>

@@ -766,6 +766,7 @@ strong { font-weight: 600; }
   padding: 80px 0 0;
   overflow: hidden;
   text-align: center;
+  position: relative;
 }
 
 .work-label {
@@ -784,56 +785,102 @@ strong { font-weight: 600; }
   margin-bottom: 56px;
 }
 
-.work-cards {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 20px;
-  padding: 0 40px 0;
-  overflow: visible;
+/* ── 3-Column infinite vertical scroll ── */
+@keyframes scroll-up {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
 }
 
-.work-card {
+.work-flow {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  height: 620px;
+  overflow: hidden;
+  position: relative;
+  padding: 0 40px;
+}
+
+/* Gradient fade top & bottom */
+.work-flow::before,
+.work-flow::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 140px;
+  z-index: 10;
+  pointer-events: none;
+}
+.work-flow::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg-dark) 0%, transparent 100%);
+}
+.work-flow::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg-dark) 0%, transparent 100%);
+}
+
+.work-col {
+  flex: 1;
+  max-width: 280px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.work-col-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: scroll-up linear infinite;
+}
+
+.work-flow-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
-  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease;
+  aspect-ratio: 4 / 5;
   flex-shrink: 0;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
 
-.work-card img {
+.work-flow-card img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-.wc-tag {
+.work-flow-card:hover img {
+  transform: scale(1.06);
+}
+
+.wf-tag {
   position: absolute;
   bottom: 12px;
   left: 12px;
-  background: rgba(0,0,0,0.55);
+  background: rgba(255,255,255,0.18);
   color: #fff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
   padding: 4px 10px;
   border-radius: 20px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
-/* Card sizes & rotations */
-.wc-1 { width: 180px; height: 320px; transform: rotate(-6deg) translateY(20px); }
-.wc-2 { width: 180px; height: 320px; transform: rotate(-3deg) translateY(10px); }
-.wc-3 { width: 220px; height: 360px; transform: rotate(0deg) translateY(0); z-index: 2; }
-.wc-4 { width: 180px; height: 320px; transform: rotate(3deg) translateY(10px); }
-.wc-5 { width: 180px; height: 320px; transform: rotate(6deg) translateY(20px); }
+/* Pause on hover */
+.work-flow:hover .work-col-track {
+  animation-play-state: paused;
+}
 
-.work-card:hover {
-  transform: rotate(0deg) translateY(-12px) scale(1.04) !important;
-  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-  z-index: 10;
+/* Mobile: 2 columns only */
+@media (max-width: 640px) {
+  .work-flow { gap: 10px; padding: 0 16px; height: 520px; }
+  .work-col:last-child { display: none; }
+  .work-col { max-width: 50%; }
 }
 
 /* ── Footer ── */
