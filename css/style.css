@@ -763,7 +763,7 @@ strong { font-weight: 600; }
 /* ── Work Showcase ── */
 .work-showcase {
   background: var(--bg-dark);
-  padding: 80px 0 0;
+  padding: 80px 0 80px;
   overflow: hidden;
   text-align: center;
   position: relative;
@@ -831,13 +831,18 @@ strong { font-weight: 600; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-  animation: scroll-up linear infinite;
+  /* Use longhands so inline animation-duration overrides cleanly */
+  animation-name: scroll-up;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 24s; /* fallback if inline style fails */
 }
 
 .work-flow-card {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  width: 100%;
   aspect-ratio: 4 / 5;
   flex-shrink: 0;
   box-shadow: 0 16px 40px rgba(0,0,0,0.45);
