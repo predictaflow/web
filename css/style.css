@@ -512,10 +512,11 @@ strong { font-weight: 600; }
 
 /* ── Section Gradients ── */
 .sg { height: 80px; pointer-events: none; display: block; }
-.sg-dark-pink  { background: linear-gradient(to bottom, var(--bg-dark), var(--accent)); }
-.sg-pink-cream { background: linear-gradient(to bottom, var(--accent), var(--bg-alt)); }
-.sg-white-dark { background: linear-gradient(to bottom, #ffffff, var(--bg-dark)); }
-.sg-dark-white { background: linear-gradient(to bottom, var(--bg-dark), #ffffff); }
+.sg-cream-white    { background: linear-gradient(to bottom, var(--bg-alt), #ffffff); height: 60px; }
+.sg-white-lavender { background: linear-gradient(to bottom, #ffffff, #CDC1FF); }
+.sg-lavender-white { background: linear-gradient(to bottom, #BFECFF, #ffffff); }
+.sg-white-dark     { background: linear-gradient(to bottom, #ffffff, var(--bg-dark)); height: 120px; }
+.sg-dark-white     { background: linear-gradient(to bottom, var(--bg-dark), #ffffff); height: 120px; }
 
 /* ── Process (Flow-style tabs) ── */
 .section-proceso { background: var(--bg-alt); }
