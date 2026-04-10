@@ -373,78 +373,78 @@ strong { font-weight: 600; }
   100% { top: 100%; }
 }
 
-/* ── Stats section (sección propia, fuera del hero) ── */
-.stats-section {
-  background: var(--bg-alt);
-  padding: 64px 0;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-
-.stats-grid .stat-card {
-  background: var(--bg);
-  border: 1px solid rgba(139,127,212,0.15);
-  border-radius: 20px;
-  padding: 48px 32px;
+/* ── Statement Section ── */
+.statement-section {
+  background: var(--bg-dark);
+  padding: 120px 0 100px;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(139,127,212,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.stats-grid .stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(139,127,212,0.18);
+.statement-headline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* Legacy */
-.hero-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.statement-dot {
+  color: var(--accent);
 }
 
-.stat-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px 24px;
-  text-align: center;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.statement-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-.stat-card:hover {
-  border-color: var(--primary-light);
-  box-shadow: 0 8px 32px rgba(139,127,212,0.18);
-  background: var(--primary-light);
+.statement-stat {
+  flex: 1;
+  padding: 0 48px;
+}
+
+.statement-number {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .stat-number {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 52px;
-  font-weight: 800;
-  color: var(--primary);
   display: inline;
-  letter-spacing: -0.02em;
 }
 
-.stat-unit {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--primary);
-  display: inline;
-  opacity: 0.6;
+.statement-unit {
+  font-size: 0.45em;
+  font-weight: 700;
+  color: var(--accent);
+  vertical-align: baseline;
 }
 
-.stat-label {
-  color: var(--text-muted);
-  font-size: 14px;
-  margin-top: 8px;
-  line-height: 1.4;
+.statement-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  margin-top: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.statement-divider {
+  width: 1px;
+  height: 80px;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
 }
 
 /* ── Ticker ── */
