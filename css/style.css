@@ -296,6 +296,14 @@ strong { font-weight: 600; }
   filter: drop-shadow(0 4px 32px rgba(0,0,0,0.5));
 }
 
+.hero-tagline {
+  font-size: clamp(16px, 2vw, 22px);
+  color: rgba(255,255,255,0.70);
+  font-weight: 400;
+  margin: 0 0 28px;
+  letter-spacing: 0.01em;
+}
+
 .hero-claim {
   display: inline-block;
   font-size: clamp(18px, 2.2vw, 28px);
