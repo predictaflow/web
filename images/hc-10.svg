@@ -1,0 +1,20 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-10" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#001a2a"/>
+      <stop offset="100%" stop-color="#006080"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-10)" rx="0"/>
+  
+        <polyline points="40,380 100,300 160,320 220,200 280,240 360,120" stroke="#BFECFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+        <circle cx="40" cy="380" r="6" fill="#BFECFF" opacity="0.8"/>
+        <circle cx="100" cy="300" r="6" fill="#BFECFF" opacity="0.8"/>
+        <circle cx="160" cy="320" r="6" fill="#BFECFF" opacity="0.8"/>
+        <circle cx="220" cy="200" r="6" fill="#BFECFF" opacity="0.8"/>
+        <circle cx="280" cy="240" r="6" fill="#BFECFF" opacity="0.8"/>
+        <circle cx="360" cy="120" r="6" fill="#BFECFF" opacity="0.8"/>
+        <rect x="40" y="430" width="320" height="2" fill="white" opacity="0.12"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">DATA</text>
+</svg>

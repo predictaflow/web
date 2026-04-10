@@ -1,0 +1,18 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-07" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#0a1f2d"/>
+      <stop offset="100%" stop-color="#1a7fa0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-07)" rx="0"/>
+  
+        <circle cx="200" cy="210" r="110" fill="none" stroke="#BFECFF" stroke-width="3" opacity="0.2"/>
+        <circle cx="200" cy="210" r="75" fill="none" stroke="#BFECFF" stroke-width="3" opacity="0.35"/>
+        <circle cx="200" cy="210" r="40" fill="none" stroke="#BFECFF" stroke-width="3" opacity="0.5"/>
+        <circle cx="200" cy="210" r="12" fill="#BFECFF" opacity="0.9"/>
+        <line x1="80" y1="210" x2="320" y2="210" stroke="#BFECFF" stroke-width="1.5" opacity="0.25"/>
+        <line x1="200" y1="90" x2="200" y2="330" stroke="#BFECFF" stroke-width="1.5" opacity="0.25"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">ESTRATEGIA</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-12" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#0a0a2a"/>
+      <stop offset="100%" stop-color="#3333cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-12)" rx="0"/>
+  
+        <ellipse cx="200" cy="200" rx="140" ry="80" fill="none" stroke="#FFF6E3" stroke-width="3" opacity="0.4"/>
+        <circle cx="200" cy="200" r="45" fill="#FFF6E3" opacity="0.2"/>
+        <circle cx="200" cy="200" r="25" fill="#FFF6E3" opacity="0.5"/>
+        <circle cx="200" cy="200" r="10" fill="white" opacity="0.8"/>
+        <circle cx="180" cy="185" r="5" fill="white" opacity="0.5"/>
+        <rect x="40" y="340" width="120" height="4" rx="2" fill="#FFF6E3" opacity="0.5"/>
+        <rect x="40" y="358" width="70" height="4" rx="2" fill="white" opacity="0.2"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">PREDICCIÓN</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-05" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#2d2550"/>
+      <stop offset="100%" stop-color="#8B7FD4"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-05)" rx="0"/>
+  
+        <circle cx="200" cy="200" r="110" fill="#CDC1FF" opacity="0.1"/>
+        <circle cx="200" cy="200" r="75" fill="#CDC1FF" opacity="0.15"/>
+        <circle cx="200" cy="200" r="40" fill="#CDC1FF" opacity="0.3"/>
+        <text x="200" y="214" text-anchor="middle" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="32">✦</text>
+        <rect x="60" y="360" width="280" height="3" rx="1.5" fill="#CDC1FF" opacity="0.4"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">IMPACTO</text>
+</svg>

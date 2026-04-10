@@ -1,0 +1,19 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-03" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#3d0030"/>
+      <stop offset="100%" stop-color="#d94b8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-03)" rx="0"/>
+  
+        <circle cx="200" cy="210" r="130" fill="none" stroke="#FFF6E3" stroke-width="1.5" opacity="0.15"/>
+        <circle cx="200" cy="210" r="90" fill="none" stroke="#FFF6E3" stroke-width="1.5" opacity="0.25"/>
+        <circle cx="200" cy="210" r="50" fill="#FFF6E3" opacity="0.2"/>
+        <circle cx="200" cy="210" r="18" fill="#FFF6E3" opacity="0.6"/>
+        <line x1="200" y1="80" x2="200" y2="210" stroke="#FFF6E3" stroke-width="2" opacity="0.4"/>
+        <line x1="80" y1="210" x2="200" y2="210" stroke="#FFF6E3" stroke-width="2" opacity="0.4"/>
+        <rect x="40" y="400" width="80" height="5" rx="2.5" fill="#FFF6E3" opacity="0.5"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">REACH</text>
+</svg>

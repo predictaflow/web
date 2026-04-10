@@ -1,0 +1,18 @@
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bghc-01" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#7B5EA7"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bghc-01)" rx="0"/>
+  
+        <polyline points="60,380 140,280 220,320 320,160" stroke="#FFCCEA" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        <polygon points="320,160 345,200 295,200" fill="#FFCCEA" opacity="0.8"/>
+        <rect x="40" y="420" width="80" height="4" rx="2" fill="#FFCCEA" opacity="0.5"/>
+        <rect x="130" y="420" width="40" height="4" rx="2" fill="white" opacity="0.3"/>
+        <circle cx="320" cy="80" r="30" fill="#FFCCEA" opacity="0.15"/>
+        <circle cx="320" cy="80" r="18" fill="#FFCCEA" opacity="0.2"/>
+        
+  <text x="32" y="468" fill="white" font-family="Arial Black,sans-serif" font-weight="900" font-size="22" opacity="0.9" letter-spacing="2">TENDENCIA</text>
+</svg>

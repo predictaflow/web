@@ -201,9 +201,9 @@ strong { font-weight: 600; }
 /* ── Hero ── */
 /* ── Hero ── */
 .hero {
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 600px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -211,24 +211,17 @@ strong { font-weight: 600; }
   background: #0a0814;
 }
 
-/* Dark overlay sobre la galería */
+/* Overlay uniforme oscuro — igual que Google Flow */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(10, 8, 20, 0.72);
+  background: rgba(10, 8, 20, 0.68);
   z-index: 1;
+  pointer-events: none;
 }
 
-/* Gradiente adicional abajo para que las stats sean legibles */
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 280px;
-  background: linear-gradient(to top, rgba(10,8,20,0.95) 0%, transparent 100%);
-  z-index: 1;
-}
+.hero::after { content: none; }
 
 /* ── Galería de fondo ── */
 .hero-gallery {
@@ -236,9 +229,7 @@ strong { font-weight: 600; }
   inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   z-index: 0;
-  gap: 0;
 }
 
 .hero-gallery-row {
@@ -259,8 +250,9 @@ strong { font-weight: 600; }
 
 .hero-gtrack {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   width: max-content;
+  padding: 4px 0;
 }
 
 .hg-left {
@@ -275,60 +267,45 @@ strong { font-weight: 600; }
   animation-iteration-count: infinite;
 }
 
+.hg-card,
 .hero-gtrack img {
-  height: 200px;
-  width: 160px;
-  object-fit: cover;
-  border-radius: 12px;
-  display: block;
+  width: 180px;
+  height: calc(33.33vh - 8px);
+  min-height: 140px;
+  border-radius: 14px;
   flex-shrink: 0;
+  object-fit: cover;
+  display: block;
 }
 
-/* ── Hero centro ── */
+/* ── Hero centro — logo + tagline, nada más ── */
 .hero-center {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 160px 24px 20px;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1;
 }
 
-.hero-eyebrow {
-  display: inline-block;
-  background: var(--accent);
-  color: var(--bg-dark);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
+.hero-logo {
+  width: clamp(200px, 30vw, 380px);
+  height: auto;
   margin-bottom: 28px;
-}
-
-.hero-brand {
-  font-family: 'DM Sans', sans-serif;
-  font-size: clamp(64px, 12vw, 140px);
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 0.9;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
+  filter: drop-shadow(0 4px 24px rgba(0,0,0,0.4));
 }
 
 .hero-claim {
-  font-size: clamp(20px, 3vw, 32px);
-  color: rgba(255,255,255,0.75);
-  line-height: 1.3;
-  margin-bottom: 40px;
+  font-size: clamp(22px, 3vw, 36px);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.2;
   font-weight: 400;
+  margin: 0;
 }
 
 .hero-claim em {
-  font-style: italic;
+  font-style: normal;
   color: var(--accent);
   font-weight: 700;
 }
@@ -340,39 +317,26 @@ strong { font-weight: 600; }
   justify-content: center;
 }
 
-/* ── Stats barra inferior ── */
-.hero-stats-bar {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 24px 100px;
-}
-
 /* ── Scroll hint ── */
 .hero-scroll-hint {
   position: absolute;
-  bottom: 32px;
+  bottom: 36px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   text-align: center;
-  color: rgba(255,255,255,0.55);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .hero-scroll-line {
   width: 1px;
-  height: 52px;
-  background: rgba(255,255,255,0.2);
+  height: 48px;
+  background: rgba(255,255,255,0.15);
   margin: 10px auto 0;
   position: relative;
   overflow: hidden;
@@ -385,7 +349,7 @@ strong { font-weight: 600; }
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.75);
   animation: scroll-drop 1.8s ease-in-out infinite;
 }
 
@@ -394,7 +358,31 @@ strong { font-weight: 600; }
   100% { top: 100%; }
 }
 
-/* Legacy .hero-stats kept for stat-card reuse */
+/* ── Stats section (sección propia, fuera del hero) ── */
+.stats-section {
+  background: var(--bg-dark);
+  padding: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.stats-grid .stat-card {
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0;
+  background: transparent;
+  padding: 48px 32px;
+}
+
+.stats-grid .stat-card:last-child {
+  border-right: none;
+}
+
+/* Legacy */
 .hero-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
