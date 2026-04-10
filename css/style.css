@@ -400,6 +400,13 @@ strong { font-weight: 600; }
   color: var(--accent);
 }
 
+.statement-headline span:nth-child(2) {
+  font-size: clamp(15px, 1.6vw, 20px);
+  color: rgba(255,255,255,0.55);
+  margin-top: 10px;
+  font-weight: 400;
+}
+
 .statement-stats {
   display: flex;
   align-items: center;
