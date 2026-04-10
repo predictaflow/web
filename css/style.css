@@ -1163,7 +1163,8 @@ strong { font-weight: 600; }
   .proceso-tab { padding: 16px 24px 16px 0; }
   .proceso-tab + .proceso-tab { padding-left: 24px; }
   .tab-name { font-size: 15px; }
-  .sg { height: 48px; }
+  .sg-cream-white, .sg-white-lavender, .sg-lavender-white { height: 48px; }
+  .sg-white-dark, .sg-dark-white { height: 80px; }
   .pq-grid { grid-template-columns: 1fr; }
   .pq-card { padding: 28px 24px; }
 }
@@ -1417,12 +1418,12 @@ strong { font-weight: 600; }
 .section-alt { background: var(--bg-alt); }
 .section-header h2 { color: #ffffff; }
 
-/* Gradient dividers — invisibles en tema oscuro */
-.sg-cream-white,
-.sg-white-lavender,
-.sg-lavender-white,
-.sg-white-dark,
-.sg-dark-white { height: 0; }
+/* Gradient dividers — tonos morados */
+.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 80px; }
+.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 80px; }
+.sg-lavender-white { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 80px; }
+.sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 140px; }
+.sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 140px; }
 
 /* Statement section — más profundo para contraste */
 .statement-section { background: var(--bg-dark); }
