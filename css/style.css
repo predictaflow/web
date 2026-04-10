@@ -1382,3 +1382,110 @@ strong { font-weight: 600; }
   margin-top: 2px;
   line-height: 1.2;
 }
+
+/* ══════════════════════════════════════════════
+   DARK PURPLE THEME
+   ══════════════════════════════════════════════ */
+
+:root {
+  --bg:        #16122e;
+  --bg-alt:    #1e1a3a;
+  --bg-dark:   #0d0b1e;
+  --text:      #ffffff;
+  --text-muted: rgba(255,255,255,0.55);
+  --border:    rgba(255,255,255,0.09);
+  --accent-bg: rgba(255,204,234,0.12);
+}
+
+/* Nav — siempre oscuro */
+.nav.scrolled {
+  background: rgba(22,18,46,0.95);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.07);
+}
+.nav-logo .logo-light { display: block !important; }
+.nav-logo .logo-dark  { display: none  !important; }
+.nav-links a { color: rgba(255,255,255,0.65); }
+.nav-links a:hover { color: #ffffff; }
+.nav-toggle span { background: #ffffff; }
+.nav-links.active {
+  background: rgba(22,18,46,0.98);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+.nav-links.active a { color: rgba(255,255,255,0.7); }
+
+/* Sections */
+.section-alt { background: var(--bg-alt); }
+.section-header h2 { color: #ffffff; }
+
+/* Gradient dividers — invisibles en tema oscuro */
+.sg-cream-white,
+.sg-white-lavender,
+.sg-lavender-white,
+.sg-white-dark,
+.sg-dark-white { height: 0; }
+
+/* Statement section — más profundo para contraste */
+.statement-section { background: var(--bg-dark); }
+
+/* Process tabs */
+.proceso-tabs { border-bottom-color: rgba(255,255,255,0.10); }
+.proceso-tab + .proceso-tab { border-left-color: rgba(255,255,255,0.08); }
+.tab-name { color: #ffffff; }
+.process-tools {
+  border-top-color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.35);
+}
+
+/* Service cards */
+.service-card {
+  background: var(--bg-alt);
+  border-color: rgba(255,255,255,0.07);
+}
+.service-card h3 { color: #ffffff; }
+.service-card p  { color: rgba(255,255,255,0.6); }
+.service-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+  border-color: rgba(255,255,255,0.15);
+}
+.svc-mockup { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.08); }
+.mockup-label { color: rgba(255,255,255,0.4); }
+.mockup-footer { color: rgba(255,255,255,0.35); }
+
+/* Para quién */
+.pq-section {
+  background: linear-gradient(160deg, #1e1a3a 0%, #2d2550 55%, #16203a 100%);
+}
+.pq-header h2  { color: #ffffff; }
+.pq-card {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+.pq-card:hover { background: rgba(255,255,255,0.13); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+.pq-card h3    { color: #ffffff; }
+.pq-card p     { color: rgba(255,255,255,0.6); }
+
+/* Differenciador */
+.diff-visual {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.diff-bar.others  { background: rgba(255,255,255,0.12); }
+.diff-bar-label   { color: rgba(255,255,255,0.5); }
+.diff-caption     { color: rgba(255,255,255,0.4); }
+.diff-no::before  { color: rgba(255,255,255,0.2); }
+.diff-col-bad     { color: rgba(255,255,255,0.35); border-color: rgba(255,255,255,0.15); }
+.diff-check-list li { color: rgba(255,255,255,0.6); }
+
+/* FAQ */
+.faq-item summary { color: #ffffff; }
+.faq-item p       { color: rgba(255,255,255,0.55); }
+
+/* CTA */
+.cta { background: var(--bg-alt); }
+.cta h2 { color: #ffffff; }
+.cta h2 em { color: var(--accent); }
+.cta > .container > p { color: rgba(255,255,255,0.6); }
+.cta-note { color: rgba(255,255,255,0.38); }
+
+/* Footer — misma base oscura, ligeramente más profunda */
+.footer { background: var(--bg-dark); }
