@@ -1420,23 +1420,20 @@ strong { font-weight: 600; }
 .section-alt { background: var(--bg-alt); }
 .section-header h2 { color: #ffffff; }
 
-/* Gradient dividers — dark mode */
-/* proceso(#1e1a3a) → servicios(#16122e) */
-.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 60px; }
-/* servicios(#16122e) → para-quién(#1e1a3a) */
-.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 60px; }
-/* para-quién(#16203a) → diferencia(#16122e) */
-.sg-lavender-white { background: linear-gradient(to bottom, #16203a, #16122e); height: 60px; }
-/* diferencia(#16122e) → work-showcase(#0d0b1e) */
+/* Gradient dividers — dark mode.
+   Solo son visibles entre secciones con contraste real de color.
+   Las del mismo tono morado se dejan a 0 para no crear hueco vacío. */
+.sg-cream-white    { height: 0; }
+.sg-white-lavender { height: 0; }
+.sg-lavender-white { height: 0; }
+.sg-faq-cta        { height: 0; }
+/* Estas sí tienen contraste real (work-showcase es #0d0b1e, más oscuro) */
 .sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 80px; }
-/* work-showcase(#0d0b1e) → faq(#16122e) */
 .sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 80px; }
-/* faq(#16122e) → cta(#1e1a3a) */
-.sg-faq-cta        { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 60px; }
 
-/* Reducir padding de sección en dark para no crear huecos vacíos */
-.section    { padding: 80px 0; }
-.cta        { padding: 100px 0; }
+/* Padding ajustado para que no sobren espacios */
+.section { padding: 72px 0; }
+.cta     { padding: 90px 0; }
 
 /* Statement section — más profundo para contraste */
 .statement-section { background: var(--bg-dark); }
@@ -1501,24 +1498,5 @@ strong { font-weight: 600; }
 .cta > .container > p { color: rgba(255,255,255,0.6); }
 .cta-note { color: rgba(255,255,255,0.38); }
 
-/* Footer — fondo crema corporativo con texto en morado.
-   El degradado va integrado en el propio footer para evitar el corte. */
-.footer {
-  background: linear-gradient(to bottom, #1e1a3a 0px, #FFF6E3 160px) #FFF6E3;
-  color: rgba(45,37,80,0.65);
-}
-.footer-top {
-  border-bottom-color: rgba(45,37,80,0.12);
-}
-.footer-nav h4 {
-  color: #2d2550;
-}
-.footer-nav a {
-  color: rgba(45,37,80,0.6);
-}
-.footer-nav a:hover {
-  color: #2d2550;
-}
-.footer-bottom {
-  color: rgba(45,37,80,0.45);
-}
+/* Footer — oscuro corporativo */
+.footer { background: var(--bg-dark); }
