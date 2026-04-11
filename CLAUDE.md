@@ -53,3 +53,14 @@ Agencia creativa de contenido data-driven: detectar tendencias antes de que expl
 - GitHub Student Pack: https://education.github.com/pack (ver Catalogo_Recursos_GitHub en cerebro-digital)
 - Cuenta Netlify disponible si se necesita en el futuro
 - `branding.json`: referencia de estilo de platanomelon.com
+
+
+## Integración con el sistema
+
+- **Ficha Notion**: [rellenar URL o ID en DB Proyectos]
+- **Capa de ejecución**: Notion
+- **Tracking URL**: -
+- **Routing**: ver `~/dotfiles/claude/skills/cierre-sesion/references/sistema-productividad.md` (Calendario de routing)
+
+`cierre-sesion` actualiza las tareas en Notion DB Tareas (relación Proyecto → ficha de este repo) vía MCP Notion.
+Reglas completas del sistema en `~/dotfiles/claude/skills/cierre-sesion/references/sistema-productividad.md`.
