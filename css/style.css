@@ -1501,11 +1501,11 @@ strong { font-weight: 600; }
 /* Footer — crema corporativo */
 .footer {
   background: #FFF6E3;
-  color: #CDC1FF;
+  color: #2d2550;
 }
-.footer-top    { border-bottom-color: rgba(205,193,255,0.25); }
-.footer-nav h4 { color: #CDC1FF; }
-.footer-nav a  { color: rgba(205,193,255,0.7); }
-.footer-nav a:hover { color: #CDC1FF; }
-.footer-bottom { color: rgba(205,193,255,0.5); }
-.footer-brand p { color: rgba(205,193,255,0.7); }
+.footer-top    { border-bottom-color: rgba(45,37,80,0.15); }
+.footer-nav h4 { color: #2d2550; }
+.footer-nav a  { color: rgba(45,37,80,0.65); }
+.footer-nav a:hover { color: #2d2550; }
+.footer-bottom { color: rgba(45,37,80,0.45); }
+.footer-brand p { color: rgba(45,37,80,0.65); }
