@@ -1516,7 +1516,3 @@ strong { font-weight: 600; }
 .footer-bottom {
   color: rgba(45,37,80,0.45);
 }
-/* Gradient divider before footer — crema */
-.sg-dark-white {
-  background: linear-gradient(to bottom, #0d0b1e, #FFF6E3);
-}
