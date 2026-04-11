@@ -2,7 +2,7 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary: #8B7FD4;
+  --primary: #CDC1FF;
   --primary-light: #CDC1FF;
   --accent: #FFCCEA;
   --accent-bg: #fff4fa;
@@ -87,9 +87,9 @@ strong { font-weight: 600; }
 
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--primary); color: #ffffff; }
-.btn-primary:hover { box-shadow: 0 8px 24px rgba(139,127,212,0.4); }
+.btn-primary:hover { box-shadow: 0 8px 24px rgba(205,193,255,0.4); }
 .btn-accent { background: var(--primary); color: #ffffff; }
-.btn-accent:hover { box-shadow: 0 8px 24px rgba(139,127,212,0.4); }
+.btn-accent:hover { box-shadow: 0 8px 24px rgba(205,193,255,0.4); }
 .btn-outline {
   background: transparent;
   color: var(--text);
@@ -635,7 +635,7 @@ strong { font-weight: 600; }
 
 .service-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(139,127,212,0.18);
+  box-shadow: 0 20px 48px rgba(205,193,255,0.18);
 }
 
 .service-card h3 {
@@ -1175,7 +1175,7 @@ strong { font-weight: 600; }
 .svc-mockup {
   margin-top: 20px;
   background: #f0eeff;
-  border: 1px solid rgba(139,127,212,0.15);
+  border: 1px solid rgba(205,193,255,0.15);
   border-radius: 10px;
   padding: 14px 16px;
 }
@@ -1215,7 +1215,7 @@ strong { font-weight: 600; }
 .trend-bar-wrap {
   flex: 1;
   height: 5px;
-  background: rgba(139,127,212,0.15);
+  background: rgba(205,193,255,0.15);
   border-radius: 3px;
   overflow: hidden;
 }
