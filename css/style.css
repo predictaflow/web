@@ -524,6 +524,7 @@ strong { font-weight: 600; }
 .sg-lavender-white { background: linear-gradient(to bottom, #ddf2ff, #ffffff); height: 120px; }
 .sg-white-dark     { background: linear-gradient(to bottom, #ffffff, var(--bg-dark)); height: 180px; }
 .sg-dark-white     { background: linear-gradient(to bottom, var(--bg-dark), #ffffff); height: 180px; }
+.sg-dark-cream     { height: 0; }
 
 /* ── Process (Flow-style tabs) ── */
 .section-proceso { background: var(--bg-alt); }
@@ -1418,12 +1419,13 @@ strong { font-weight: 600; }
 .section-alt { background: var(--bg-alt); }
 .section-header h2 { color: #ffffff; }
 
-/* Gradient dividers — tonos morados */
-.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 80px; }
-.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 80px; }
-.sg-lavender-white { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 80px; }
-.sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 140px; }
-.sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 140px; }
+/* Gradient dividers — en modo oscuro los colores son casi idénticos,
+   así que colapsamos los dividers para no crear huecos vacíos */
+.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 0; }
+.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 0; }
+.sg-lavender-white { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 0; }
+.sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 60px; }
+.sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 60px; }
 
 /* Statement section — más profundo para contraste */
 .statement-section { background: var(--bg-dark); }
@@ -1488,5 +1490,33 @@ strong { font-weight: 600; }
 .cta > .container > p { color: rgba(255,255,255,0.6); }
 .cta-note { color: rgba(255,255,255,0.38); }
 
-/* Footer — misma base oscura, ligeramente más profunda */
-.footer { background: var(--bg-dark); }
+/* Gradient CTA (oscuro) → footer (crema) */
+.sg-dark-cream {
+  background: linear-gradient(to bottom, #1e1a3a, #FFF6E3);
+  height: 100px;
+}
+
+/* Footer — fondo crema corporativo con texto en morado */
+.footer {
+  background: #FFF6E3;
+  color: rgba(45,37,80,0.65);
+}
+.footer-top {
+  border-bottom-color: rgba(45,37,80,0.12);
+}
+.footer-nav h4 {
+  color: #2d2550;
+}
+.footer-nav a {
+  color: rgba(45,37,80,0.6);
+}
+.footer-nav a:hover {
+  color: #2d2550;
+}
+.footer-bottom {
+  color: rgba(45,37,80,0.45);
+}
+/* Gradient divider before footer — crema */
+.sg-dark-white {
+  background: linear-gradient(to bottom, #0d0b1e, #FFF6E3);
+}
