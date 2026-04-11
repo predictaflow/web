@@ -1498,5 +1498,14 @@ strong { font-weight: 600; }
 .cta > .container > p { color: rgba(255,255,255,0.6); }
 .cta-note { color: rgba(255,255,255,0.38); }
 
-/* Footer — oscuro corporativo */
-.footer { background: var(--bg-dark); }
+/* Footer — crema corporativo (degradado integrado para evitar corte con CTA) */
+.footer {
+  background: linear-gradient(to bottom, #1e1a3a 0px, #FFF6E3 120px);
+  color: #CDC1FF;
+}
+.footer-top    { border-bottom-color: rgba(205,193,255,0.25); }
+.footer-nav h4 { color: #CDC1FF; }
+.footer-nav a  { color: rgba(205,193,255,0.7); }
+.footer-nav a:hover { color: #CDC1FF; }
+.footer-bottom { color: rgba(205,193,255,0.5); }
+.footer-brand p { color: rgba(205,193,255,0.7); }
