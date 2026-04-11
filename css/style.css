@@ -525,6 +525,7 @@ strong { font-weight: 600; }
 .sg-white-dark     { background: linear-gradient(to bottom, #ffffff, var(--bg-dark)); height: 180px; }
 .sg-dark-white     { background: linear-gradient(to bottom, var(--bg-dark), #ffffff); height: 180px; }
 .sg-dark-cream     { height: 0; }
+.sg-faq-cta        { height: 0; }
 
 /* ── Process (Flow-style tabs) ── */
 .section-proceso { background: var(--bg-alt); }
@@ -1419,13 +1420,23 @@ strong { font-weight: 600; }
 .section-alt { background: var(--bg-alt); }
 .section-header h2 { color: #ffffff; }
 
-/* Gradient dividers — en modo oscuro los colores son casi idénticos,
-   así que colapsamos los dividers para no crear huecos vacíos */
-.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 0; }
-.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 0; }
-.sg-lavender-white { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 0; }
-.sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 60px; }
-.sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 60px; }
+/* Gradient dividers — dark mode */
+/* proceso(#1e1a3a) → servicios(#16122e) */
+.sg-cream-white    { background: linear-gradient(to bottom, #1e1a3a, #16122e); height: 60px; }
+/* servicios(#16122e) → para-quién(#1e1a3a) */
+.sg-white-lavender { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 60px; }
+/* para-quién(#16203a) → diferencia(#16122e) */
+.sg-lavender-white { background: linear-gradient(to bottom, #16203a, #16122e); height: 60px; }
+/* diferencia(#16122e) → work-showcase(#0d0b1e) */
+.sg-white-dark     { background: linear-gradient(to bottom, #16122e, #0d0b1e); height: 80px; }
+/* work-showcase(#0d0b1e) → faq(#16122e) */
+.sg-dark-white     { background: linear-gradient(to bottom, #0d0b1e, #16122e); height: 80px; }
+/* faq(#16122e) → cta(#1e1a3a) */
+.sg-faq-cta        { background: linear-gradient(to bottom, #16122e, #1e1a3a); height: 60px; }
+
+/* Reducir padding de sección en dark para no crear huecos vacíos */
+.section    { padding: 80px 0; }
+.cta        { padding: 100px 0; }
 
 /* Statement section — más profundo para contraste */
 .statement-section { background: var(--bg-dark); }
