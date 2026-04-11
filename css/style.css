@@ -1498,9 +1498,9 @@ strong { font-weight: 600; }
 .cta > .container > p { color: rgba(255,255,255,0.6); }
 .cta-note { color: rgba(255,255,255,0.38); }
 
-/* Footer — crema corporativo (degradado integrado para evitar corte con CTA) */
+/* Footer — crema corporativo */
 .footer {
-  background: linear-gradient(to bottom, #1e1a3a 0px, #FFF6E3 120px);
+  background: #FFF6E3;
   color: #CDC1FF;
 }
 .footer-top    { border-bottom-color: rgba(205,193,255,0.25); }
