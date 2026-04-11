@@ -1490,15 +1490,10 @@ strong { font-weight: 600; }
 .cta > .container > p { color: rgba(255,255,255,0.6); }
 .cta-note { color: rgba(255,255,255,0.38); }
 
-/* Gradient CTA (oscuro) → footer (crema) */
-.sg-dark-cream {
-  background: linear-gradient(to bottom, #1e1a3a, #FFF6E3);
-  height: 100px;
-}
-
-/* Footer — fondo crema corporativo con texto en morado */
+/* Footer — fondo crema corporativo con texto en morado.
+   El degradado va integrado en el propio footer para evitar el corte. */
 .footer {
-  background: #FFF6E3;
+  background: linear-gradient(to bottom, #1e1a3a 0px, #FFF6E3 160px) #FFF6E3;
   color: rgba(45,37,80,0.65);
 }
 .footer-top {
