@@ -152,14 +152,13 @@ strong { font-weight: 600; }
   max-height: 36px;
 }
 
-/* Por defecto (hero, fondo oscuro): logo claro visible, oscuro oculto */
-/* Nota: especificidad .nav-logo .logo-* (0,2,0) > .nav-logo img (0,1,1) */
-.nav-logo .logo-light { display: block; }
-.nav-logo .logo-dark  { display: none; }
+/* Por defecto (hero, fondo oscuro): logo claro visible, lila oculto */
+.nav-logo .logo-hero     { display: block; }
+.nav-logo .logo-scrolled { display: none; }
 
-/* Al hacer scroll (nav blanca): logo oscuro visible, claro oculto */
-.nav.scrolled .nav-logo .logo-light { display: none; }
-.nav.scrolled .nav-logo .logo-dark  { display: block; }
+/* Al hacer scroll (nav blanca): logo lila visible, claro oculto */
+.nav.scrolled .nav-logo .logo-hero     { display: none; }
+.nav.scrolled .nav-logo .logo-scrolled { display: block; }
 
 /* Footer: logo claro siempre */
 .footer .nav-logo img { max-height: 36px; }
