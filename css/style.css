@@ -941,6 +941,85 @@ strong { font-weight: 600; }
 .cta-note {
   font-size: 14px;
   color: rgba(0,0,0,0.45);
+  margin-top: 12px;
+}
+
+.cta-form {
+  max-width: 540px;
+  margin: 40px auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: #fff;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #4343FF;
+}
+
+.cta-submit {
+  background: #4343FF;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.cta-submit:hover {
+  background: #3030dd;
+}
+
+.cta-divider {
+  margin-top: 40px;
+  font-size: 14px;
+  color: rgba(0,0,0,0.5);
+}
+
+.cta-calendly-btn {
+  display: inline-block;
+  margin-top: 12px;
+  background: transparent;
+  border: 2px solid #4343FF;
+  color: #4343FF;
+  font-weight: 700;
+  padding: 12px 28px;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  transition: background 0.2s, color 0.2s;
+}
+
+.cta-calendly-btn:hover {
+  background: #4343FF;
+  color: #fff;
 }
 
 /* ── Work Showcase ── */
