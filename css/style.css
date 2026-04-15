@@ -924,7 +924,12 @@ strong { font-weight: 600; }
 .cta h2 em {
   font-family: 'DM Sans', sans-serif;
   font-style: italic;
-  color: var(--primary);
+  color: var(--text);
+  display: inline-block;
+  border: 2.5px solid #CDC2FF;
+  border-radius: 14px;
+  padding: 0 10px;
+  line-height: 1.15;
 }
 
 .cta > .container > p {
