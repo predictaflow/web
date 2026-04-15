@@ -537,7 +537,6 @@
     </div>
     <div class="container calendly-wrap">
       <div class="calendly-inline-widget" data-url="https://calendly.com/judy-predictaflow/30min" style="min-width:320px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
     </div>
   </section>
 
@@ -601,7 +600,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 Predictaflow. Anticipamos la tendencia, creamos el impacto.</p>
+        <p>&copy; 2026 Predictaflow. Anticipamos la tendencia, creamos el impacto. &nbsp;·&nbsp; <a href="/privacidad.html" style="color:rgba(255,255,255,0.45);">Privacidad y cookies</a></p>
       </div>
     </div>
   </footer>
@@ -670,6 +669,39 @@
         document.querySelector(`.proceso-panel[data-panel="${target}"]`).classList.add('active');
       });
     });
+  </script>
+
+  <!-- ── Cookie banner ── -->
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+    <p>Usamos cookies de terceros (Calendly) necesarias para el sistema de reservas. <a href="/privacidad.html">Política de privacidad y cookies</a></p>
+    <div class="cookie-actions">
+      <button class="btn-cookie-accept" onclick="setCookieConsent('accepted')">Aceptar</button>
+      <button class="btn-cookie-reject" onclick="setCookieConsent('rejected')">Solo esenciales</button>
+    </div>
+  </div>
+
+  <script>
+    function setCookieConsent(value) {
+      localStorage.setItem('cookieConsent', value);
+      document.getElementById('cookie-banner').style.display = 'none';
+      if (value === 'accepted') loadCalendly();
+    }
+
+    function loadCalendly() {
+      const widget = document.querySelector('.calendly-inline-widget');
+      if (!widget || widget.dataset.loaded) return;
+      widget.dataset.loaded = 'true';
+      const s = document.createElement('script');
+      s.src = 'https://assets.calendly.com/assets/external/widget.js';
+      s.async = true;
+      document.body.appendChild(s);
+    }
+
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent) {
+      document.getElementById('cookie-banner').style.display = 'none';
+      if (consent === 'accepted') loadCalendly();
+    }
   </script>
 
 </body>

@@ -1221,6 +1221,51 @@ strong { font-weight: 600; }
   text-align: center;
 }
 
+/* ── Cookie Banner ── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #2d2550;
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  z-index: 9999;
+  font-size: 14px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+}
+
+.cookie-banner p { margin: 0; color: rgba(255,255,255,0.85); }
+.cookie-banner a { color: #CDC2FF; }
+
+.cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+.btn-cookie-accept {
+  background: #CDC2FF;
+  color: #2d2550;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-cookie-reject {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -1243,10 +1288,10 @@ strong { font-weight: 600; }
   .nav-links.active a { color: var(--text-muted); }
 
   .hero-logo { width: clamp(200px, 60vw, 340px); }
-  .hero-claim { font-size: 16px; padding: 12px 24px; }
+  .hero-cta { font-size: 15px; padding: 12px 28px; width: auto; }
   .stats-grid { grid-template-columns: 1fr; gap: 16px; }
   .hero-buttons { flex-direction: column; align-items: center; }
-  .btn { width: 100%; justify-content: center; }
+  .cookie-banner { flex-direction: column; gap: 12px; text-align: center; }
   .hero-gtrack img { height: 140px; width: 112px; }
 
   .section { padding: 72px 0; }
