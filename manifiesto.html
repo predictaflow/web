@@ -67,10 +67,19 @@
       border-top: 1px solid #EBEBEB;
     }
     .manifesto-block:last-of-type {
-      border-bottom: 1px solid #EBEBEB;
+      border-bottom: none;
     }
     .manifesto-block p + p {
       margin-top: 1.25rem;
+    }
+    .manifesto-block p:first-child {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.25rem;
     }
     .manifesto-block p {
       font-size: clamp(16px, 2vw, 19px);
@@ -83,8 +92,9 @@
       font-weight: 700;
     }
     .manifesto-block p em {
-      font-style: italic;
-      color: var(--primary);
+      font-style: normal;
+      font-weight: 700;
+      color: var(--text);
     }
     .manifesto-block.highlight {
       background: #F8F7FF;
@@ -93,13 +103,18 @@
       border: none;
       margin: 8px 0;
     }
+    .manifesto-block.highlight p:first-child {
+      font-size: clamp(18px, 2.2vw, 22px);
+      color: var(--text);
+      font-weight: 800;
+    }
     .manifesto-block.highlight p {
       color: var(--text);
       font-weight: 600;
     }
     .manifesto-signature {
-      margin-top: 64px;
-      padding-top: 32px;
+      margin-top: 56px;
+      padding-top: 40px;
       border-top: 1px solid #EBEBEB;
     }
     .manifesto-signature .sig-name {
