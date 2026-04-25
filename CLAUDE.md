@@ -11,8 +11,9 @@ Landing page publica de Predictaflow en predictaflow.me.
 - Dominio: predictaflow.me (Namecheap, GitHub Student Pack)
 - DNS: A record → 75.2.60.5 (Netlify), CNAME www → predictaflow.netlify.app
 - Fonts: Manrope (body) + DM Sans (headings) via Google Fonts
-- Colores: primary `#4343FF`, accent `#FFD802`, highlight `#DAFFAA`
-- Tema claro, estilo Platanomelon
+- Colores: primary `#CDC1FF` (lila), accent `#FFCCEA` (rosa), highlight `#BFECFF` (cielo), bg `#FFFFFF`, bg-alt `#FFF6E3` (crema), bg-dark `#2d2550` (noche), text `#111111`
+- Tema: claro, pastel, limpio — soft tech / Notion aesthetic
+- Fuente de verdad de branding: este `css/style.css`. La copia en `cerebro/branding.json` debe espejarlo.
 
 ## Archivos clave
 | Archivo | Descripcion |
