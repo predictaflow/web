@@ -6,686 +6,781 @@
   <title>Demo — Predicta Flow Dashboard</title>
   <meta name="description" content="Ejemplo real de dashboard de campaña. Así presentamos los resultados a nuestros clientes.">
   <link rel="icon" type="image/svg+xml" href="../images/iso-predictaflow.svg">
-
-  <!-- React + ReactDOM -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <!-- Recharts -->
-  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js" crossorigin></script>
-  <!-- Lucide React -->
-  <script src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.min.js" crossorigin></script>
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Babel standalone for JSX -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { margin: 0; background: #FFF7E3; }
-    #root { min-height: 100vh; }
+    :root {
+      --cielo: #BFECFF;
+      --lila: #CDC2FF;
+      --crema: #FFF7E3;
+      --rosa: #FFCCEB;
+      --noche: #1A1A2E;
+      --blanco: #FFFFFF;
+      --texto-2: #666666;
+      --line: #EFE9D4;
+      --line-soft: #F5EFDC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Manrope', system-ui, sans-serif; background: var(--crema); color: var(--noche); min-height: 100vh; }
+
+    /* ── HEADER ── */
+    .header { border-bottom: 1px solid var(--line); background: var(--crema); position: sticky; top: 0; z-index: 100; }
+    .header-inner { max-width: 1340px; margin: 0 auto; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+    .brand-icon { width: 36px; height: 36px; border-radius: 999px; background: var(--lila); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; color: var(--noche); flex-shrink: 0; }
+    .brand-name { font-weight: 700; font-size: 15px; }
+    .brand-pill { background: var(--rosa); color: var(--noche); font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; padding: 2px 8px; border-radius: 999px; }
+    .brand-sub { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--texto-2); margin-top: 2px; }
+    .header-right { display: flex; align-items: center; gap: 24px; }
+    .header-meta { text-align: right; line-height: 1.3; }
+    .header-meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--texto-2); }
+    .header-meta-value { font-size: 13px; font-weight: 600; }
+    .header-divider { width: 1px; height: 28px; background: var(--line); }
+    .btn-cta { background: var(--noche); color: var(--blanco); padding: 8px 18px; border-radius: 999px; font-size: 12px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+    /* ── DEMO BANNER ── */
+    .demo-banner { background: var(--noche); color: var(--blanco); }
+    .demo-banner-inner { max-width: 1340px; margin: 0 auto; padding: 8px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 11px; }
+    .demo-banner-left { display: flex; align-items: center; gap: 8px; color: #cfcfdc; }
+    .demo-banner-right { display: flex; align-items: center; gap: 12px; color: #cfcfdc; }
+
+    /* ── HERO STATS ── */
+    .hero-section { max-width: 1340px; margin: 0 auto; padding: 48px 40px 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; }
+    .hero-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; color: var(--texto-2); margin-bottom: 16px; }
+    .hero-title { font-size: clamp(36px, 5vw, 60px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+    .hero-title em { font-style: normal; background: var(--lila); color: var(--noche); padding: 2px 10px; border-radius: 999px; }
+    .hero-title .muted { color: var(--texto-2); font-weight: 300; }
+    .hero-desc { margin-top: 20px; max-width: 520px; font-size: 15px; line-height: 1.7; color: var(--texto-2); }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat-card { padding: 20px; border-radius: 12px; }
+    .stat-card.bordered { border: 1px solid var(--line); }
+    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 600; color: var(--noche); opacity: 0.65; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 800; color: var(--noche); line-height: 1; }
+    .stat-sub { font-size: 11px; color: var(--noche); opacity: 0.6; margin-top: 6px; }
+
+    /* ── TABS ── */
+    .tabs-section { max-width: 1340px; margin: 0 auto; padding: 0 40px; }
+    .tabs-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tab-btn { padding: 8px 16px; border-radius: 999px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--noche); display: flex; align-items: center; gap: 8px; transition: all 0.2s; font-family: inherit; }
+    .tab-btn.active { background: var(--noche); color: var(--blanco); border-color: var(--noche); }
+    .tab-btn:hover:not(.active) { background: var(--blanco); }
+
+    /* ── CONTENT AREA ── */
+    .content-section { max-width: 1340px; margin: 0 auto; padding: 0 40px 80px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── CARDS ── */
+    .card { background: var(--blanco); border: 1px solid var(--line); border-radius: 12px; }
+    .card-pad { padding: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-7-5 { display: grid; grid-template-columns: 7fr 5fr; gap: 24px; }
+    .grid-8-4 { display: grid; grid-template-columns: 8fr 4fr; gap: 24px; }
+    .space-y { display: flex; flex-direction: column; gap: 40px; }
+
+    .section-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; font-weight: 600; color: var(--texto-2); margin-bottom: 8px; }
+    .section-title { font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.01em; }
+    .section-sub { font-size: 13px; color: var(--texto-2); margin-top: 6px; }
+    .divider { height: 1px; background: var(--line); }
+
+    /* ── ER BARS ── */
+    .er-row { margin-bottom: 20px; }
+    .er-row-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 6px; }
+    .er-platform { font-weight: 600; font-size: 14px; }
+    .er-value { font-size: 20px; font-weight: 800; }
+    .er-bench { font-size: 12px; color: var(--texto-2); }
+    .bar-track { height: 12px; border-radius: 999px; background: var(--line-soft); position: relative; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 999px; transition: width 1s ease-out; }
+    .bar-marker { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--noche); opacity: 0.5; }
+
+    /* ── ROI RADIAL (SVG) ── */
+    .roi-center { display: flex; flex-direction: column; flex: 1; align-items: center; justify-content: center; position: relative; padding: 16px 0; }
+    .roi-svg-wrap { position: relative; width: 200px; height: 200px; }
+    .roi-number { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .roi-big { font-size: 36px; font-weight: 800; }
+    .roi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--texto-2); margin-top: 4px; }
+    .roi-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .roi-mini { text-align: center; padding: 8px; }
+    .roi-mini.accent { background: var(--lila); border-radius: 10px; }
+    .roi-mini-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; color: var(--texto-2); }
+    .roi-mini-value { font-size: 13px; font-weight: 800; margin-top: 2px; }
+
+    /* ── BAR CHART (SVG) ── */
+    .chart-wrap { height: 220px; display: flex; align-items: flex-end; gap: 16px; padding: 0 8px; }
+    .chart-group { flex: 1; display: flex; align-items: flex-end; gap: 4px; flex-direction: column; }
+    .chart-bars { display: flex; align-items: flex-end; gap: 4px; width: 100%; }
+    .chart-bar { flex: 1; border-radius: 6px 6px 0 0; transition: height 1s ease-out; }
+    .chart-label { font-size: 11px; font-weight: 600; color: var(--texto-2); margin-top: 6px; text-align: center; width: 100%; }
+
+    /* ── HEALTH ROWS ── */
+    .health-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .health-label { font-size: 14px; }
+    .health-right { display: flex; align-items: center; gap: 8px; }
+    .health-value { font-weight: 700; font-size: 14px; }
+    .pill { padding: 3px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; display: inline-flex; align-items: center; gap: 4px; }
+
+    /* ── PLATFORM CARDS ── */
+    .platform-header { padding: 20px; border-radius: 12px 12px 0 0; }
+    .platform-short { font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; opacity: 0.7; }
+    .platform-name { font-size: 20px; font-weight: 800; margin-top: 2px; }
+    .platform-er { font-size: 36px; font-weight: 800; line-height: 1; margin-top: 16px; }
+    .platform-er-sub { font-size: 12px; opacity: 0.7; }
+    .kv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; padding: 20px; }
+    .kv-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; color: var(--texto-2); }
+    .kv-value { font-weight: 700; margin-top: 2px; }
+    .platform-roi { padding: 20px; }
+    .platform-roi-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .platform-roi-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 600; color: var(--texto-2); }
+    .platform-roi-value { font-size: 22px; font-weight: 800; }
+    .roi-bar-foot { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10px; color: var(--texto-2); }
+
+    /* ── TOP POSTS ── */
+    .post-card { padding: 20px; }
+    .post-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+    .post-rank { font-size: 28px; font-weight: 800; color: var(--texto-2); }
+    .post-platform-pill { padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+    .post-type { font-size: 14px; font-weight: 600; margin-top: 2px; }
+    .post-er { font-size: 22px; font-weight: 800; }
+    .post-er-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--texto-2); margin-top: 4px; }
+    .eng-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .eng-cell { background: var(--crema); border-radius: 8px; padding: 8px; text-align: center; }
+    .eng-icon { font-size: 13px; margin-bottom: 4px; }
+    .eng-val { font-size: 12px; font-weight: 700; }
+    .post-foot { display: flex; justify-content: space-between; font-size: 11px; color: var(--texto-2); }
+
+    /* ── PATTERNS ── */
+    .pattern-card { padding: 16px; border-radius: 12px; }
+    .pattern-icon { font-size: 16px; margin-bottom: 8px; }
+    .pattern-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+    .pattern-desc { font-size: 12px; opacity: 0.75; line-height: 1.5; }
+
+    /* ── RECS ── */
+    .rec-card { padding: 24px; }
+    .rec-inner { display: flex; align-items: flex-start; gap: 16px; }
+    .rec-icon { width: 44px; height: 44px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 18px; }
+    .rec-pill { padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    .rec-platform { font-size: 11px; font-weight: 600; color: var(--texto-2); }
+    .rec-title { font-size: 17px; font-weight: 700; margin-top: 6px; line-height: 1.3; }
+    .rec-body { font-size: 13px; color: var(--texto-2); margin-top: 8px; line-height: 1.6; }
+    .rec-final { padding: 24px; border-radius: 12px; background: var(--noche); color: var(--blanco); }
+    .rec-final-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.25em; color: var(--lila); font-weight: 600; margin-bottom: 6px; }
+    .rec-final-title { font-size: 20px; font-weight: 700; }
+    .rec-final-body { font-size: 13px; color: #cfcfdc; margin-top: 10px; line-height: 1.6; }
+    .rec-final-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; background: var(--lila); color: var(--noche); padding: 8px 18px; border-radius: 999px; font-size: 12px; font-weight: 700; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    .footer { border-top: 1px solid var(--line); }
+    .footer-inner { max-width: 1340px; margin: 0 auto; padding: 24px 40px; font-size: 11px; color: var(--texto-2); }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .footer-sources { font-size: 10px; line-height: 1.6; opacity: 0.8; }
+
+    @media (max-width: 900px) {
+      .header-inner, .demo-banner-inner, .hero-section, .tabs-section, .content-section, .footer-inner { padding-left: 20px; padding-right: 20px; }
+      .hero-grid, .grid-7-5, .grid-8-4, .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .header-right { display: none; }
+    }
+
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.2)} }
+    .pulse { animation: pulse 1.8s ease-in-out infinite; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: var(--noche); }
   </style>
 </head>
 <body>
-  <div id="root"></div>
 
-  <script type="text/babel">
-    const { useState, useMemo } = React;
-    const {
-      TrendingUp, TrendingDown, Minus, ArrowUpRight, Sparkles, Target, Zap,
-      AlertCircle, CheckCircle2, Activity, BarChart3, Heart, MessageCircle,
-      Share2, Bookmark, MousePointerClick,
-    } = LucideReact;
-    const {
-      ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell,
-      RadialBarChart, RadialBar, PolarAngleAxis,
-    } = Recharts;
-
-    // ─── DATOS DEMO ──────────────────────────────────────────────────────────
-    const CAMPAIGN = {
-      client: "Aurora Botánicos · DEMO",
-      campaign: "Bloom Reset — Q1 2026",
-      window: "8 ene – 31 mar 2026",
-      isDemo: true,
-      platforms: {
-        instagram: {
-          total_spend: 3800,
-          followers: 48200,
-          posts: [
-            { id: "ig_01", type: "Reel · Tutorial",  likes: 3420, comments: 281, shares: 412, saves: 1180, reach: 52000,  impressions: 78400,  clicks: 980 },
-            { id: "ig_02", type: "Carousel · Edu",   likes: 2180, comments: 142, shares: 188, saves: 920,  reach: 41200,  impressions: 58300,  clicks: 612 },
-            { id: "ig_03", type: "Reel · UGC",       likes: 5680, comments: 392, shares: 720, saves: 1640, reach: 84000,  impressions: 121000, clicks: 1450 },
-            { id: "ig_04", type: "Image · Producto", likes: 890,  comments: 41,  shares: 32,  saves: 180,  reach: 22400,  impressions: 31200,  clicks: 168 },
-            { id: "ig_05", type: "Carousel · BTS",   likes: 1980, comments: 168, shares: 142, saves: 720,  reach: 38000,  impressions: 52100,  clicks: 480 },
-          ],
-        },
-        tiktok: {
-          total_spend: 2400,
-          followers: 22800,
-          posts: [
-            { id: "tt_01", type: "Tutorial · 30s", likes: 18400, comments: 920,  shares: 2840, saves: 4100, reach: 142000, impressions: 198000, clicks: 1820 },
-            { id: "tt_02", type: "POV · 45s",      likes: 9200,  comments: 412,  shares: 1180, saves: 1840, reach: 78000,  impressions: 102000, clicks: 720 },
-            { id: "tt_03", type: "Trend · 15s",    likes: 24800, comments: 1420, shares: 4200, saves: 5800, reach: 218000, impressions: 312000, clicks: 2840 },
-            { id: "tt_04", type: "Review · 60s",   likes: 6800,  comments: 380,  shares: 720,  saves: 2100, reach: 64000,  impressions: 88000,  clicks: 920 },
-          ],
-        },
-        linkedin: {
-          total_spend: 3200,
-          followers: 8400,
-          posts: [
-            { id: "li_01", type: "Artículo · Founder", likes: 480, comments: 62, shares: 48,  saves: 0, reach: 14200, impressions: 18800, clicks: 320 },
-            { id: "li_02", type: "Carousel · Data",    likes: 720, comments: 94, shares: 112, saves: 0, reach: 21400, impressions: 28200, clicks: 580 },
-            { id: "li_03", type: "Vídeo · Marca",      likes: 380, comments: 41, shares: 38,  saves: 0, reach: 11800, impressions: 15400, clicks: 240 },
-          ],
-        },
-      },
-    };
-
-    const BENCHMARKS = {
-      instagram: { avg: 0.5,  good: 3,   excellent: 5,  ctr_avg: 0.22, ctr_good: 0.75, cpc_avg: 0.55 },
-      tiktok:    { avg: 3.7,  good: 10,  excellent: 15, ctr_avg: 0.30, ctr_good: 0.75, cpc_avg: 0.45 },
-      linkedin:  { avg: 2.5,  good: 4.5, excellent: 6,  ctr_avg: 0.44, ctr_good: 1.5,  cpc_avg: 4.60 },
-    };
-
-    const ENG_VAL = { like: 0.45, comment: 1.85, share: 4.60, save: 2.75, click: 1.40 };
-
-    function analyzePost(p) {
-      const engagements = p.likes + p.comments + p.shares + (p.saves || 0);
-      const er = (engagements / p.reach) * 100;
-      const ctr = p.impressions ? (p.clicks / p.impressions) * 100 : 0;
-      const value =
-        p.likes * ENG_VAL.like + p.comments * ENG_VAL.comment +
-        p.shares * ENG_VAL.share + (p.saves || 0) * ENG_VAL.save +
-        (p.clicks || 0) * ENG_VAL.click;
-      return { ...p, engagements, er, ctr, value };
-    }
-
-    function analyzePlatform(platform, data) {
-      const posts = data.posts.map(analyzePost);
-      const totalEng = posts.reduce((s, p) => s + p.engagements, 0);
-      const totalReach = posts.reduce((s, p) => s + p.reach, 0);
-      const totalImpr = posts.reduce((s, p) => s + p.impressions, 0);
-      const totalClicks = posts.reduce((s, p) => s + (p.clicks || 0), 0);
-      const totalValue = posts.reduce((s, p) => s + p.value, 0);
-      const avgER = totalReach > 0 ? (totalEng / totalReach) * 100 : 0;
-      const ctr = totalImpr > 0 ? (totalClicks / totalImpr) * 100 : 0;
-      const cpe = data.total_spend > 0 ? data.total_spend / totalEng : 0;
-      const cpc = totalClicks > 0 ? data.total_spend / totalClicks : 0;
-      const cpm = totalImpr > 0 ? (data.total_spend / totalImpr) * 1000 : 0;
-      const roi = data.total_spend > 0 ? ((totalValue - data.total_spend) / data.total_spend) * 100 : 0;
-      const bm = BENCHMARKS[platform];
-      let status = "poor";
-      if (avgER >= bm.excellent) status = "excellent";
-      else if (avgER >= bm.good) status = "good";
-      else if (avgER >= bm.avg) status = "average";
-      return { platform, ...data, posts, totalEng, totalReach, totalImpr, totalClicks, totalValue, avgER, ctr, cpe, cpc, cpm, roi, status, benchmark: bm };
-    }
-
-    const PLATFORMS = ["instagram", "tiktok", "linkedin"];
-    const PLATFORM_META = {
-      instagram: { name: "Instagram", short: "IG", tone: "var(--rosa)" },
-      tiktok:    { name: "TikTok",    short: "TT", tone: "var(--lila)" },
-      linkedin:  { name: "LinkedIn",  short: "LI", tone: "var(--cielo)" },
-    };
-
-    const STATUS_TONE = {
-      excellent: { label: "Excelente", bg: "var(--lila)",  ink: "var(--noche)", icon: TrendingUp },
-      good:      { label: "Bueno",     bg: "var(--cielo)", ink: "var(--noche)", icon: TrendingUp },
-      average:   { label: "Medio",     bg: "var(--crema)", ink: "var(--noche)", icon: Minus },
-      poor:      { label: "Bajo",      bg: "var(--rosa)",  ink: "var(--noche)", icon: TrendingDown },
-    };
-
-    const fmt = (n, d = 0) => Number(n).toLocaleString("es-ES", { maximumFractionDigits: d });
-    const fmtEUR = (n) => fmt(n, 0) + " €";
-    const fmtPct = (n, d = 2) => fmt(n, d).replace(".", ",") + "%";
-
-    function buildRecommendations(byPlatform, totalROI) {
-      const recs = [];
-      for (const key of PLATFORMS) {
-        const p = byPlatform[key];
-        const meta = PLATFORM_META[key];
-        if (p.status === "excellent") {
-          recs.push({ kind: "scale", platform: meta.name, title: `Escala el presupuesto en ${meta.name}`, body: `Con ${fmtPct(p.avgER)} de engagement (${(p.avgER / p.benchmark.avg).toFixed(1)}× sobre la media) y ROI de ${fmtPct(p.roi, 0)}, recomendamos aumentar inversión un 40-60%.` });
-        } else if (p.status === "poor" || p.status === "average") {
-          recs.push({ kind: "fix", platform: meta.name, title: `Replantear contenido en ${meta.name}`, body: `Engagement de ${fmtPct(p.avgER)} frente a benchmark de ${fmtPct(p.benchmark.avg)}. Auditar formato y hook de los primeros 3 segundos.` });
-        }
-        const top = [...p.posts].sort((a, b) => b.er - a.er)[0];
-        if (top && top.er >= p.benchmark.good) {
-          recs.push({ kind: "replicate", platform: meta.name, title: `Replica el formato "${top.type}"`, body: `Lideró en ${meta.name} con ${fmtPct(top.er)} de engagement. Producir 3-4 piezas más con la misma estructura narrativa.` });
-        }
-      }
-      if (totalROI > 500) {
-        recs.unshift({ kind: "celebrate", platform: "Global", title: "ROI excepcional a nivel campaña", body: `${fmtPct(totalROI, 0)} de retorno valida la estrategia multi-plataforma. Documentar aprendizajes para futuros clientes del vertical.` });
-      }
-      return recs.slice(0, 5);
-    }
-
-    // ─── SUBCOMPONENTES ───────────────────────────────────────────────────────
-    function HeroStat({ label, value, sub, tone, border }) {
-      return (
-        <div className="p-5" style={{ background: tone, borderRadius: 10, border: border ? "1px solid var(--line)" : "none" }}>
-          <div className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: "var(--noche)", opacity: 0.7 }}>{label}</div>
-          <div className="text-3xl font-extrabold tracking-tight leading-none" style={{ color: "var(--noche)" }}>{value}</div>
-          <div className="text-[11px] mt-2" style={{ color: "var(--noche)", opacity: 0.65 }}>{sub}</div>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand">
+      <div class="brand-icon">P</div>
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="brand-name">Predicta Flow</span>
+          <span class="brand-pill">Demo</span>
         </div>
-      );
-    }
+        <div class="brand-sub">data-driven · ai content</div>
+      </div>
+    </a>
+    <div class="header-right">
+      <div class="header-meta">
+        <div class="header-meta-label">Cliente</div>
+        <div class="header-meta-value">Aurora Botánicos · DEMO</div>
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-meta">
+        <div class="header-meta-label">Periodo</div>
+        <div class="header-meta-value">8 ene – 31 mar 2026</div>
+      </div>
+      <a href="/#contacto" class="btn-cta">Reservar llamada ↗</a>
+    </div>
+  </div>
+</header>
 
-    function SectionTitle({ eyebrow, title, sub }) {
-      return (
-        <div className="mb-6">
-          {eyebrow && <div className="text-[10px] uppercase tracking-[0.25em] font-semibold mb-2" style={{ color: "var(--texto-2)" }}>{eyebrow}</div>}
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h2>
-          {sub && <p className="text-sm mt-1.5" style={{ color: "var(--texto-2)" }}>{sub}</p>}
-        </div>
-      );
-    }
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <div class="demo-banner-inner">
+    <div class="demo-banner-left">
+      ⚡ <span><strong style="color:#fff">Datos de demostración.</strong> Este es un ejemplo del reporte mensual que recibe cada cliente.</span>
+    </div>
+    <div class="demo-banner-right">
+      <span>🇪🇸 Mercado España · EUR</span>
+      <span style="opacity:.4">·</span>
+      <span>Benchmarks 2026</span>
+    </div>
+  </div>
+</div>
 
-    function Mini({ label, value, accent }) {
-      return (
-        <div className={accent ? "p-2 text-center" : "text-center p-2"} style={accent ? { background: "var(--lila)", borderRadius: 10 } : {}}>
-          <div className="text-[9px] uppercase tracking-[0.15em] font-semibold" style={{ color: "var(--texto-2)" }}>{label}</div>
-          <div className="text-sm font-extrabold mt-0.5">{value}</div>
-        </div>
-      );
-    }
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Informe de campaña · 001</div>
+      <h1 class="hero-title">
+        Bloom Reset.<br>
+        <span class="muted">Q1 totalmente <em>descodificado</em>.</span>
+      </h1>
+      <p class="hero-desc">Lectura cross-platform de 12 piezas de contenido en 12 semanas. Engagement, ROI y deltas de benchmark contra los estándares actuales de cada plataforma.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card" style="background:var(--cielo)">
+        <div class="stat-label">Reach total</div>
+        <div class="stat-value">428.000</div>
+        <div class="stat-sub">usuarios únicos</div>
+      </div>
+      <div class="stat-card" style="background:var(--rosa)">
+        <div class="stat-label">ER agregado</div>
+        <div class="stat-value">9,84%</div>
+        <div class="stat-sub">vs benchmarks del sector</div>
+      </div>
+      <div class="stat-card" style="background:var(--lila)">
+        <div class="stat-label">ROI campaña</div>
+        <div class="stat-value">738%</div>
+        <div class="stat-sub">sobre 9.400 € invertidos</div>
+      </div>
+      <div class="stat-card bordered" style="background:var(--crema)">
+        <div class="stat-label">Engagements</div>
+        <div class="stat-value">89.740</div>
+        <div class="stat-sub">acciones totales</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    function HealthRow({ label, value, status }) {
-      const tone = STATUS_TONE[status];
-      const Icon = tone.icon;
-      return (
-        <div className="flex items-center justify-between gap-3">
-          <div className="text-sm">{label}</div>
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-sm">{value}</span>
-            <span className="px-2 py-0.5 text-[10px] font-bold flex items-center gap-1 uppercase tracking-wider" style={{ background: tone.bg, color: tone.ink, borderRadius: 999 }}>
-              <Icon size={10} /> {tone.label}
-            </span>
+<!-- TABS -->
+<div class="tabs-section">
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('overview', this)">📊 Visión general</button>
+    <button class="tab-btn" onclick="switchTab('platforms', this)">📱 Plataformas</button>
+    <button class="tab-btn" onclick="switchTab('content', this)">✨ Top contenido</button>
+    <button class="tab-btn" onclick="switchTab('actions', this)">🎯 Recomendaciones</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-section">
+
+  <!-- OVERVIEW -->
+  <div id="tab-overview" class="tab-panel active">
+    <div class="space-y">
+
+      <div class="grid-7-5">
+        <!-- ER vs Benchmark -->
+        <div class="card card-pad">
+          <div class="section-eyebrow">Engagement rate</div>
+          <div class="section-title">Plataforma vs. benchmark</div>
+          <div class="section-sub">Tu rendimiento real frente al estándar de cada red.</div>
+          <div style="margin-top:24px">
+            <div class="er-row">
+              <div class="er-row-header">
+                <div class="er-platform">Instagram</div>
+                <div><span class="er-value">12,56%</span> <span class="er-bench">benchmark 0,5% · <strong>25,1×</strong></span></div>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:85%;background:var(--rosa)"></div>
+                <div class="bar-marker" style="left:3.3%"></div>
+              </div>
+            </div>
+            <div class="er-row">
+              <div class="er-row-header">
+                <div class="er-platform">TikTok</div>
+                <div><span class="er-value">10,42%</span> <span class="er-bench">benchmark 3,7% · <strong>2,8×</strong></span></div>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:70%;background:var(--lila)"></div>
+                <div class="bar-marker" style="left:24.7%"></div>
+              </div>
+            </div>
+            <div class="er-row">
+              <div class="er-row-header">
+                <div class="er-platform">LinkedIn</div>
+                <div><span class="er-value">5,49%</span> <span class="er-bench">benchmark 2,5% · <strong>2,2×</strong></span></div>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:45%;background:var(--cielo)"></div>
+                <div class="bar-marker" style="left:20.4%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="divider" style="margin:20px 0 14px"></div>
+          <div style="display:flex;gap:16px;font-size:12px;color:var(--texto-2)">
+            <span style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:12px;height:6px;border-radius:3px;background:var(--lila)"></span> Tu ER</span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:2px;height:12px;background:var(--noche);opacity:.5"></span> Benchmark</span>
           </div>
         </div>
-      );
-    }
 
-    function KV({ label, value }) {
-      return (
+        <!-- ROI -->
+        <div class="card card-pad" style="display:flex;flex-direction:column">
+          <div class="section-eyebrow">ROI campaña</div>
+          <div class="section-title">Retorno por euro invertido</div>
+          <div class="section-sub">Valor estimado de engagements y clicks.</div>
+          <div class="roi-center">
+            <div class="roi-svg-wrap">
+              <svg viewBox="0 0 200 200" width="200" height="200">
+                <circle cx="100" cy="100" r="75" fill="none" stroke="var(--line-soft)" stroke-width="18"/>
+                <circle cx="100" cy="100" r="75" fill="none" stroke="var(--lila)" stroke-width="18"
+                  stroke-dasharray="471" stroke-dashoffset="61"
+                  stroke-linecap="round" transform="rotate(-90 100 100)"/>
+              </svg>
+              <div class="roi-number">
+                <div class="roi-big">738%</div>
+                <div class="roi-label">Return on ad spend</div>
+              </div>
+            </div>
+          </div>
+          <div class="roi-mini-grid">
+            <div class="roi-mini"><div class="roi-mini-label">Inversión</div><div class="roi-mini-value">9.400 €</div></div>
+            <div class="roi-mini"><div class="roi-mini-label">Valor</div><div class="roi-mini-value">79.800 €</div></div>
+            <div class="roi-mini accent"><div class="roi-mini-label">Neto</div><div class="roi-mini-value">70.400 €</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-8-4">
+        <!-- Bar chart -->
+        <div class="card card-pad">
+          <div class="section-eyebrow">Eficiencia</div>
+          <div class="section-title">Inversión vs. valor generado</div>
+          <div class="section-sub">Comparativa por plataforma. Las barras de color marcan el valor, las grises el gasto.</div>
+          <div style="display:flex;align-items:flex-end;gap:32px;height:200px;margin-top:20px;padding:0 8px">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="display:flex;align-items:flex-end;gap:4px;width:100%;height:160px">
+                <div style="flex:1;background:#E8E2C8;border-radius:6px 6px 0 0;height:48%"></div>
+                <div style="flex:1;background:var(--rosa);border-radius:6px 6px 0 0;height:100%"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:var(--texto-2)">Instagram</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="display:flex;align-items:flex-end;gap:4px;width:100%;height:160px">
+                <div style="flex:1;background:#E8E2C8;border-radius:6px 6px 0 0;height:30%"></div>
+                <div style="flex:1;background:var(--lila);border-radius:6px 6px 0 0;height:78%"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:var(--texto-2)">TikTok</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+              <div style="display:flex;align-items:flex-end;gap:4px;width:100%;height:160px">
+                <div style="flex:1;background:#E8E2C8;border-radius:6px 6px 0 0;height:40%"></div>
+                <div style="flex:1;background:var(--cielo);border-radius:6px 6px 0 0;height:30%"></div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:var(--texto-2)">LinkedIn</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:16px;margin-top:12px;font-size:11px;color:var(--texto-2)">
+            <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:6px;border-radius:3px;background:#E8E2C8;display:inline-block"></span> Inversión</span>
+            <span style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:6px;border-radius:3px;background:var(--lila);display:inline-block"></span> Valor generado</span>
+          </div>
+        </div>
+
+        <!-- Health check -->
+        <div class="card card-pad">
+          <div class="section-eyebrow">Resumen</div>
+          <div class="section-title">Health check</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px">
+            <div class="health-row">
+              <div class="health-label">Engagement agregado</div>
+              <div class="health-right">
+                <span class="health-value">9,84%</span>
+                <span class="pill" style="background:var(--lila);color:var(--noche)">↑ Excelente</span>
+              </div>
+            </div>
+            <div class="health-row">
+              <div class="health-label">ROI consolidado</div>
+              <div class="health-right">
+                <span class="health-value">738%</span>
+                <span class="pill" style="background:var(--lila);color:var(--noche)">↑ Excelente</span>
+              </div>
+            </div>
+            <div class="health-row">
+              <div class="health-label">Volumen de reach</div>
+              <div class="health-right">
+                <span class="health-value">428.000</span>
+                <span class="pill" style="background:var(--cielo);color:var(--noche)">↑ Bueno</span>
+              </div>
+            </div>
+            <div class="health-row">
+              <div class="health-label">Coste por engagement</div>
+              <div class="health-right">
+                <span class="health-value">0,10 €</span>
+                <span class="pill" style="background:var(--lila);color:var(--noche)">↑ Excelente</span>
+              </div>
+            </div>
+          </div>
+          <div class="divider" style="margin:20px 0"></div>
+          <div style="font-size:12px;color:var(--texto-2);line-height:1.6">La campaña supera la media del sector en las tres plataformas. Ver <strong style="color:var(--noche)">Recomendaciones</strong> para el siguiente ciclo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORMS -->
+  <div id="tab-platforms" class="tab-panel">
+    <div class="section-eyebrow" style="margin-bottom:8px">Cross-platform</div>
+    <div class="section-title">Desglose por plataforma</div>
+    <div class="section-sub" style="margin-bottom:24px">Métricas, ROI y comparativa contra benchmark.</div>
+    <div class="grid-3">
+
+      <div class="card" style="overflow:hidden">
+        <div class="platform-header" style="background:var(--rosa)">
+          <div class="platform-short">IG</div>
+          <div style="display:flex;align-items:start;justify-content:space-between">
+            <div class="platform-name">Instagram</div>
+            <span class="pill" style="background:var(--noche);color:var(--blanco)">↑ Excelente</span>
+          </div>
+          <div class="platform-er">12,56%</div>
+          <div class="platform-er-sub">ER · 25,1× benchmark</div>
+        </div>
+        <div class="kv-grid">
+          <div><div class="kv-label">Reach</div><div class="kv-value">238.000</div></div>
+          <div><div class="kv-label">Impresiones</div><div class="kv-value">341.000</div></div>
+          <div><div class="kv-label">Engagements</div><div class="kv-value">29.900</div></div>
+          <div><div class="kv-label">CTR</div><div class="kv-value">1,01%</div></div>
+          <div><div class="kv-label">CPE</div><div class="kv-value">0,13 €</div></div>
+          <div><div class="kv-label">CPC</div><div class="kv-value">1,01 €</div></div>
+        </div>
+        <div class="divider" style="margin:0 20px"></div>
+        <div class="platform-roi">
+          <div class="platform-roi-header">
+            <div class="platform-roi-label">ROI</div>
+            <div class="platform-roi-value">862%</div>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--noche)"></div></div>
+          <div class="roi-bar-foot"><span>Gasto 3.800 €</span><span>Valor 36.500 €</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden">
+        <div class="platform-header" style="background:var(--lila)">
+          <div class="platform-short">TT</div>
+          <div style="display:flex;align-items:start;justify-content:space-between">
+            <div class="platform-name">TikTok</div>
+            <span class="pill" style="background:var(--noche);color:var(--blanco)">↑ Bueno</span>
+          </div>
+          <div class="platform-er">10,42%</div>
+          <div class="platform-er-sub">ER · 2,8× benchmark</div>
+        </div>
+        <div class="kv-grid">
+          <div><div class="kv-label">Reach</div><div class="kv-value">502.000</div></div>
+          <div><div class="kv-label">Impresiones</div><div class="kv-value">700.000</div></div>
+          <div><div class="kv-label">Engagements</div><div class="kv-value">52.300</div></div>
+          <div><div class="kv-label">CTR</div><div class="kv-value">0,91%</div></div>
+          <div><div class="kv-label">CPE</div><div class="kv-value">0,05 €</div></div>
+          <div><div class="kv-label">CPC</div><div class="kv-value">0,37 €</div></div>
+        </div>
+        <div class="divider" style="margin:0 20px"></div>
+        <div class="platform-roi">
+          <div class="platform-roi-header">
+            <div class="platform-roi-label">ROI</div>
+            <div class="platform-roi-value">1.410%</div>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--noche)"></div></div>
+          <div class="roi-bar-foot"><span>Gasto 2.400 €</span><span>Valor 36.200 €</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="overflow:hidden">
+        <div class="platform-header" style="background:var(--cielo)">
+          <div class="platform-short">LI</div>
+          <div style="display:flex;align-items:start;justify-content:space-between">
+            <div class="platform-name">LinkedIn</div>
+            <span class="pill" style="background:var(--noche);color:var(--blanco)">↑ Bueno</span>
+          </div>
+          <div class="platform-er">5,49%</div>
+          <div class="platform-er-sub">ER · 2,2× benchmark</div>
+        </div>
+        <div class="kv-grid">
+          <div><div class="kv-label">Reach</div><div class="kv-value">47.400</div></div>
+          <div><div class="kv-label">Impresiones</div><div class="kv-value">62.400</div></div>
+          <div><div class="kv-label">Engagements</div><div class="kv-value">2.601</div></div>
+          <div><div class="kv-label">CTR</div><div class="kv-value">1,83%</div></div>
+          <div><div class="kv-label">CPE</div><div class="kv-value">1,23 €</div></div>
+          <div><div class="kv-label">CPC</div><div class="kv-value">2,80 €</div></div>
+        </div>
+        <div class="divider" style="margin:0 20px"></div>
+        <div class="platform-roi">
+          <div class="platform-roi-header">
+            <div class="platform-roi-label">ROI</div>
+            <div class="platform-roi-value">127%</div>
+          </div>
+          <div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--noche)"></div></div>
+          <div class="roi-bar-foot"><span>Gasto 3.200 €</span><span>Valor 7.260 €</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="tab-content" class="tab-panel">
+    <div class="section-eyebrow" style="margin-bottom:8px">Insights de contenido</div>
+    <div class="section-title">Top 5 piezas por engagement rate</div>
+    <div class="section-sub" style="margin-bottom:24px">Patrón emergente: vídeo corto con hook tutorial o trend-jacking.</div>
+    <div class="grid-2" style="margin-bottom:24px">
+
+      <div class="card post-card">
+        <div class="post-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="post-rank">01</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="post-platform-pill" style="background:var(--lila);color:var(--noche)">TT</span>
+                <span class="post-type">Trend · 15s</span>
+              </div>
+              <div style="font-size:11px;color:var(--texto-2);margin-top:2px">ID · tt_03</div>
+            </div>
+          </div>
+          <div style="text-align:right"><div class="post-er">17,84%</div><div class="post-er-label">ER</div></div>
+        </div>
+        <div class="eng-grid">
+          <div class="eng-cell"><div class="eng-icon">❤️</div><div class="eng-val">24.800</div></div>
+          <div class="eng-cell"><div class="eng-icon">💬</div><div class="eng-val">1.420</div></div>
+          <div class="eng-cell"><div class="eng-icon">↗️</div><div class="eng-val">4.200</div></div>
+          <div class="eng-cell"><div class="eng-icon">🔖</div><div class="eng-val">5.800</div></div>
+          <div class="eng-cell"><div class="eng-icon">🖱️</div><div class="eng-val">2.840</div></div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="post-foot">
+          <span>Reach <strong style="color:var(--noche)">218.000</strong></span>
+          <span>CTR <strong style="color:var(--noche)">0,91%</strong></span>
+          <span>Valor <strong style="color:var(--noche)">73.100 €</strong></span>
+        </div>
+      </div>
+
+      <div class="card post-card">
+        <div class="post-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="post-rank">02</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="post-platform-pill" style="background:var(--rosa);color:var(--noche)">IG</span>
+                <span class="post-type">Reel · UGC</span>
+              </div>
+              <div style="font-size:11px;color:var(--texto-2);margin-top:2px">ID · ig_03</div>
+            </div>
+          </div>
+          <div style="text-align:right"><div class="post-er">11,47%</div><div class="post-er-label">ER</div></div>
+        </div>
+        <div class="eng-grid">
+          <div class="eng-cell"><div class="eng-icon">❤️</div><div class="eng-val">5.680</div></div>
+          <div class="eng-cell"><div class="eng-icon">💬</div><div class="eng-val">392</div></div>
+          <div class="eng-cell"><div class="eng-icon">↗️</div><div class="eng-val">720</div></div>
+          <div class="eng-cell"><div class="eng-icon">🔖</div><div class="eng-val">1.640</div></div>
+          <div class="eng-cell"><div class="eng-icon">🖱️</div><div class="eng-val">1.450</div></div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="post-foot">
+          <span>Reach <strong style="color:var(--noche)">84.000</strong></span>
+          <span>CTR <strong style="color:var(--noche)">1,20%</strong></span>
+          <span>Valor <strong style="color:var(--noche)">16.400 €</strong></span>
+        </div>
+      </div>
+
+      <div class="card post-card">
+        <div class="post-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="post-rank">03</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="post-platform-pill" style="background:var(--lila);color:var(--noche)">TT</span>
+                <span class="post-type">Tutorial · 30s</span>
+              </div>
+              <div style="font-size:11px;color:var(--texto-2);margin-top:2px">ID · tt_01</div>
+            </div>
+          </div>
+          <div style="text-align:right"><div class="post-er">10,07%</div><div class="post-er-label">ER</div></div>
+        </div>
+        <div class="eng-grid">
+          <div class="eng-cell"><div class="eng-icon">❤️</div><div class="eng-val">18.400</div></div>
+          <div class="eng-cell"><div class="eng-icon">💬</div><div class="eng-val">920</div></div>
+          <div class="eng-cell"><div class="eng-icon">↗️</div><div class="eng-val">2.840</div></div>
+          <div class="eng-cell"><div class="eng-icon">🔖</div><div class="eng-val">4.100</div></div>
+          <div class="eng-cell"><div class="eng-icon">🖱️</div><div class="eng-val">1.820</div></div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="post-foot">
+          <span>Reach <strong style="color:var(--noche)">142.000</strong></span>
+          <span>CTR <strong style="color:var(--noche)">0,92%</strong></span>
+          <span>Valor <strong style="color:var(--noche)">47.700 €</strong></span>
+        </div>
+      </div>
+
+      <div class="card post-card">
+        <div class="post-header">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="post-rank">04</div>
+            <div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <span class="post-platform-pill" style="background:var(--rosa);color:var(--noche)">IG</span>
+                <span class="post-type">Reel · Tutorial</span>
+              </div>
+              <div style="font-size:11px;color:var(--texto-2);margin-top:2px">ID · ig_01</div>
+            </div>
+          </div>
+          <div style="text-align:right"><div class="post-er">10,17%</div><div class="post-er-label">ER</div></div>
+        </div>
+        <div class="eng-grid">
+          <div class="eng-cell"><div class="eng-icon">❤️</div><div class="eng-val">3.420</div></div>
+          <div class="eng-cell"><div class="eng-icon">💬</div><div class="eng-val">281</div></div>
+          <div class="eng-cell"><div class="eng-icon">↗️</div><div class="eng-val">412</div></div>
+          <div class="eng-cell"><div class="eng-icon">🔖</div><div class="eng-val">1.180</div></div>
+          <div class="eng-cell"><div class="eng-icon">🖱️</div><div class="eng-val">980</div></div>
+        </div>
+        <div class="divider" style="margin:12px 0"></div>
+        <div class="post-foot">
+          <span>Reach <strong style="color:var(--noche)">52.000</strong></span>
+          <span>CTR <strong style="color:var(--noche)">1,25%</strong></span>
+          <span>Valor <strong style="color:var(--noche)">10.100 €</strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Patrones -->
+    <div class="card card-pad">
+      <div class="section-eyebrow">Patrones</div>
+      <div class="section-title" style="margin-bottom:16px">¿Qué tienen en común los ganadores?</div>
+      <div class="grid-3">
+        <div class="pattern-card" style="background:var(--lila)">
+          <div class="pattern-icon">🎬</div>
+          <div class="pattern-title">Formato vídeo corto</div>
+          <div class="pattern-desc">4 de 5 top posts son Reels/TikToks de 15-30s. Hook visual en los primeros 2 segundos.</div>
+        </div>
+        <div class="pattern-card" style="background:var(--rosa)">
+          <div class="pattern-icon">🔖</div>
+          <div class="pattern-title">Save rate elevado</div>
+          <div class="pattern-desc">Los ganadores acumulan 2-3% de saves sobre reach: señal de intent y contenido reutilizable.</div>
+        </div>
+        <div class="pattern-card" style="background:var(--cielo)">
+          <div class="pattern-icon">🎯</div>
+          <div class="pattern-title">UGC + tutorial</div>
+          <div class="pattern-desc">Las narrativas de demostración (antes-después) lideran sobre branding puro.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div id="tab-actions" class="tab-panel">
+    <div class="section-eyebrow" style="margin-bottom:8px">Plan de acción</div>
+    <div class="section-title">Qué hacer la próxima semana</div>
+    <div class="section-sub" style="margin-bottom:24px">Prioridades calculadas a partir del rendimiento real, no de opiniones.</div>
+    <div class="grid-2" style="margin-bottom:24px">
+
+      <div class="card rec-card">
+        <div class="rec-inner">
+          <div class="rec-icon" style="background:var(--crema);font-size:20px">🏆</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="rec-pill" style="background:var(--crema);color:var(--noche)">VALIDADO</span>
+              <span class="rec-platform">· Global</span>
+            </div>
+            <div class="rec-title">ROI excepcional a nivel campaña</div>
+            <div class="rec-body">738% de retorno valida la estrategia multi-plataforma. Documentar aprendizajes para futuros clientes del vertical.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card rec-card">
+        <div class="rec-inner">
+          <div class="rec-icon" style="background:var(--lila);font-size:20px">📈</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="rec-pill" style="background:var(--lila);color:var(--noche)">ESCALAR</span>
+              <span class="rec-platform">· Instagram</span>
+            </div>
+            <div class="rec-title">Escala el presupuesto en Instagram</div>
+            <div class="rec-body">Con 12,56% de engagement (25,1× sobre la media) y ROI de 862%, recomendamos aumentar inversión un 40-60%.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card rec-card">
+        <div class="rec-inner">
+          <div class="rec-icon" style="background:var(--cielo);font-size:20px">🔁</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="rec-pill" style="background:var(--cielo);color:var(--noche)">REPLICAR</span>
+              <span class="rec-platform">· TikTok</span>
+            </div>
+            <div class="rec-title">Replica el formato "Trend · 15s"</div>
+            <div class="rec-body">Lideró en TikTok con 17,84% de engagement. Producir 3-4 piezas más con la misma estructura narrativa.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card rec-card">
+        <div class="rec-inner">
+          <div class="rec-icon" style="background:var(--rosa);font-size:20px">🔧</div>
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+              <span class="rec-pill" style="background:var(--rosa);color:var(--noche)">OPTIMIZAR</span>
+              <span class="rec-platform">· LinkedIn</span>
+            </div>
+            <div class="rec-title">Replantear contenido en LinkedIn</div>
+            <div class="rec-body">Engagement de 5,49% frente a benchmark de 2,5%. Auditar formato y hook en los primeros 3 segundos.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="rec-final">
+      <div style="display:flex;align-items:flex-start;gap:16px">
+        <div class="rec-icon" style="background:var(--lila);flex-shrink:0;font-size:18px">⚡</div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.15em] font-semibold" style={{ color: "var(--texto-2)" }}>{label}</div>
-          <div className="font-bold mt-0.5">{value}</div>
+          <div class="rec-final-eyebrow">Predicta Flow · siguiente sprint</div>
+          <div class="rec-final-title">Brief automático para el equipo de contenido</div>
+          <div class="rec-final-body">Producir <strong style="color:#fff">4 reels-tutorial</strong> y <strong style="color:#fff">2 trend-jacks</strong> para el próximo ciclo. Ajustar la pauta de Instagram a +50% y mantener TikTok orgánico mientras valida formato review-largo.</div>
+          <a href="/#contacto" class="rec-final-cta">Trabajar con nosotros ↗</a>
         </div>
-      );
-    }
+      </div>
+    </div>
+  </div>
 
-    function Pattern({ title, desc, color }) {
-      return (
-        <div className="p-4" style={{ background: color, borderRadius: 10 }}>
-          <Sparkles size={16} style={{ color: "var(--noche)" }} />
-          <div className="font-bold mt-2 text-sm">{title}</div>
-          <div className="text-xs mt-1.5" style={{ color: "var(--noche)", opacity: 0.75 }}>{desc}</div>
-        </div>
-      );
-    }
+</div>
 
-    function Engagement({ icon: Icon, v }) {
-      return (
-        <div className="text-center p-2" style={{ background: "var(--crema)", borderRadius: 10 }}>
-          <Icon size={13} style={{ color: "var(--texto-2)" }} className="mx-auto" />
-          <div className="text-xs font-bold mt-1">{fmt(v)}</div>
-        </div>
-      );
-    }
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>© Predicta Flow · <a href="/" style="color:var(--texto-2)">predictaflow.me</a></div>
+      <div style="display:flex;align-items:center;gap:8px"><span class="pulse"></span> Datos validados · benchmarks 2026</div>
+    </div>
+    <div class="divider" style="margin-bottom:12px"></div>
+    <div class="footer-sources">
+      <strong style="color:var(--noche)">Fuentes benchmarks (España / Europa Occidental, Q1 2026):</strong>
+      Engagement rate · Rival IQ 2026, Socialinsider, Hootsuite 2026. CPC/CPM · Metricool TikTok Ads España, Lebesgue Meta Ads Europa, Postiv LinkedIn EMEA.
+    </div>
+  </div>
+</footer>
 
-    // ─── OVERVIEW ─────────────────────────────────────────────────────────────
-    function OverviewView({ analyzed, totals, totalROI, blendedER }) {
-      const platformData = PLATFORMS.map((k) => ({
-        name: PLATFORM_META[k].name,
-        er: +analyzed[k].avgER.toFixed(2),
-        benchmark: analyzed[k].benchmark.avg,
-        color: PLATFORM_META[k].tone,
-      }));
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
 
-      const valueBreakdown = PLATFORMS.map((k) => ({
-        name: PLATFORM_META[k].short,
-        fullName: PLATFORM_META[k].name,
-        spend: analyzed[k].total_spend,
-        value: +analyzed[k].totalValue.toFixed(0),
-        roi: +analyzed[k].roi.toFixed(0),
-        color: PLATFORM_META[k].tone,
-      }));
-
-      return (
-        <div className="space-y-10">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 lg:col-span-7 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-              <SectionTitle eyebrow="Engagement rate" title="Plataforma vs. benchmark" sub="Tu rendimiento real frente al estándar de cada red." />
-              <div className="space-y-5 mt-2">
-                {platformData.map((d) => {
-                  const pct = Math.min((d.er / Math.max(d.benchmark * 3, 8)) * 100, 100);
-                  const bmPct = Math.min((d.benchmark / Math.max(d.benchmark * 3, 8)) * 100, 100);
-                  const ratio = d.er / d.benchmark;
-                  return (
-                    <div key={d.name}>
-                      <div className="flex items-end justify-between mb-1.5">
-                        <div className="font-semibold text-sm">{d.name}</div>
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-xl font-extrabold">{d.er}%</span>
-                          <span className="text-xs" style={{ color: "var(--texto-2)" }}>benchmark {d.benchmark}% · <strong style={{ color: "var(--noche)" }}>{ratio.toFixed(1)}×</strong></span>
-                        </div>
-                      </div>
-                      <div className="relative h-3" style={{ background: "var(--line-soft)", borderRadius: 999, overflow: "hidden" }}>
-                        <div style={{ width: `${pct}%`, height: "100%", background: d.color, borderRadius: 999, transition: "width .8s ease-out" }} />
-                        <div className="absolute top-0 bottom-0 w-px" style={{ left: `${bmPct}%`, background: "var(--noche)", opacity: 0.55 }} />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-              <div style={{ height: 1, background: "var(--line)", margin: "1.75rem 0 1rem" }} />
-              <div className="text-xs flex items-center gap-4" style={{ color: "var(--texto-2)" }}>
-                <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-1.5 rounded" style={{ background: "var(--lila)" }} /> Tu ER</span>
-                <span className="flex items-center gap-1.5"><span className="inline-block w-px h-3" style={{ background: "var(--noche)", opacity: 0.55 }} /> Benchmark</span>
-              </div>
-            </div>
-
-            <div className="col-span-12 lg:col-span-5 p-6 flex flex-col" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-              <SectionTitle eyebrow="ROI campaña" title="Retorno por euro invertido" sub="Suma del valor estimado de engagements y clicks." />
-              <div className="flex-1 flex items-center justify-center relative min-h-[200px]">
-                <ResponsiveContainer width="100%" height={220}>
-                  <RadialBarChart innerRadius="65%" outerRadius="100%" data={[{ name: "ROI", value: Math.min(totalROI, 1000), fill: "var(--lila)" }]} startAngle={90} endAngle={-270}>
-                    <PolarAngleAxis type="number" domain={[0, 1000]} tick={false} />
-                    <RadialBar background={{ fill: "var(--line-soft)" }} dataKey="value" cornerRadius={999} />
-                  </RadialBarChart>
-                </ResponsiveContainer>
-                <div className="absolute text-center pointer-events-none">
-                  <div className="text-4xl font-extrabold tracking-tight">{fmt(totalROI, 0)}%</div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] mt-1" style={{ color: "var(--texto-2)" }}>Return on ad spend</div>
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-2 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
-                <Mini label="Inversión" value={fmtEUR(totals.spend)} />
-                <Mini label="Valor generado" value={fmtEUR(totals.value)} />
-                <Mini label="Neto" value={fmtEUR(totals.value - totals.spend)} accent />
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 lg:col-span-8 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-              <SectionTitle eyebrow="Eficiencia" title="Inversión vs. valor generado" sub="Comparativa por plataforma." />
-              <div style={{ height: 240, marginTop: 8 }}>
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={valueBreakdown} barGap={6}>
-                    <XAxis dataKey="fullName" tick={{ fill: "var(--texto-2)", fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
-                    <YAxis tick={{ fill: "var(--texto-2)", fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => v / 1000 + "k €"} />
-                    <Tooltip cursor={{ fill: "var(--line-soft)" }} contentStyle={{ background: "var(--blanco)", border: "1px solid var(--line)", borderRadius: 10, fontSize: 12, fontFamily: "Manrope" }} formatter={(v) => fmtEUR(v)} />
-                    <Bar dataKey="spend" name="Inversión" fill="#E8E2C8" radius={[6, 6, 0, 0]} />
-                    <Bar dataKey="value" name="Valor" radius={[6, 6, 0, 0]}>
-                      {valueBreakdown.map((d, i) => <Cell key={i} fill={d.color} />)}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-
-            <div className="col-span-12 lg:col-span-4 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-              <SectionTitle eyebrow="Resumen" title="Health check" />
-              <div className="space-y-3">
-                <HealthRow label="Engagement agregado" value={fmtPct(blendedER)} status={blendedER > 4 ? "excellent" : "good"} />
-                <HealthRow label="ROI consolidado" value={fmtPct(totalROI, 0)} status={totalROI > 500 ? "excellent" : totalROI > 200 ? "good" : "average"} />
-                <HealthRow label="Volumen de reach" value={fmt(totals.reach)} status="good" />
-                <HealthRow label="Coste por engagement" value={(totals.spend / totals.eng).toFixed(2).replace(".", ",") + " €"} status={(totals.spend / totals.eng) < 0.5 ? "excellent" : "good"} />
-              </div>
-              <div style={{ height: 1, background: "var(--line)", margin: "1.25rem 0" }} />
-              <div className="text-xs leading-relaxed" style={{ color: "var(--texto-2)" }}>
-                La campaña supera la media del sector en las tres plataformas. Próximos pasos en la pestaña <strong style={{ color: "var(--noche)" }}>Recomendaciones</strong>.
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    // ─── PLATFORMS ────────────────────────────────────────────────────────────
-    function PlatformCard({ data, delay }) {
-      const meta = PLATFORM_META[data.platform];
-      const tone = STATUS_TONE[data.status];
-      const Icon = tone.icon;
-      const ratio = data.avgER / data.benchmark.avg;
-      return (
-        <div style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)", overflow: "hidden" }}>
-          <div className="p-5" style={{ background: meta.tone }}>
-            <div className="flex items-start justify-between">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] font-semibold opacity-70">{meta.short}</div>
-                <div className="text-xl font-extrabold mt-0.5">{meta.name}</div>
-              </div>
-              <span className="px-2.5 py-1 text-[10px] font-bold flex items-center gap-1 uppercase tracking-wider" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 999 }}>
-                <Icon size={11} /> {tone.label}
-              </span>
-            </div>
-            <div className="mt-4 flex items-baseline gap-2">
-              <span className="text-4xl font-extrabold tracking-tight">{fmtPct(data.avgER)}</span>
-              <span className="text-xs" style={{ color: "var(--noche)", opacity: 0.7 }}>ER · {ratio.toFixed(1)}× benchmark</span>
-            </div>
-          </div>
-          <div className="p-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-            <KV label="Reach"       value={fmt(data.totalReach)} />
-            <KV label="Impresiones" value={fmt(data.totalImpr)} />
-            <KV label="Engagements" value={fmt(data.totalEng)} />
-            <KV label="CTR"         value={fmtPct(data.ctr)} />
-            <KV label="CPE"         value={data.cpe.toFixed(2).replace(".", ",") + " €"} />
-            <KV label="CPC"         value={data.cpc.toFixed(2).replace(".", ",") + " €"} />
-          </div>
-          <div style={{ height: 1, background: "var(--line)", margin: "0 1.25rem" }} />
-          <div className="p-5">
-            <div className="flex items-center justify-between mb-2">
-              <div className="text-[10px] uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--texto-2)" }}>ROI</div>
-              <div className="text-2xl font-extrabold">{fmtPct(data.roi, 0)}</div>
-            </div>
-            <div style={{ background: "var(--line-soft)", borderRadius: 999, overflow: "hidden", height: 8 }}>
-              <div style={{ width: `${Math.min(data.roi / 10, 100)}%`, height: "100%", background: "var(--noche)", borderRadius: 999 }} />
-            </div>
-            <div className="flex justify-between mt-1.5 text-[10px]" style={{ color: "var(--texto-2)" }}>
-              <span>Gasto {fmtEUR(data.total_spend)}</span>
-              <span>Valor {fmtEUR(data.totalValue)}</span>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    // ─── TOP POSTS ────────────────────────────────────────────────────────────
-    function TopPostCard({ post, rank }) {
-      const meta = PLATFORM_META[post.platform];
-      return (
-        <div className="p-5" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-          <div className="flex items-start justify-between mb-3">
-            <div className="flex items-center gap-3">
-              <div className="text-3xl font-extrabold tracking-tight" style={{ color: "var(--texto-2)" }}>{String(rank).padStart(2, "0")}</div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider" style={{ background: meta.tone, color: "var(--noche)", borderRadius: 999 }}>{meta.short}</span>
-                  <span className="text-sm font-semibold">{post.type}</span>
-                </div>
-                <div className="text-[11px] mt-0.5" style={{ color: "var(--texto-2)" }}>ID · {post.id}</div>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-extrabold leading-none">{fmtPct(post.er)}</div>
-              <div className="text-[10px] uppercase tracking-[0.15em] mt-1" style={{ color: "var(--texto-2)" }}>ER</div>
-            </div>
-          </div>
-          <div className="grid grid-cols-5 gap-2 mt-4">
-            <Engagement icon={Heart}             v={post.likes} />
-            <Engagement icon={MessageCircle}     v={post.comments} />
-            <Engagement icon={Share2}            v={post.shares} />
-            <Engagement icon={Bookmark}          v={post.saves || 0} />
-            <Engagement icon={MousePointerClick} v={post.clicks || 0} />
-          </div>
-          <div style={{ height: 1, background: "var(--line)", margin: "1rem 0" }} />
-          <div className="flex items-center justify-between text-[11px]" style={{ color: "var(--texto-2)" }}>
-            <span>Reach <strong style={{ color: "var(--noche)" }}>{fmt(post.reach)}</strong></span>
-            <span>CTR <strong style={{ color: "var(--noche)" }}>{fmtPct(post.ctr)}</strong></span>
-            <span>Valor <strong style={{ color: "var(--noche)" }}>{fmtEUR(post.value)}</strong></span>
-          </div>
-        </div>
-      );
-    }
-
-    // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────
-    function PredictaFlowDashboard() {
-      const [tab, setTab] = useState("overview");
-
-      const analyzed = useMemo(() => {
-        const out = {};
-        for (const p of PLATFORMS) out[p] = analyzePlatform(p, CAMPAIGN.platforms[p]);
-        return out;
-      }, []);
-
-      const totals = useMemo(() => {
-        const all = Object.values(analyzed);
-        return {
-          spend: all.reduce((s, p) => s + p.total_spend, 0),
-          reach: all.reduce((s, p) => s + p.totalReach, 0),
-          impr:  all.reduce((s, p) => s + p.totalImpr, 0),
-          eng:   all.reduce((s, p) => s + p.totalEng, 0),
-          value: all.reduce((s, p) => s + p.totalValue, 0),
-          posts: all.reduce((s, p) => s + p.posts.length, 0),
-        };
-      }, [analyzed]);
-
-      const totalROI = ((totals.value - totals.spend) / totals.spend) * 100;
-      const blendedER = (totals.eng / totals.reach) * 100;
-
-      const topPosts = useMemo(() => {
-        const all = [];
-        for (const p of PLATFORMS) analyzed[p].posts.forEach((post) => all.push({ ...post, platform: p }));
-        return all.sort((a, b) => b.er - a.er).slice(0, 5);
-      }, [analyzed]);
-
-      const recs = useMemo(() => buildRecommendations(analyzed, totalROI), [analyzed, totalROI]);
-
-      const KIND_TONE = {
-        scale:     { label: "ESCALAR",   bg: "var(--lila)",  icon: TrendingUp },
-        fix:       { label: "OPTIMIZAR", bg: "var(--rosa)",  icon: AlertCircle },
-        replicate: { label: "REPLICAR",  bg: "var(--cielo)", icon: Sparkles },
-        celebrate: { label: "VALIDADO",  bg: "var(--crema)", icon: CheckCircle2 },
-      };
-
-      return (
-        <div className="min-h-screen w-full">
-          <style>{`
-            @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
-            :root {
-              --cielo: #BFECFF; --lila: #CDC2FF; --crema: #FFF7E3;
-              --rosa: #FFCCEB; --noche: #1A1A2E; --blanco: #FFFFFF;
-              --texto-2: #555555; --line: #EFE9D4; --line-soft: #F5EFDC;
-            }
-            * { font-family: 'Manrope', system-ui, sans-serif; box-sizing: border-box; }
-            body { background: var(--crema); }
-            @keyframes pf-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.15)} }
-            .pf-pulse { animation: pf-pulse 1.8s ease-in-out infinite; }
-          `}</style>
-
-          <div style={{ background: "var(--crema)", color: "var(--noche)", minHeight: "100vh" }}>
-
-            {/* HEADER */}
-            <header style={{ borderBottom: "1px solid var(--line)" }}>
-              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <a href="/" className="flex items-center gap-3 no-underline" style={{ textDecoration: "none", color: "inherit" }}>
-                      <div className="w-9 h-9 flex items-center justify-center" style={{ background: "var(--lila)", borderRadius: 999 }}>
-                        <span className="font-extrabold" style={{ color: "var(--noche)" }}>P</span>
-                      </div>
-                      <div className="leading-tight">
-                        <div className="flex items-center gap-2">
-                          <span className="font-bold text-[15px]">Predicta Flow</span>
-                          <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.15em]" style={{ background: "var(--rosa)", color: "var(--noche)", borderRadius: 999 }}>Demo</span>
-                        </div>
-                        <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>data-driven · ai content</div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-center gap-6">
-                  <div className="text-right leading-tight">
-                    <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>Cliente</div>
-                    <div className="text-sm font-semibold">{CAMPAIGN.client}</div>
-                  </div>
-                  <div className="w-px h-7" style={{ background: "var(--line)" }} />
-                  <div className="text-right leading-tight">
-                    <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>Periodo</div>
-                    <div className="text-sm font-medium">{CAMPAIGN.window}</div>
-                  </div>
-                  <a href="/#contacto" className="px-4 py-2 text-xs font-semibold flex items-center gap-1.5 no-underline" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 999, textDecoration: "none" }}>
-                    Reservar llamada <ArrowUpRight size={13} />
-                  </a>
-                </div>
-              </div>
-            </header>
-
-            {/* BANDA DEMO */}
-            <div style={{ background: "var(--noche)", color: "var(--blanco)" }}>
-              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-2 flex flex-wrap items-center justify-between gap-3 text-[11px]">
-                <div className="flex items-center gap-2">
-                  <AlertCircle size={12} style={{ color: "var(--lila)" }} />
-                  <span style={{ color: "#cfcfdc" }}>
-                    <strong style={{ color: "var(--blanco)" }}>Datos de demostración.</strong> Este es un ejemplo del reporte mensual que recibe cada cliente.
-                  </span>
-                </div>
-                <div className="flex items-center gap-3" style={{ color: "#cfcfdc" }}>
-                  <span>🇪🇸 Mercado España · EUR</span>
-                  <span style={{ opacity: 0.5 }}>·</span>
-                  <span>Benchmarks 2026</span>
-                </div>
-              </div>
-            </div>
-
-            {/* HERO */}
-            <section className="max-w-[1340px] mx-auto px-6 md:px-10 pt-12 pb-10">
-              <div className="grid grid-cols-12 gap-6 items-end">
-                <div className="col-span-12 lg:col-span-7">
-                  <div className="text-[11px] uppercase tracking-[0.25em] mb-4 font-semibold" style={{ color: "var(--texto-2)" }}>Informe de campaña · 001</div>
-                  <h1 className="text-[44px] md:text-[64px] leading-[1.02] font-extrabold tracking-tight">
-                    Bloom Reset.<br />
-                    <span style={{ color: "var(--texto-2)" }} className="font-light">
-                      Q1 totalmente <em style={{ background: "var(--lila)", color: "var(--noche)" }} className="not-italic px-2" >descodificado</em>.
-                    </span>
-                  </h1>
-                  <p className="mt-5 max-w-2xl text-[15px] leading-relaxed" style={{ color: "var(--texto-2)" }}>
-                    Lectura cross-platform de {fmt(totals.posts)} piezas de contenido en 12 semanas. Engagement, ROI y deltas de benchmark, calculados contra los estándares actuales de cada plataforma.
-                  </p>
-                </div>
-                <div className="col-span-12 lg:col-span-5 grid grid-cols-2 gap-3">
-                  <HeroStat label="Reach total"  value={fmt(totals.reach)} sub="usuarios únicos"                      tone="var(--cielo)" />
-                  <HeroStat label="ER agregado"  value={fmtPct(blendedER)} sub="vs benchmarks del sector"            tone="var(--rosa)" />
-                  <HeroStat label="ROI campaña"  value={fmtPct(totalROI, 0)} sub={`sobre ${fmtEUR(totals.spend)} invertidos`} tone="var(--lila)" />
-                  <HeroStat label="Engagements"  value={fmt(totals.eng)} sub="acciones totales"                      tone="var(--crema)" border />
-                </div>
-              </div>
-            </section>
-
-            {/* TABS */}
-            <section className="max-w-[1340px] mx-auto px-6 md:px-10">
-              <div className="flex flex-wrap gap-2 mb-6">
-                {[
-                  { k: "overview",  label: "Visión general", icon: Activity },
-                  { k: "platforms", label: "Plataformas",    icon: BarChart3 },
-                  { k: "content",   label: "Top contenido",  icon: Sparkles },
-                  { k: "actions",   label: "Recomendaciones", icon: Target },
-                ].map((t) => {
-                  const Icon = t.icon;
-                  const on = tab === t.k;
-                  return (
-                    <button key={t.k} onClick={() => setTab(t.k)}
-                      className="px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-colors"
-                      style={{ borderRadius: 999, background: on ? "var(--noche)" : "transparent", color: on ? "var(--blanco)" : "var(--noche)", border: on ? "none" : "1px solid var(--line)", cursor: "pointer" }}>
-                      <Icon size={14} /> {t.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </section>
-
-            {/* CONTENIDO */}
-            <section className="max-w-[1340px] mx-auto px-6 md:px-10 pb-20">
-              {tab === "overview" && <OverviewView analyzed={analyzed} totals={totals} totalROI={totalROI} blendedER={blendedER} />}
-
-              {tab === "platforms" && (
-                <div className="space-y-6">
-                  <SectionTitle eyebrow="Cross-platform" title="Desglose por plataforma" sub="Métricas, ROI y comparativa contra benchmark." />
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {PLATFORMS.map((k, i) => <PlatformCard key={k} data={analyzed[k]} delay={i} />)}
-                  </div>
-                </div>
-              )}
-
-              {tab === "content" && (
-                <div className="space-y-8">
-                  <SectionTitle eyebrow="Insights de contenido" title="Top 5 piezas por engagement rate" sub="Lo que más resonó. Patrón emergente: vídeo corto con hook tutorial o trend-jacking." />
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    {topPosts.map((post, i) => <TopPostCard key={post.id} post={post} rank={i + 1} />)}
-                  </div>
-                  <div className="p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-                    <SectionTitle eyebrow="Patrones" title="¿Qué tienen en común los ganadores?" />
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <Pattern title="Formato vídeo corto" desc="4 de 5 top posts son Reels/TikToks de 15-30s. Hook visual en los primeros 2s." color="var(--lila)" />
-                      <Pattern title="Save rate elevado" desc="Los ganadores acumulan 2-3% de saves sobre reach: señal de intent y contenido reutilizable." color="var(--rosa)" />
-                      <Pattern title="UGC + tutorial" desc="Las narrativas de demostración (cómo aplicar / antes-después) lideran sobre branding puro." color="var(--cielo)" />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {tab === "actions" && (
-                <div className="space-y-8">
-                  <SectionTitle eyebrow="Plan de acción" title="Qué hacer la próxima semana" sub="Prioridades calculadas a partir del rendimiento real, no de opiniones." />
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-                    {recs.map((r, i) => {
-                      const tone = KIND_TONE[r.kind];
-                      const Icon = tone.icon;
-                      return (
-                        <div key={i} className="p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
-                          <div className="flex items-start gap-4">
-                            <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: tone.bg }}>
-                              <Icon size={18} style={{ color: "var(--noche)" }} />
-                            </div>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-2 mb-1.5">
-                                <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider" style={{ background: tone.bg, color: "var(--noche)", borderRadius: 999 }}>{tone.label}</span>
-                                <span className="text-[11px] font-semibold" style={{ color: "var(--texto-2)" }}>· {r.platform}</span>
-                              </div>
-                              <h3 className="text-lg font-bold leading-tight">{r.title}</h3>
-                              <p className="text-sm mt-2 leading-relaxed" style={{ color: "var(--texto-2)" }}>{r.body}</p>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="p-6" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 10 }}>
-                    <div className="flex items-start gap-4">
-                      <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--lila)" }}>
-                        <Zap size={18} style={{ color: "var(--noche)" }} />
-                      </div>
-                      <div className="flex-1">
-                        <div className="text-[10px] uppercase tracking-[0.25em] font-semibold mb-1" style={{ color: "var(--lila)" }}>Predicta Flow · siguiente sprint</div>
-                        <h3 className="text-xl font-bold">Brief automático para el equipo de contenido</h3>
-                        <p className="text-sm mt-2 leading-relaxed" style={{ color: "#cfcfdc" }}>
-                          Producir <strong style={{ color: "var(--blanco)" }}>4 reels-tutorial</strong> y <strong style={{ color: "var(--blanco)" }}>2 trend-jacks</strong> para el próximo ciclo. Ajustar la pauta de Instagram a +50% y mantener TikTok orgánico mientras valida formato review-largo.
-                        </p>
-                        <a href="/#contacto" className="inline-flex items-center gap-1.5 mt-4 px-4 py-2 text-xs font-bold no-underline" style={{ background: "var(--lila)", color: "var(--noche)", borderRadius: 999, textDecoration: "none" }}>
-                          Trabajar con nosotros <ArrowUpRight size={13} />
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </section>
-
-            {/* FOOTER */}
-            <footer style={{ borderTop: "1px solid var(--line)" }}>
-              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-6 text-xs" style={{ color: "var(--texto-2)" }}>
-                <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
-                  <div>© Predicta Flow · <a href="/" style={{ color: "var(--texto-2)" }}>predictaflow.me</a></div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full pf-pulse" style={{ background: "var(--noche)", display: "inline-block" }} />
-                    Datos validados · benchmarks 2026
-                  </div>
-                </div>
-                <div style={{ height: 1, background: "var(--line)", margin: "0.75rem 0" }} />
-                <div className="text-[10px] leading-relaxed" style={{ opacity: 0.85 }}>
-                  <strong style={{ color: "var(--noche)" }}>Fuentes benchmarks (España / Europa Occidental, Q1 2026):</strong>{" "}
-                  Engagement rate · Rival IQ 2026, Socialinsider, Hootsuite 2026. CPC/CPM · Metricool TikTok Ads España, Lebesgue Meta Ads Europa, Postiv LinkedIn EMEA.
-                </div>
-              </div>
-            </footer>
-          </div>
-        </div>
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<PredictaFlowDashboard />);
-  </script>
 </body>
 </html>
