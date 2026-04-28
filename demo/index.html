@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo — Predicta Flow Dashboard</title>
+  <meta name="description" content="Ejemplo real de dashboard de campaña. Así presentamos los resultados a nuestros clientes.">
+  <link rel="icon" type="image/svg+xml" href="../images/iso-predictaflow.svg">
+
+  <!-- React + ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <!-- Recharts -->
+  <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js" crossorigin></script>
+  <!-- Lucide React -->
+  <script src="https://unpkg.com/lucide-react@0.383.0/dist/umd/lucide-react.min.js" crossorigin></script>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Babel standalone for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { margin: 0; background: #FFF7E3; }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useMemo } = React;
+    const {
+      TrendingUp, TrendingDown, Minus, ArrowUpRight, Sparkles, Target, Zap,
+      AlertCircle, CheckCircle2, Activity, BarChart3, Heart, MessageCircle,
+      Share2, Bookmark, MousePointerClick,
+    } = LucideReact;
+    const {
+      ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell,
+      RadialBarChart, RadialBar, PolarAngleAxis,
+    } = Recharts;
+
+    // ─── DATOS DEMO ──────────────────────────────────────────────────────────
+    const CAMPAIGN = {
+      client: "Aurora Botánicos · DEMO",
+      campaign: "Bloom Reset — Q1 2026",
+      window: "8 ene – 31 mar 2026",
+      isDemo: true,
+      platforms: {
+        instagram: {
+          total_spend: 3800,
+          followers: 48200,
+          posts: [
+            { id: "ig_01", type: "Reel · Tutorial",  likes: 3420, comments: 281, shares: 412, saves: 1180, reach: 52000,  impressions: 78400,  clicks: 980 },
+            { id: "ig_02", type: "Carousel · Edu",   likes: 2180, comments: 142, shares: 188, saves: 920,  reach: 41200,  impressions: 58300,  clicks: 612 },
+            { id: "ig_03", type: "Reel · UGC",       likes: 5680, comments: 392, shares: 720, saves: 1640, reach: 84000,  impressions: 121000, clicks: 1450 },
+            { id: "ig_04", type: "Image · Producto", likes: 890,  comments: 41,  shares: 32,  saves: 180,  reach: 22400,  impressions: 31200,  clicks: 168 },
+            { id: "ig_05", type: "Carousel · BTS",   likes: 1980, comments: 168, shares: 142, saves: 720,  reach: 38000,  impressions: 52100,  clicks: 480 },
+          ],
+        },
+        tiktok: {
+          total_spend: 2400,
+          followers: 22800,
+          posts: [
+            { id: "tt_01", type: "Tutorial · 30s", likes: 18400, comments: 920,  shares: 2840, saves: 4100, reach: 142000, impressions: 198000, clicks: 1820 },
+            { id: "tt_02", type: "POV · 45s",      likes: 9200,  comments: 412,  shares: 1180, saves: 1840, reach: 78000,  impressions: 102000, clicks: 720 },
+            { id: "tt_03", type: "Trend · 15s",    likes: 24800, comments: 1420, shares: 4200, saves: 5800, reach: 218000, impressions: 312000, clicks: 2840 },
+            { id: "tt_04", type: "Review · 60s",   likes: 6800,  comments: 380,  shares: 720,  saves: 2100, reach: 64000,  impressions: 88000,  clicks: 920 },
+          ],
+        },
+        linkedin: {
+          total_spend: 3200,
+          followers: 8400,
+          posts: [
+            { id: "li_01", type: "Artículo · Founder", likes: 480, comments: 62, shares: 48,  saves: 0, reach: 14200, impressions: 18800, clicks: 320 },
+            { id: "li_02", type: "Carousel · Data",    likes: 720, comments: 94, shares: 112, saves: 0, reach: 21400, impressions: 28200, clicks: 580 },
+            { id: "li_03", type: "Vídeo · Marca",      likes: 380, comments: 41, shares: 38,  saves: 0, reach: 11800, impressions: 15400, clicks: 240 },
+          ],
+        },
+      },
+    };
+
+    const BENCHMARKS = {
+      instagram: { avg: 0.5,  good: 3,   excellent: 5,  ctr_avg: 0.22, ctr_good: 0.75, cpc_avg: 0.55 },
+      tiktok:    { avg: 3.7,  good: 10,  excellent: 15, ctr_avg: 0.30, ctr_good: 0.75, cpc_avg: 0.45 },
+      linkedin:  { avg: 2.5,  good: 4.5, excellent: 6,  ctr_avg: 0.44, ctr_good: 1.5,  cpc_avg: 4.60 },
+    };
+
+    const ENG_VAL = { like: 0.45, comment: 1.85, share: 4.60, save: 2.75, click: 1.40 };
+
+    function analyzePost(p) {
+      const engagements = p.likes + p.comments + p.shares + (p.saves || 0);
+      const er = (engagements / p.reach) * 100;
+      const ctr = p.impressions ? (p.clicks / p.impressions) * 100 : 0;
+      const value =
+        p.likes * ENG_VAL.like + p.comments * ENG_VAL.comment +
+        p.shares * ENG_VAL.share + (p.saves || 0) * ENG_VAL.save +
+        (p.clicks || 0) * ENG_VAL.click;
+      return { ...p, engagements, er, ctr, value };
+    }
+
+    function analyzePlatform(platform, data) {
+      const posts = data.posts.map(analyzePost);
+      const totalEng = posts.reduce((s, p) => s + p.engagements, 0);
+      const totalReach = posts.reduce((s, p) => s + p.reach, 0);
+      const totalImpr = posts.reduce((s, p) => s + p.impressions, 0);
+      const totalClicks = posts.reduce((s, p) => s + (p.clicks || 0), 0);
+      const totalValue = posts.reduce((s, p) => s + p.value, 0);
+      const avgER = totalReach > 0 ? (totalEng / totalReach) * 100 : 0;
+      const ctr = totalImpr > 0 ? (totalClicks / totalImpr) * 100 : 0;
+      const cpe = data.total_spend > 0 ? data.total_spend / totalEng : 0;
+      const cpc = totalClicks > 0 ? data.total_spend / totalClicks : 0;
+      const cpm = totalImpr > 0 ? (data.total_spend / totalImpr) * 1000 : 0;
+      const roi = data.total_spend > 0 ? ((totalValue - data.total_spend) / data.total_spend) * 100 : 0;
+      const bm = BENCHMARKS[platform];
+      let status = "poor";
+      if (avgER >= bm.excellent) status = "excellent";
+      else if (avgER >= bm.good) status = "good";
+      else if (avgER >= bm.avg) status = "average";
+      return { platform, ...data, posts, totalEng, totalReach, totalImpr, totalClicks, totalValue, avgER, ctr, cpe, cpc, cpm, roi, status, benchmark: bm };
+    }
+
+    const PLATFORMS = ["instagram", "tiktok", "linkedin"];
+    const PLATFORM_META = {
+      instagram: { name: "Instagram", short: "IG", tone: "var(--rosa)" },
+      tiktok:    { name: "TikTok",    short: "TT", tone: "var(--lila)" },
+      linkedin:  { name: "LinkedIn",  short: "LI", tone: "var(--cielo)" },
+    };
+
+    const STATUS_TONE = {
+      excellent: { label: "Excelente", bg: "var(--lila)",  ink: "var(--noche)", icon: TrendingUp },
+      good:      { label: "Bueno",     bg: "var(--cielo)", ink: "var(--noche)", icon: TrendingUp },
+      average:   { label: "Medio",     bg: "var(--crema)", ink: "var(--noche)", icon: Minus },
+      poor:      { label: "Bajo",      bg: "var(--rosa)",  ink: "var(--noche)", icon: TrendingDown },
+    };
+
+    const fmt = (n, d = 0) => Number(n).toLocaleString("es-ES", { maximumFractionDigits: d });
+    const fmtEUR = (n) => fmt(n, 0) + " €";
+    const fmtPct = (n, d = 2) => fmt(n, d).replace(".", ",") + "%";
+
+    function buildRecommendations(byPlatform, totalROI) {
+      const recs = [];
+      for (const key of PLATFORMS) {
+        const p = byPlatform[key];
+        const meta = PLATFORM_META[key];
+        if (p.status === "excellent") {
+          recs.push({ kind: "scale", platform: meta.name, title: `Escala el presupuesto en ${meta.name}`, body: `Con ${fmtPct(p.avgER)} de engagement (${(p.avgER / p.benchmark.avg).toFixed(1)}× sobre la media) y ROI de ${fmtPct(p.roi, 0)}, recomendamos aumentar inversión un 40-60%.` });
+        } else if (p.status === "poor" || p.status === "average") {
+          recs.push({ kind: "fix", platform: meta.name, title: `Replantear contenido en ${meta.name}`, body: `Engagement de ${fmtPct(p.avgER)} frente a benchmark de ${fmtPct(p.benchmark.avg)}. Auditar formato y hook de los primeros 3 segundos.` });
+        }
+        const top = [...p.posts].sort((a, b) => b.er - a.er)[0];
+        if (top && top.er >= p.benchmark.good) {
+          recs.push({ kind: "replicate", platform: meta.name, title: `Replica el formato "${top.type}"`, body: `Lideró en ${meta.name} con ${fmtPct(top.er)} de engagement. Producir 3-4 piezas más con la misma estructura narrativa.` });
+        }
+      }
+      if (totalROI > 500) {
+        recs.unshift({ kind: "celebrate", platform: "Global", title: "ROI excepcional a nivel campaña", body: `${fmtPct(totalROI, 0)} de retorno valida la estrategia multi-plataforma. Documentar aprendizajes para futuros clientes del vertical.` });
+      }
+      return recs.slice(0, 5);
+    }
+
+    // ─── SUBCOMPONENTES ───────────────────────────────────────────────────────
+    function HeroStat({ label, value, sub, tone, border }) {
+      return (
+        <div className="p-5" style={{ background: tone, borderRadius: 10, border: border ? "1px solid var(--line)" : "none" }}>
+          <div className="text-[10px] uppercase tracking-[0.18em] font-semibold mb-2" style={{ color: "var(--noche)", opacity: 0.7 }}>{label}</div>
+          <div className="text-3xl font-extrabold tracking-tight leading-none" style={{ color: "var(--noche)" }}>{value}</div>
+          <div className="text-[11px] mt-2" style={{ color: "var(--noche)", opacity: 0.65 }}>{sub}</div>
+        </div>
+      );
+    }
+
+    function SectionTitle({ eyebrow, title, sub }) {
+      return (
+        <div className="mb-6">
+          {eyebrow && <div className="text-[10px] uppercase tracking-[0.25em] font-semibold mb-2" style={{ color: "var(--texto-2)" }}>{eyebrow}</div>}
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h2>
+          {sub && <p className="text-sm mt-1.5" style={{ color: "var(--texto-2)" }}>{sub}</p>}
+        </div>
+      );
+    }
+
+    function Mini({ label, value, accent }) {
+      return (
+        <div className={accent ? "p-2 text-center" : "text-center p-2"} style={accent ? { background: "var(--lila)", borderRadius: 10 } : {}}>
+          <div className="text-[9px] uppercase tracking-[0.15em] font-semibold" style={{ color: "var(--texto-2)" }}>{label}</div>
+          <div className="text-sm font-extrabold mt-0.5">{value}</div>
+        </div>
+      );
+    }
+
+    function HealthRow({ label, value, status }) {
+      const tone = STATUS_TONE[status];
+      const Icon = tone.icon;
+      return (
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-sm">{label}</div>
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-sm">{value}</span>
+            <span className="px-2 py-0.5 text-[10px] font-bold flex items-center gap-1 uppercase tracking-wider" style={{ background: tone.bg, color: tone.ink, borderRadius: 999 }}>
+              <Icon size={10} /> {tone.label}
+            </span>
+          </div>
+        </div>
+      );
+    }
+
+    function KV({ label, value }) {
+      return (
+        <div>
+          <div className="text-[10px] uppercase tracking-[0.15em] font-semibold" style={{ color: "var(--texto-2)" }}>{label}</div>
+          <div className="font-bold mt-0.5">{value}</div>
+        </div>
+      );
+    }
+
+    function Pattern({ title, desc, color }) {
+      return (
+        <div className="p-4" style={{ background: color, borderRadius: 10 }}>
+          <Sparkles size={16} style={{ color: "var(--noche)" }} />
+          <div className="font-bold mt-2 text-sm">{title}</div>
+          <div className="text-xs mt-1.5" style={{ color: "var(--noche)", opacity: 0.75 }}>{desc}</div>
+        </div>
+      );
+    }
+
+    function Engagement({ icon: Icon, v }) {
+      return (
+        <div className="text-center p-2" style={{ background: "var(--crema)", borderRadius: 10 }}>
+          <Icon size={13} style={{ color: "var(--texto-2)" }} className="mx-auto" />
+          <div className="text-xs font-bold mt-1">{fmt(v)}</div>
+        </div>
+      );
+    }
+
+    // ─── OVERVIEW ─────────────────────────────────────────────────────────────
+    function OverviewView({ analyzed, totals, totalROI, blendedER }) {
+      const platformData = PLATFORMS.map((k) => ({
+        name: PLATFORM_META[k].name,
+        er: +analyzed[k].avgER.toFixed(2),
+        benchmark: analyzed[k].benchmark.avg,
+        color: PLATFORM_META[k].tone,
+      }));
+
+      const valueBreakdown = PLATFORMS.map((k) => ({
+        name: PLATFORM_META[k].short,
+        fullName: PLATFORM_META[k].name,
+        spend: analyzed[k].total_spend,
+        value: +analyzed[k].totalValue.toFixed(0),
+        roi: +analyzed[k].roi.toFixed(0),
+        color: PLATFORM_META[k].tone,
+      }));
+
+      return (
+        <div className="space-y-10">
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-12 lg:col-span-7 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+              <SectionTitle eyebrow="Engagement rate" title="Plataforma vs. benchmark" sub="Tu rendimiento real frente al estándar de cada red." />
+              <div className="space-y-5 mt-2">
+                {platformData.map((d) => {
+                  const pct = Math.min((d.er / Math.max(d.benchmark * 3, 8)) * 100, 100);
+                  const bmPct = Math.min((d.benchmark / Math.max(d.benchmark * 3, 8)) * 100, 100);
+                  const ratio = d.er / d.benchmark;
+                  return (
+                    <div key={d.name}>
+                      <div className="flex items-end justify-between mb-1.5">
+                        <div className="font-semibold text-sm">{d.name}</div>
+                        <div className="flex items-baseline gap-2">
+                          <span className="text-xl font-extrabold">{d.er}%</span>
+                          <span className="text-xs" style={{ color: "var(--texto-2)" }}>benchmark {d.benchmark}% · <strong style={{ color: "var(--noche)" }}>{ratio.toFixed(1)}×</strong></span>
+                        </div>
+                      </div>
+                      <div className="relative h-3" style={{ background: "var(--line-soft)", borderRadius: 999, overflow: "hidden" }}>
+                        <div style={{ width: `${pct}%`, height: "100%", background: d.color, borderRadius: 999, transition: "width .8s ease-out" }} />
+                        <div className="absolute top-0 bottom-0 w-px" style={{ left: `${bmPct}%`, background: "var(--noche)", opacity: 0.55 }} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div style={{ height: 1, background: "var(--line)", margin: "1.75rem 0 1rem" }} />
+              <div className="text-xs flex items-center gap-4" style={{ color: "var(--texto-2)" }}>
+                <span className="flex items-center gap-1.5"><span className="inline-block w-3 h-1.5 rounded" style={{ background: "var(--lila)" }} /> Tu ER</span>
+                <span className="flex items-center gap-1.5"><span className="inline-block w-px h-3" style={{ background: "var(--noche)", opacity: 0.55 }} /> Benchmark</span>
+              </div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-5 p-6 flex flex-col" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+              <SectionTitle eyebrow="ROI campaña" title="Retorno por euro invertido" sub="Suma del valor estimado de engagements y clicks." />
+              <div className="flex-1 flex items-center justify-center relative min-h-[200px]">
+                <ResponsiveContainer width="100%" height={220}>
+                  <RadialBarChart innerRadius="65%" outerRadius="100%" data={[{ name: "ROI", value: Math.min(totalROI, 1000), fill: "var(--lila)" }]} startAngle={90} endAngle={-270}>
+                    <PolarAngleAxis type="number" domain={[0, 1000]} tick={false} />
+                    <RadialBar background={{ fill: "var(--line-soft)" }} dataKey="value" cornerRadius={999} />
+                  </RadialBarChart>
+                </ResponsiveContainer>
+                <div className="absolute text-center pointer-events-none">
+                  <div className="text-4xl font-extrabold tracking-tight">{fmt(totalROI, 0)}%</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] mt-1" style={{ color: "var(--texto-2)" }}>Return on ad spend</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-2 pt-4" style={{ borderTop: "1px solid var(--line)" }}>
+                <Mini label="Inversión" value={fmtEUR(totals.spend)} />
+                <Mini label="Valor generado" value={fmtEUR(totals.value)} />
+                <Mini label="Neto" value={fmtEUR(totals.value - totals.spend)} accent />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-12 lg:col-span-8 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+              <SectionTitle eyebrow="Eficiencia" title="Inversión vs. valor generado" sub="Comparativa por plataforma." />
+              <div style={{ height: 240, marginTop: 8 }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={valueBreakdown} barGap={6}>
+                    <XAxis dataKey="fullName" tick={{ fill: "var(--texto-2)", fontSize: 12, fontWeight: 600 }} axisLine={false} tickLine={false} />
+                    <YAxis tick={{ fill: "var(--texto-2)", fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => v / 1000 + "k €"} />
+                    <Tooltip cursor={{ fill: "var(--line-soft)" }} contentStyle={{ background: "var(--blanco)", border: "1px solid var(--line)", borderRadius: 10, fontSize: 12, fontFamily: "Manrope" }} formatter={(v) => fmtEUR(v)} />
+                    <Bar dataKey="spend" name="Inversión" fill="#E8E2C8" radius={[6, 6, 0, 0]} />
+                    <Bar dataKey="value" name="Valor" radius={[6, 6, 0, 0]}>
+                      {valueBreakdown.map((d, i) => <Cell key={i} fill={d.color} />)}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-4 p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+              <SectionTitle eyebrow="Resumen" title="Health check" />
+              <div className="space-y-3">
+                <HealthRow label="Engagement agregado" value={fmtPct(blendedER)} status={blendedER > 4 ? "excellent" : "good"} />
+                <HealthRow label="ROI consolidado" value={fmtPct(totalROI, 0)} status={totalROI > 500 ? "excellent" : totalROI > 200 ? "good" : "average"} />
+                <HealthRow label="Volumen de reach" value={fmt(totals.reach)} status="good" />
+                <HealthRow label="Coste por engagement" value={(totals.spend / totals.eng).toFixed(2).replace(".", ",") + " €"} status={(totals.spend / totals.eng) < 0.5 ? "excellent" : "good"} />
+              </div>
+              <div style={{ height: 1, background: "var(--line)", margin: "1.25rem 0" }} />
+              <div className="text-xs leading-relaxed" style={{ color: "var(--texto-2)" }}>
+                La campaña supera la media del sector en las tres plataformas. Próximos pasos en la pestaña <strong style={{ color: "var(--noche)" }}>Recomendaciones</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ─── PLATFORMS ────────────────────────────────────────────────────────────
+    function PlatformCard({ data, delay }) {
+      const meta = PLATFORM_META[data.platform];
+      const tone = STATUS_TONE[data.status];
+      const Icon = tone.icon;
+      const ratio = data.avgER / data.benchmark.avg;
+      return (
+        <div style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)", overflow: "hidden" }}>
+          <div className="p-5" style={{ background: meta.tone }}>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="text-[10px] uppercase tracking-[0.2em] font-semibold opacity-70">{meta.short}</div>
+                <div className="text-xl font-extrabold mt-0.5">{meta.name}</div>
+              </div>
+              <span className="px-2.5 py-1 text-[10px] font-bold flex items-center gap-1 uppercase tracking-wider" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 999 }}>
+                <Icon size={11} /> {tone.label}
+              </span>
+            </div>
+            <div className="mt-4 flex items-baseline gap-2">
+              <span className="text-4xl font-extrabold tracking-tight">{fmtPct(data.avgER)}</span>
+              <span className="text-xs" style={{ color: "var(--noche)", opacity: 0.7 }}>ER · {ratio.toFixed(1)}× benchmark</span>
+            </div>
+          </div>
+          <div className="p-5 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+            <KV label="Reach"       value={fmt(data.totalReach)} />
+            <KV label="Impresiones" value={fmt(data.totalImpr)} />
+            <KV label="Engagements" value={fmt(data.totalEng)} />
+            <KV label="CTR"         value={fmtPct(data.ctr)} />
+            <KV label="CPE"         value={data.cpe.toFixed(2).replace(".", ",") + " €"} />
+            <KV label="CPC"         value={data.cpc.toFixed(2).replace(".", ",") + " €"} />
+          </div>
+          <div style={{ height: 1, background: "var(--line)", margin: "0 1.25rem" }} />
+          <div className="p-5">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[10px] uppercase tracking-[0.2em] font-semibold" style={{ color: "var(--texto-2)" }}>ROI</div>
+              <div className="text-2xl font-extrabold">{fmtPct(data.roi, 0)}</div>
+            </div>
+            <div style={{ background: "var(--line-soft)", borderRadius: 999, overflow: "hidden", height: 8 }}>
+              <div style={{ width: `${Math.min(data.roi / 10, 100)}%`, height: "100%", background: "var(--noche)", borderRadius: 999 }} />
+            </div>
+            <div className="flex justify-between mt-1.5 text-[10px]" style={{ color: "var(--texto-2)" }}>
+              <span>Gasto {fmtEUR(data.total_spend)}</span>
+              <span>Valor {fmtEUR(data.totalValue)}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // ─── TOP POSTS ────────────────────────────────────────────────────────────
+    function TopPostCard({ post, rank }) {
+      const meta = PLATFORM_META[post.platform];
+      return (
+        <div className="p-5" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+          <div className="flex items-start justify-between mb-3">
+            <div className="flex items-center gap-3">
+              <div className="text-3xl font-extrabold tracking-tight" style={{ color: "var(--texto-2)" }}>{String(rank).padStart(2, "0")}</div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider" style={{ background: meta.tone, color: "var(--noche)", borderRadius: 999 }}>{meta.short}</span>
+                  <span className="text-sm font-semibold">{post.type}</span>
+                </div>
+                <div className="text-[11px] mt-0.5" style={{ color: "var(--texto-2)" }}>ID · {post.id}</div>
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-2xl font-extrabold leading-none">{fmtPct(post.er)}</div>
+              <div className="text-[10px] uppercase tracking-[0.15em] mt-1" style={{ color: "var(--texto-2)" }}>ER</div>
+            </div>
+          </div>
+          <div className="grid grid-cols-5 gap-2 mt-4">
+            <Engagement icon={Heart}             v={post.likes} />
+            <Engagement icon={MessageCircle}     v={post.comments} />
+            <Engagement icon={Share2}            v={post.shares} />
+            <Engagement icon={Bookmark}          v={post.saves || 0} />
+            <Engagement icon={MousePointerClick} v={post.clicks || 0} />
+          </div>
+          <div style={{ height: 1, background: "var(--line)", margin: "1rem 0" }} />
+          <div className="flex items-center justify-between text-[11px]" style={{ color: "var(--texto-2)" }}>
+            <span>Reach <strong style={{ color: "var(--noche)" }}>{fmt(post.reach)}</strong></span>
+            <span>CTR <strong style={{ color: "var(--noche)" }}>{fmtPct(post.ctr)}</strong></span>
+            <span>Valor <strong style={{ color: "var(--noche)" }}>{fmtEUR(post.value)}</strong></span>
+          </div>
+        </div>
+      );
+    }
+
+    // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────
+    function PredictaFlowDashboard() {
+      const [tab, setTab] = useState("overview");
+
+      const analyzed = useMemo(() => {
+        const out = {};
+        for (const p of PLATFORMS) out[p] = analyzePlatform(p, CAMPAIGN.platforms[p]);
+        return out;
+      }, []);
+
+      const totals = useMemo(() => {
+        const all = Object.values(analyzed);
+        return {
+          spend: all.reduce((s, p) => s + p.total_spend, 0),
+          reach: all.reduce((s, p) => s + p.totalReach, 0),
+          impr:  all.reduce((s, p) => s + p.totalImpr, 0),
+          eng:   all.reduce((s, p) => s + p.totalEng, 0),
+          value: all.reduce((s, p) => s + p.totalValue, 0),
+          posts: all.reduce((s, p) => s + p.posts.length, 0),
+        };
+      }, [analyzed]);
+
+      const totalROI = ((totals.value - totals.spend) / totals.spend) * 100;
+      const blendedER = (totals.eng / totals.reach) * 100;
+
+      const topPosts = useMemo(() => {
+        const all = [];
+        for (const p of PLATFORMS) analyzed[p].posts.forEach((post) => all.push({ ...post, platform: p }));
+        return all.sort((a, b) => b.er - a.er).slice(0, 5);
+      }, [analyzed]);
+
+      const recs = useMemo(() => buildRecommendations(analyzed, totalROI), [analyzed, totalROI]);
+
+      const KIND_TONE = {
+        scale:     { label: "ESCALAR",   bg: "var(--lila)",  icon: TrendingUp },
+        fix:       { label: "OPTIMIZAR", bg: "var(--rosa)",  icon: AlertCircle },
+        replicate: { label: "REPLICAR",  bg: "var(--cielo)", icon: Sparkles },
+        celebrate: { label: "VALIDADO",  bg: "var(--crema)", icon: CheckCircle2 },
+      };
+
+      return (
+        <div className="min-h-screen w-full">
+          <style>{`
+            @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+            :root {
+              --cielo: #BFECFF; --lila: #CDC2FF; --crema: #FFF7E3;
+              --rosa: #FFCCEB; --noche: #1A1A2E; --blanco: #FFFFFF;
+              --texto-2: #555555; --line: #EFE9D4; --line-soft: #F5EFDC;
+            }
+            * { font-family: 'Manrope', system-ui, sans-serif; box-sizing: border-box; }
+            body { background: var(--crema); }
+            @keyframes pf-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.15)} }
+            .pf-pulse { animation: pf-pulse 1.8s ease-in-out infinite; }
+          `}</style>
+
+          <div style={{ background: "var(--crema)", color: "var(--noche)", minHeight: "100vh" }}>
+
+            {/* HEADER */}
+            <header style={{ borderBottom: "1px solid var(--line)" }}>
+              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <a href="/" className="flex items-center gap-3 no-underline" style={{ textDecoration: "none", color: "inherit" }}>
+                      <div className="w-9 h-9 flex items-center justify-center" style={{ background: "var(--lila)", borderRadius: 999 }}>
+                        <span className="font-extrabold" style={{ color: "var(--noche)" }}>P</span>
+                      </div>
+                      <div className="leading-tight">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-[15px]">Predicta Flow</span>
+                          <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.15em]" style={{ background: "var(--rosa)", color: "var(--noche)", borderRadius: 999 }}>Demo</span>
+                        </div>
+                        <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>data-driven · ai content</div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div className="hidden md:flex items-center gap-6">
+                  <div className="text-right leading-tight">
+                    <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>Cliente</div>
+                    <div className="text-sm font-semibold">{CAMPAIGN.client}</div>
+                  </div>
+                  <div className="w-px h-7" style={{ background: "var(--line)" }} />
+                  <div className="text-right leading-tight">
+                    <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: "var(--texto-2)" }}>Periodo</div>
+                    <div className="text-sm font-medium">{CAMPAIGN.window}</div>
+                  </div>
+                  <a href="/#contacto" className="px-4 py-2 text-xs font-semibold flex items-center gap-1.5 no-underline" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 999, textDecoration: "none" }}>
+                    Reservar llamada <ArrowUpRight size={13} />
+                  </a>
+                </div>
+              </div>
+            </header>
+
+            {/* BANDA DEMO */}
+            <div style={{ background: "var(--noche)", color: "var(--blanco)" }}>
+              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-2 flex flex-wrap items-center justify-between gap-3 text-[11px]">
+                <div className="flex items-center gap-2">
+                  <AlertCircle size={12} style={{ color: "var(--lila)" }} />
+                  <span style={{ color: "#cfcfdc" }}>
+                    <strong style={{ color: "var(--blanco)" }}>Datos de demostración.</strong> Este es un ejemplo del reporte mensual que recibe cada cliente.
+                  </span>
+                </div>
+                <div className="flex items-center gap-3" style={{ color: "#cfcfdc" }}>
+                  <span>🇪🇸 Mercado España · EUR</span>
+                  <span style={{ opacity: 0.5 }}>·</span>
+                  <span>Benchmarks 2026</span>
+                </div>
+              </div>
+            </div>
+
+            {/* HERO */}
+            <section className="max-w-[1340px] mx-auto px-6 md:px-10 pt-12 pb-10">
+              <div className="grid grid-cols-12 gap-6 items-end">
+                <div className="col-span-12 lg:col-span-7">
+                  <div className="text-[11px] uppercase tracking-[0.25em] mb-4 font-semibold" style={{ color: "var(--texto-2)" }}>Informe de campaña · 001</div>
+                  <h1 className="text-[44px] md:text-[64px] leading-[1.02] font-extrabold tracking-tight">
+                    Bloom Reset.<br />
+                    <span style={{ color: "var(--texto-2)" }} className="font-light">
+                      Q1 totalmente <em style={{ background: "var(--lila)", color: "var(--noche)" }} className="not-italic px-2" >descodificado</em>.
+                    </span>
+                  </h1>
+                  <p className="mt-5 max-w-2xl text-[15px] leading-relaxed" style={{ color: "var(--texto-2)" }}>
+                    Lectura cross-platform de {fmt(totals.posts)} piezas de contenido en 12 semanas. Engagement, ROI y deltas de benchmark, calculados contra los estándares actuales de cada plataforma.
+                  </p>
+                </div>
+                <div className="col-span-12 lg:col-span-5 grid grid-cols-2 gap-3">
+                  <HeroStat label="Reach total"  value={fmt(totals.reach)} sub="usuarios únicos"                      tone="var(--cielo)" />
+                  <HeroStat label="ER agregado"  value={fmtPct(blendedER)} sub="vs benchmarks del sector"            tone="var(--rosa)" />
+                  <HeroStat label="ROI campaña"  value={fmtPct(totalROI, 0)} sub={`sobre ${fmtEUR(totals.spend)} invertidos`} tone="var(--lila)" />
+                  <HeroStat label="Engagements"  value={fmt(totals.eng)} sub="acciones totales"                      tone="var(--crema)" border />
+                </div>
+              </div>
+            </section>
+
+            {/* TABS */}
+            <section className="max-w-[1340px] mx-auto px-6 md:px-10">
+              <div className="flex flex-wrap gap-2 mb-6">
+                {[
+                  { k: "overview",  label: "Visión general", icon: Activity },
+                  { k: "platforms", label: "Plataformas",    icon: BarChart3 },
+                  { k: "content",   label: "Top contenido",  icon: Sparkles },
+                  { k: "actions",   label: "Recomendaciones", icon: Target },
+                ].map((t) => {
+                  const Icon = t.icon;
+                  const on = tab === t.k;
+                  return (
+                    <button key={t.k} onClick={() => setTab(t.k)}
+                      className="px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-colors"
+                      style={{ borderRadius: 999, background: on ? "var(--noche)" : "transparent", color: on ? "var(--blanco)" : "var(--noche)", border: on ? "none" : "1px solid var(--line)", cursor: "pointer" }}>
+                      <Icon size={14} /> {t.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* CONTENIDO */}
+            <section className="max-w-[1340px] mx-auto px-6 md:px-10 pb-20">
+              {tab === "overview" && <OverviewView analyzed={analyzed} totals={totals} totalROI={totalROI} blendedER={blendedER} />}
+
+              {tab === "platforms" && (
+                <div className="space-y-6">
+                  <SectionTitle eyebrow="Cross-platform" title="Desglose por plataforma" sub="Métricas, ROI y comparativa contra benchmark." />
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {PLATFORMS.map((k, i) => <PlatformCard key={k} data={analyzed[k]} delay={i} />)}
+                  </div>
+                </div>
+              )}
+
+              {tab === "content" && (
+                <div className="space-y-8">
+                  <SectionTitle eyebrow="Insights de contenido" title="Top 5 piezas por engagement rate" sub="Lo que más resonó. Patrón emergente: vídeo corto con hook tutorial o trend-jacking." />
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    {topPosts.map((post, i) => <TopPostCard key={post.id} post={post} rank={i + 1} />)}
+                  </div>
+                  <div className="p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+                    <SectionTitle eyebrow="Patrones" title="¿Qué tienen en común los ganadores?" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <Pattern title="Formato vídeo corto" desc="4 de 5 top posts son Reels/TikToks de 15-30s. Hook visual en los primeros 2s." color="var(--lila)" />
+                      <Pattern title="Save rate elevado" desc="Los ganadores acumulan 2-3% de saves sobre reach: señal de intent y contenido reutilizable." color="var(--rosa)" />
+                      <Pattern title="UGC + tutorial" desc="Las narrativas de demostración (cómo aplicar / antes-después) lideran sobre branding puro." color="var(--cielo)" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {tab === "actions" && (
+                <div className="space-y-8">
+                  <SectionTitle eyebrow="Plan de acción" title="Qué hacer la próxima semana" sub="Prioridades calculadas a partir del rendimiento real, no de opiniones." />
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                    {recs.map((r, i) => {
+                      const tone = KIND_TONE[r.kind];
+                      const Icon = tone.icon;
+                      return (
+                        <div key={i} className="p-6" style={{ background: "var(--blanco)", borderRadius: 10, border: "1px solid var(--line)" }}>
+                          <div className="flex items-start gap-4">
+                            <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: tone.bg }}>
+                              <Icon size={18} style={{ color: "var(--noche)" }} />
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-1.5">
+                                <span className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider" style={{ background: tone.bg, color: "var(--noche)", borderRadius: 999 }}>{tone.label}</span>
+                                <span className="text-[11px] font-semibold" style={{ color: "var(--texto-2)" }}>· {r.platform}</span>
+                              </div>
+                              <h3 className="text-lg font-bold leading-tight">{r.title}</h3>
+                              <p className="text-sm mt-2 leading-relaxed" style={{ color: "var(--texto-2)" }}>{r.body}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="p-6" style={{ background: "var(--noche)", color: "var(--blanco)", borderRadius: 10 }}>
+                    <div className="flex items-start gap-4">
+                      <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--lila)" }}>
+                        <Zap size={18} style={{ color: "var(--noche)" }} />
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-[10px] uppercase tracking-[0.25em] font-semibold mb-1" style={{ color: "var(--lila)" }}>Predicta Flow · siguiente sprint</div>
+                        <h3 className="text-xl font-bold">Brief automático para el equipo de contenido</h3>
+                        <p className="text-sm mt-2 leading-relaxed" style={{ color: "#cfcfdc" }}>
+                          Producir <strong style={{ color: "var(--blanco)" }}>4 reels-tutorial</strong> y <strong style={{ color: "var(--blanco)" }}>2 trend-jacks</strong> para el próximo ciclo. Ajustar la pauta de Instagram a +50% y mantener TikTok orgánico mientras valida formato review-largo.
+                        </p>
+                        <a href="/#contacto" className="inline-flex items-center gap-1.5 mt-4 px-4 py-2 text-xs font-bold no-underline" style={{ background: "var(--lila)", color: "var(--noche)", borderRadius: 999, textDecoration: "none" }}>
+                          Trabajar con nosotros <ArrowUpRight size={13} />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </section>
+
+            {/* FOOTER */}
+            <footer style={{ borderTop: "1px solid var(--line)" }}>
+              <div className="max-w-[1340px] mx-auto px-6 md:px-10 py-6 text-xs" style={{ color: "var(--texto-2)" }}>
+                <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+                  <div>© Predicta Flow · <a href="/" style={{ color: "var(--texto-2)" }}>predictaflow.me</a></div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full pf-pulse" style={{ background: "var(--noche)", display: "inline-block" }} />
+                    Datos validados · benchmarks 2026
+                  </div>
+                </div>
+                <div style={{ height: 1, background: "var(--line)", margin: "0.75rem 0" }} />
+                <div className="text-[10px] leading-relaxed" style={{ opacity: 0.85 }}>
+                  <strong style={{ color: "var(--noche)" }}>Fuentes benchmarks (España / Europa Occidental, Q1 2026):</strong>{" "}
+                  Engagement rate · Rival IQ 2026, Socialinsider, Hootsuite 2026. CPC/CPM · Metricool TikTok Ads España, Lebesgue Meta Ads Europa, Postiv LinkedIn EMEA.
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<PredictaFlowDashboard />);
+  </script>
+</body>
+</html>
