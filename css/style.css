@@ -2,28 +2,35 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary: #CDC1FF;
-  --primary-light: #CDC1FF;
-  --accent: #FFCCEA;
-  --accent-bg: #fff4fa;
-  --vibrant: #d97eb5;
-  --vibrant-light: rgba(217,126,181,0.12);
-  --highlight: #BFECFF;
-  --bg: #ffffff;
-  --bg-alt: #FFF6E3;
-  --bg-dark: #2d2550;
-  --text: #111111;
-  --text-light: #ffffff;
-  --text-muted: #666666;
-  --border: #e8e8e8;
-  --radius: 8px;
-  --radius-pill: 47px;
+  /* ── Paleta Predicta Flow v3 ── */
+  --tinta:   #1A1530;
+  --violeta: #5E3DF0;
+  --lila:    #C8B6F8;
+  --cielo:   #BEE5F3;
+  --crema:   #F4F1EC;
+  --gris:    #e0dbd6;
+
+  /* ── Uso de color ── */
+  --primary:       #5E3DF0;
+  --primary-light: #C8B6F8;
+  --accent:        #BEE5F3;
+  --accent-bg:     #F4F1EC;
+  --highlight:     #BEE5F3;
+  --bg:            #ffffff;
+  --bg-alt:        #F4F1EC;
+  --bg-dark:       #1A1530;
+  --text:          #1A1530;
+  --text-light:    #F4F1EC;
+  --text-muted:    #6b6480;
+  --border:        #e0dbd6;
+  --radius:        8px;
+  --radius-pill:   40px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -32,16 +39,16 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 800;
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
 h1 em, h2 em {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fraunces', serif;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -77,7 +84,7 @@ strong { font-weight: 600; }
   gap: 8px;
   padding: 14px 32px;
   border-radius: var(--radius-pill);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
@@ -420,7 +427,7 @@ strong { font-weight: 600; }
 }
 
 .statement-headline {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: clamp(24px, 3.2vw, 48px);
   font-weight: 400;
   color: #ffffff;
@@ -460,7 +467,7 @@ strong { font-weight: 600; }
 }
 
 .statement-number {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: clamp(52px, 7vw, 88px);
   font-weight: 800;
   color: #ffffff;
@@ -519,7 +526,7 @@ strong { font-weight: 600; }
 
 .ticker-track span {
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-weight: 700;
   font-size: 13px;
   text-transform: uppercase;
@@ -600,14 +607,14 @@ strong { font-weight: 600; }
 .proceso-tab:hover:not(.active) { opacity: 0.6; }
 
 .tab-num {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 12px;
   font-weight: 700;
   color: var(--primary);
   letter-spacing: 0.5px;
 }
 .tab-name {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 17px;
   font-weight: 700;
   color: var(--text);
@@ -688,7 +695,7 @@ strong { font-weight: 600; }
 }
 
 .step-num {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 72px;
   font-weight: 800;
   line-height: 1;
@@ -885,7 +892,7 @@ strong { font-weight: 600; }
 }
 
 .pq-num {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 2px;
@@ -1051,7 +1058,7 @@ strong { font-weight: 600; }
 
 .faq-item summary {
   padding: 24px 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
@@ -1100,7 +1107,7 @@ strong { font-weight: 600; }
 }
 
 .cta h2 em {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-style: italic;
   color: #FFF6E3;
   background: #2d2550;
@@ -1157,7 +1164,7 @@ strong { font-weight: 600; }
   padding: 14px 16px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 14px;
   color: var(--text);
   background: #fff;
@@ -1686,7 +1693,7 @@ strong { font-weight: 600; }
 }
 
 .ba-val {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Familjen Grotesk', sans-serif;
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
