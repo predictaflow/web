@@ -32,12 +32,11 @@
         <img src="images/logo-tinta.svg" alt="Predicta Flow" class="logo-scrolled" height="68">
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#proceso">Proceso</a></li>
-        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Cómo trabajamos</a></li>
         <li><a href="#para-quien">Para quién</a></li>
+        <li><a href="#demo-preview">Dashboard</a></li>
+        <li><a href="#manifiesto">Manifiesto</a></li>
         <li><a href="#diferencia">Por qué nosotros</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="/demo" class="nav-demo-link">Ver demo</a></li>
         <li><a href="#contacto" class="btn btn-primary btn-sm nav-cta">Hablemos</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
@@ -82,416 +81,385 @@
     </div>
   </div>
 
-  <!-- ── Proceso ── -->
-  <section class="section section-proceso" id="proceso">
+  <!-- ── Cómo trabajamos ── -->
+  <section class="section como-section" id="proceso">
     <div class="container">
-      <div class="section-header">
-        <span class="tag" style="background:var(--accent);color:var(--text);">Nuestro proceso</span>
-        <h2>Contenido estratégico en 3 fases</h2>
-        <p>Cada pieza que publicamos pasa por un proceso de inteligencia de datos. No creamos nada al azar.</p>
+      <div class="como-section-header">
+        <p class="section-kicker"><span class="section-kicker-dot"></span>Estrategia de contenido - 3 fases</p>
+        <h2>Cómo trabajamos <em>contigo</em>.</h2>
       </div>
 
-      <!-- Tabs nav (estilo Flow) -->
-      <div class="proceso-tabs" role="tablist">
-        <button class="proceso-tab active" data-tab="0" role="tab">
-          <span class="tab-num">01</span>
-          <span class="tab-name">Social Listening</span>
-        </button>
-        <button class="proceso-tab" data-tab="1" role="tab">
-          <span class="tab-num">02</span>
-          <span class="tab-name">Creamos con propósito</span>
-        </button>
-        <button class="proceso-tab" data-tab="2" role="tab">
-          <span class="tab-num">03</span>
-          <span class="tab-name">Publicamos en el momento exacto</span>
-        </button>
-      </div>
+      <div class="como-cards">
 
-      <!-- Panels -->
-      <div class="proceso-panels">
-
-        <!-- Panel 0: Social Listening -->
-        <div class="proceso-panel active" data-panel="0">
-          <div class="proceso-text">
-            <p>Nuestros sistemas de IA rastrean miles de señales en tu sector: búsquedas, conversaciones, engagement. Detectamos qué temas están ganando tracción <strong>antes</strong> de que lleguen al mainstream.</p>
-            <div class="process-tools">Google Trends · Helium10 · Social Listening · IA propia</div>
+        <!-- Card 01: Detección -->
+        <div class="como-card fade-in">
+          <div class="como-card-header">
+            <span class="como-card-num">01</span>
+            <h3 class="como-card-title">Detección</h3>
           </div>
-          <div class="proceso-mockup">
-            <svg viewBox="0 0 440 295" xmlns="http://www.w3.org/2000/svg">
-              <rect width="440" height="295" rx="16" fill="#1a1730"/>
-              <rect width="440" height="52" rx="16" fill="#1A1530"/>
-              <rect y="32" width="440" height="20" fill="#1A1530"/>
-              <circle cx="22" cy="26" r="5" fill="#4ADE80"/>
-              <text x="34" y="20" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.45)" letter-spacing="2">LIVE</text>
-              <text x="34" y="36" font-family="'Familjen Grotesk',sans-serif" font-size="13" font-weight="700" fill="white">Trend Monitor</text>
-              <text x="420" y="31" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="rgba(255,255,255,0.3)" text-anchor="end">10 abr 2026</text>
-              <text x="20" y="80" font-family="'Familjen Grotesk',sans-serif" font-size="12" fill="rgba(255,255,255,0.9)">#colágeno marino</text>
-              <rect x="20" y="87" width="260" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
-              <rect x="20" y="87" width="223" height="7" rx="3.5" fill="#5E3DF0"/>
-              <text x="292" y="97" font-family="'Familjen Grotesk',sans-serif" font-size="11" fill="#C8B6F8">↑ 340%</text>
-              <rect x="346" y="75" width="74" height="20" rx="10" fill="rgba(139,127,212,0.25)"/>
-              <text x="383" y="89" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="600" fill="#C8B6F8" text-anchor="middle">Pico en 48h</text>
-              <text x="20" y="128" font-family="'Familjen Grotesk',sans-serif" font-size="12" fill="rgba(255,255,255,0.9)">#gut health</text>
-              <rect x="20" y="135" width="260" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
-              <rect x="20" y="135" width="156" height="7" rx="3.5" fill="#5E3DF0" opacity="0.75"/>
-              <text x="292" y="145" font-family="'Familjen Grotesk',sans-serif" font-size="11" fill="#C8B6F8">↑ 180%</text>
-              <rect x="346" y="123" width="74" height="20" rx="10" fill="rgba(191,236,255,0.15)"/>
-              <text x="383" y="137" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="600" fill="#BEE5F3" text-anchor="middle">Creciendo</text>
-              <text x="20" y="176" font-family="'Familjen Grotesk',sans-serif" font-size="12" fill="rgba(255,255,255,0.9)">#fermentados</text>
-              <rect x="20" y="183" width="260" height="7" rx="3.5" fill="rgba(255,255,255,0.08)"/>
-              <rect x="20" y="183" width="96" height="7" rx="3.5" fill="#5E3DF0" opacity="0.5"/>
-              <text x="292" y="193" font-family="'Familjen Grotesk',sans-serif" font-size="11" fill="#C8B6F8">↑ 92%</text>
-              <rect x="346" y="171" width="74" height="20" rx="10" fill="rgba(255,246,227,0.1)"/>
-              <text x="383" y="185" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="600" fill="rgba(255,246,227,0.45)" text-anchor="middle">Emergente</text>
-              <line x1="20" y1="214" x2="420" y2="214" stroke="rgba(255,255,255,0.07)"/>
-              <text x="20" y="240" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="rgba(255,255,255,0.3)">3 tendencias activas · actualizado ahora</text>
-              <rect x="288" y="225" width="132" height="28" rx="14" fill="#5E3DF0"/>
-              <text x="354" y="244" font-family="'Familjen Grotesk',sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">Ver informe →</text>
-              <text x="20" y="275" font-family="'Familjen Grotesk',sans-serif" font-size="9" fill="rgba(255,255,255,0.15)">Predicta Flow AI · sector: tech/lifestyle</text>
-            </svg>
+          <p class="como-card-sub">Social Listening + IA</p>
+          <div class="como-rows">
+            <div class="como-row">
+              <span class="como-row-label">Análisis predictivo propio</span>
+              <span class="como-row-meta">500+ fuentes</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Alertas de tendencia</span>
+              <span class="como-row-meta">24h de anticipación</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Briefing semanal</span>
+              <span class="como-row-meta">listo el lunes</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Análisis de competencia</span>
+              <span class="como-row-meta">incluido</span>
+            </div>
           </div>
         </div>
 
-        <!-- Panel 1: Creamos con propósito -->
-        <div class="proceso-panel" data-panel="1">
-          <div class="proceso-text">
-            <p>Cada pieza se diseña sobre datos de retención, engagement y comportamiento del algoritmo. El formato, la duración, el hook: todo está optimizado para que funcione, no solo para que quede bonito.</p>
-            <div class="process-tools">Datos de retención · A/B testing · Formatos nativos</div>
+        <!-- Card 02: Estrategia -->
+        <div class="como-card fade-in">
+          <div class="como-card-header">
+            <span class="como-card-num">02</span>
+            <h3 class="como-card-title">Estrategia</h3>
           </div>
-          <div class="proceso-mockup">
-            <svg viewBox="0 0 440 295" xmlns="http://www.w3.org/2000/svg">
-              <rect width="440" height="295" rx="16" fill="#ffffff"/>
-              <rect width="440" height="52" rx="16" fill="#f8f5ff"/>
-              <rect y="32" width="440" height="20" fill="#f8f5ff"/>
-              <rect x="20" y="15" width="56" height="22" rx="11" fill="#5E3DF0"/>
-              <text x="48" y="30" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">Brief 001</text>
-              <text x="86" y="30" font-family="'Familjen Grotesk',sans-serif" font-size="12" font-weight="700" fill="#111111">#colágeno marino</text>
-              <text x="420" y="30" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#5E3DF0" text-anchor="end">Reel 28s</text>
-              <rect x="20" y="68" width="178" height="200" rx="12" fill="#1a1730"/>
-              <circle cx="109" cy="168" r="24" fill="rgba(255,255,255,0.12)"/>
-              <polygon points="103,160 103,176 121,168" fill="white"/>
-              <rect x="28" y="76" width="64" height="18" rx="9" fill="rgba(139,127,212,0.85)"/>
-              <text x="60" y="89" font-family="'Familjen Grotesk',sans-serif" font-size="9" fill="white" text-anchor="middle">HOOK 0–3s</text>
-              <rect x="20" y="254" width="178" height="14" rx="0" fill="rgba(0,0,0,0.25)"/>
-              <rect x="20" y="254" width="95" height="14" fill="#5E3DF0" opacity="0.8"/>
-              <text x="109" y="264" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" text-anchor="middle">retención 53%</text>
-              <text x="214" y="85" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#aaaaaa">Hook score</text>
-              <text x="214" y="112" font-family="'Familjen Grotesk',sans-serif" font-size="32" font-weight="800" fill="#5E3DF0">9.4</text>
-              <text x="255" y="112" font-family="'Familjen Grotesk',sans-serif" font-size="14" fill="#cccccc">/10</text>
-              <line x1="214" y1="122" x2="420" y2="122" stroke="#f0f0f0"/>
-              <text x="214" y="142" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#aaaaaa">Formato</text>
-              <text x="214" y="160" font-family="'Familjen Grotesk',sans-serif" font-size="13" font-weight="700" fill="#111111">Reel vertical 28s</text>
-              <line x1="214" y1="172" x2="420" y2="172" stroke="#f0f0f0"/>
-              <text x="214" y="192" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#aaaaaa">Plataformas</text>
-              <rect x="214" y="198" width="52" height="22" rx="11" fill="#f0ecff"/>
-              <text x="240" y="213" font-family="'Familjen Grotesk',sans-serif" font-size="10" font-weight="700" fill="#5E3DF0" text-anchor="middle">TikTok</text>
-              <rect x="272" y="198" width="48" height="22" rx="11" fill="#f0ecff"/>
-              <text x="296" y="213" font-family="'Familjen Grotesk',sans-serif" font-size="10" font-weight="700" fill="#5E3DF0" text-anchor="middle">Reels</text>
-              <line x1="214" y1="230" x2="420" y2="230" stroke="#f0f0f0"/>
-              <text x="214" y="250" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#aaaaaa">Retención predicha (3s)</text>
-              <rect x="214" y="258" width="160" height="8" rx="4" fill="#f0f0f0"/>
-              <rect x="214" y="258" width="125" height="8" rx="4" fill="#5E3DF0"/>
-              <text x="382" y="266" font-family="'Familjen Grotesk',sans-serif" font-size="10" font-weight="700" fill="#5E3DF0">78%</text>
-            </svg>
+          <p class="como-card-sub">Contenido con propósito</p>
+          <div class="como-rows">
+            <div class="como-row">
+              <span class="como-row-label">Guión y copy</span>
+              <span class="como-row-meta">hook optimizado</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Formato por plataforma</span>
+              <span class="como-row-meta">TikTok · Reels · LinkedIn</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">A/B testing de hooks</span>
+              <span class="como-row-meta">probado antes de publicar</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Retención predicha</span>
+              <span class="como-row-meta">datos antes del lanzamiento</span>
+            </div>
           </div>
         </div>
 
-        <!-- Panel 2: Publicamos en el momento exacto -->
-        <div class="proceso-panel" data-panel="2">
-          <div class="proceso-text">
-            <p>El timing importa tanto como el contenido. Analizamos cuándo tu audiencia está más receptiva y cuándo la tendencia está a punto de explotar. Publicamos ahí, no antes ni después.</p>
-            <div class="process-tools">Timing algorítmico · Scheduling inteligente · Métricas en vivo</div>
+        <!-- Card 03: Ejecución -->
+        <div class="como-card fade-in">
+          <div class="como-card-header">
+            <span class="como-card-num">03</span>
+            <h3 class="como-card-title">Ejecución</h3>
           </div>
-          <div class="proceso-mockup">
-            <svg viewBox="0 0 440 295" xmlns="http://www.w3.org/2000/svg">
-              <rect width="440" height="295" rx="16" fill="#ffffff"/>
-              <rect width="440" height="52" rx="16" fill="#F4F1EC"/>
-              <rect y="32" width="440" height="20" fill="#F4F1EC"/>
-              <text x="20" y="26" font-family="'Familjen Grotesk',sans-serif" font-size="11" font-weight="700" fill="#111111">Semana del 7–13 abr 2026</text>
-              <text x="20" y="43" font-family="'Familjen Grotesk',sans-serif" font-size="10" fill="#888888">Ventanas óptimas de publicación</text>
-              <rect x="306" y="13" width="114" height="24" rx="12" fill="#5E3DF0"/>
-              <text x="363" y="29" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">7 publicaciones</text>
-              <text x="45" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#888888" text-anchor="middle">LUN</text>
-              <text x="105" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#888888" text-anchor="middle">MAR</text>
-              <text x="165" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#888888" text-anchor="middle">MIÉ</text>
-              <text x="225" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#888888" text-anchor="middle">JUE</text>
-              <text x="285" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#888888" text-anchor="middle">VIE</text>
-              <text x="345" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#cccccc" text-anchor="middle">SÁB</text>
-              <text x="405" y="72" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#cccccc" text-anchor="middle">DOM</text>
-              <line x1="20" y1="78" x2="420" y2="78" stroke="#f0f0f0"/>
-              <text x="8" y="105" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#aaaaaa">09h</text>
-              <rect x="18" y="82" width="54" height="36" rx="8" fill="#5E3DF0"/>
-              <text x="45" y="97" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">TikTok</text>
-              <text x="45" y="111" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle">09:15</text>
-              <rect x="198" y="82" width="54" height="36" rx="8" fill="#C8B6F8"/>
-              <text x="225" y="97" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#111111" text-anchor="middle">IG Reel</text>
-              <text x="225" y="111" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="#666666" text-anchor="middle">10:00</text>
-              <rect x="78" y="82" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="138" y="82" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="258" y="82" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="318" y="82" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.5"/>
-              <rect x="378" y="82" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.3"/>
-              <line x1="20" y1="128" x2="420" y2="128" stroke="#f0f0f0"/>
-              <text x="8" y="155" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#aaaaaa">18h</text>
-              <rect x="78" y="132" width="54" height="36" rx="8" fill="#5E3DF0"/>
-              <text x="105" y="147" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">TikTok</text>
-              <text x="105" y="161" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle">18:30</text>
-              <rect x="258" y="132" width="54" height="36" rx="8" fill="#BEE5F3"/>
-              <text x="285" y="147" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#111111" text-anchor="middle">YouTube</text>
-              <text x="285" y="161" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="#666666" text-anchor="middle">18:00</text>
-              <rect x="18" y="132" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="138" y="132" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="198" y="132" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="318" y="132" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.4"/>
-              <rect x="378" y="132" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.2"/>
-              <line x1="20" y1="178" x2="420" y2="178" stroke="#f0f0f0"/>
-              <text x="8" y="205" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#aaaaaa">21h</text>
-              <rect x="138" y="182" width="54" height="36" rx="8" fill="#C8B6F8"/>
-              <text x="165" y="197" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="#111111" text-anchor="middle">IG Reel</text>
-              <text x="165" y="211" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="#666666" text-anchor="middle">21:00</text>
-              <rect x="198" y="182" width="54" height="36" rx="8" fill="#5E3DF0"/>
-              <text x="225" y="197" font-family="'Familjen Grotesk',sans-serif" font-size="9" font-weight="700" fill="white" text-anchor="middle">TikTok</text>
-              <text x="225" y="211" font-family="'Familjen Grotesk',sans-serif" font-size="7" fill="rgba(255,255,255,0.7)" text-anchor="middle">21:15</text>
-              <rect x="18" y="182" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="78" y="182" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="258" y="182" width="54" height="36" rx="8" fill="#f8f8f8"/>
-              <rect x="318" y="182" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.4"/>
-              <rect x="378" y="182" width="54" height="36" rx="8" fill="#f8f8f8" opacity="0.2"/>
-              <line x1="20" y1="230" x2="420" y2="230" stroke="#f0f0f0"/>
-              <rect x="20" y="247" width="10" height="10" rx="2" fill="#5E3DF0"/>
-              <text x="36" y="257" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#888888">TikTok</text>
-              <rect x="82" y="247" width="10" height="10" rx="2" fill="#C8B6F8"/>
-              <text x="98" y="257" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#888888">Instagram</text>
-              <rect x="162" y="247" width="10" height="10" rx="2" fill="#BEE5F3"/>
-              <text x="178" y="257" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#888888">YouTube</text>
-              <text x="420" y="257" font-family="'Familjen Grotesk',sans-serif" font-size="9" fill="#5E3DF0" text-anchor="end" font-weight="700">Basado en tus datos →</text>
-              <text x="20" y="277" font-family="'Familjen Grotesk',sans-serif" font-size="8" fill="#cccccc">Slots vacíos = fuera de ventana óptima</text>
-            </svg>
+          <p class="como-card-sub">De la pieza a la publicación</p>
+          <div class="como-rows">
+            <div class="como-row">
+              <span class="como-row-label">Creatividades</span>
+              <span class="como-row-meta">reels · carruseles · estáticos</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Calendar de publicación</span>
+              <span class="como-row-meta">ventanas óptimas por datos</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Community management</span>
+              <span class="como-row-meta">comunidad + algoritmo</span>
+            </div>
+            <div class="como-row">
+              <span class="como-row-label">Informe mensual</span>
+              <span class="como-row-meta">qué funcionó y por qué</span>
+            </div>
           </div>
         </div>
 
+      </div><!-- /como-cards -->
+
+      <div class="como-footer">
+        <span class="como-footer-cycle">Ciclo completo · 7 días · Detección → Publicación</span>
+        <span class="como-footer-cta">→ tu marca, siempre primera.</span>
       </div>
+
     </div>
   </section>
 
-  <div class="sg sg-cream-white"></div>
 
-  <!-- ── Servicios ── -->
-  <section class="section" id="servicios">
-    <div class="container">
-      <div class="section-header">
-        <span class="tag" style="background:var(--accent);color:var(--text);">Cómo trabajamos</span>
-        <h2>De la tendencia a la publicación.<br><em style="color:var(--primary);">Sin improvisar.</em></h2>
-        <p>Un proceso completo para que cada pieza que se publique tenga una razón de ser y los datos que la respaldan.</p>
-      </div>
+  <div class="sg sg-white-dark"></div>
 
-      <div class="services-steps">
-
-        <!-- Paso 1: Estudio -->
-        <div class="step-item fade-in">
-          <div class="step-content">
-            <div class="step-num">01</div>
-            <h3>Estudiamos tu sector</h3>
-            <p>Antes de crear nada, analizamos tu mercado y el de tu competencia. Búsquedas, conversaciones, comportamientos de audiencia. Detectamos lo que está ganando tracción y las oportunidades de contenido que nadie ha aprovechado todavía.</p>
-          </div>
-          <div class="step-mockup">
-            <div class="svc-mockup">
-              <div class="mockup-label">Trend Briefing · Lunes 31 mar</div>
-              <div class="trend-row">
-                <span class="trend-topic">#colágeno marino</span>
-                <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:86%"></div></div>
-                <span class="trend-pct">↑ 340%</span>
-              </div>
-              <div class="trend-row">
-                <span class="trend-topic">#gut health</span>
-                <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:60%"></div></div>
-                <span class="trend-pct">↑ 180%</span>
-              </div>
-              <div class="trend-row">
-                <span class="trend-topic">#fermentados</span>
-                <div class="trend-bar-wrap"><div class="trend-bar-fill" style="width:37%"></div></div>
-                <span class="trend-pct">↑ 92%</span>
-              </div>
-              <div class="mockup-footer">⏱ Pico estimado: 3–5 días</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Paso 2: Guiones -->
-        <div class="step-item step-item-reverse fade-in">
-          <div class="step-content">
-            <div class="step-num">02</div>
-            <h3>Guiones y copies que convierten</h3>
-            <p>Cada pieza está diseñada para retener desde el primer segundo. El contenido no es genérico, está adaptado al algoritmo de cada red social, a su audiencia y al momento en que lo consume.</p>
-          </div>
-          <div class="step-mockup">
-            <div class="svc-mockup">
-              <div class="mockup-label">Brief de contenido · #colágeno marino</div>
-              <div class="script-block">
-                <div class="script-seg">
-                  <span class="script-tag" style="background:#C8B6F8;color:#1A1530;">HOOK 0–3s</span>
-                  <p class="script-line">"¿Sabes qué tiene en común tu piel con el mar?"</p>
-                </div>
-                <div class="script-seg">
-                  <span class="script-tag" style="background:#C8B6F8;color:#1A1530;">DESARROLLO</span>
-                  <p class="script-line">Datos + demostración + beneficio tangible</p>
-                </div>
-                <div class="script-seg">
-                  <span class="script-tag" style="background:#BEE5F3;color:#1A1530;">CTA</span>
-                  <p class="script-line">Guarda esto si quieres verlo esta semana</p>
-                </div>
-              </div>
-              <div class="script-platforms">
-                <span>TikTok</span><span>Reels</span><span>LinkedIn</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Paso 3: Creatividades -->
-        <div class="step-item fade-in">
-          <div class="step-content">
-            <div class="step-num">03</div>
-            <h3>Producimos las creatividades</h3>
-            <p>Portadas que paran el scroll, carruseles que se guardan, estáticos que posicionan. El formato lo elige el dato. Sabemos qué tipo de pieza funciona mejor en cada momento y para cada objetivo.</p>
-          </div>
-          <div class="step-mockup">
-            <div class="svc-mockup">
-              <div class="mockup-label">Formatos esta semana</div>
-              <div class="formats-grid">
-                <div class="format-item">
-                  <div class="format-preview format-portada">
-                    <span>▶</span>
-                  </div>
-                  <div class="format-label">Reel / TikTok</div>
-                </div>
-                <div class="format-item">
-                  <div class="format-preview format-carrusel">
-                    <span>❮❯</span>
-                  </div>
-                  <div class="format-label">Carrusel</div>
-                </div>
-                <div class="format-item">
-                  <div class="format-preview format-estatico">
-                    <span>◼</span>
-                  </div>
-                  <div class="format-label">Estático</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Paso 4: Publicación + comunidad -->
-        <div class="step-item step-item-reverse fade-in">
-          <div class="step-content">
-            <div class="step-num">04</div>
-            <h3>Community Manager</h3>
-            <p>Publicamos cuando tu audiencia está activa, no a la hora que diga una plantilla genérica. Y cuando llegan los comentarios, respondemos, creando comunidad. La comunidad también forma parte del algoritmo.</p>
-          </div>
-          <div class="step-mockup">
-            <div class="svc-mockup">
-              <div class="mockup-label">Semana del 31 mar — Publicaciones programadas</div>
-              <div class="cal-head"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
-              <div class="cal-row">
-                <div class="cal-slot slot-ig"><b>IG</b><small>9h</small></div>
-                <div class="cal-slot slot-tt"><b>TT</b><small>18h</small></div>
-                <div class="cal-slot slot-empty"></div>
-                <div class="cal-slot slot-ig"><b>IG</b><small>11h</small></div>
-                <div class="cal-slot slot-tt"><b>TT</b><small>20h</small></div>
-                <div class="cal-slot slot-yt"><b>YT</b><small>15h</small></div>
-                <div class="cal-slot slot-empty"></div>
-              </div>
-              <div class="cal-legend">
-                <span class="cl-ig">Instagram</span>
-                <span class="cl-tt">TikTok</span>
-                <span class="cl-yt">YouTube</span>
-                <span class="cl-note">— franjas óptimas por datos</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Paso 5: Resultados -->
-        <div class="step-item fade-in">
-          <div class="step-content">
-            <div class="step-num">05</div>
-            <h3>Analizamos los resultados</h3>
-            <p>Cada mes revisamos qué funcionó, qué no y por qué. Eso alimenta el ciclo siguiente. No es un informe para el cajón, es el input que hace que el mes que viene sea mejor que el anterior.</p>
-          </div>
-          <div class="step-mockup">
-            <div class="svc-mockup">
-              <div class="mockup-label">Evolución de métricas</div>
-              <div class="ba-grid">
-                <div class="ba-col">
-                  <div class="ba-col-label">Mes 1</div>
-                  <div class="ba-metric"><div class="ba-val ba-muted">4.2K</div><div class="ba-key">alcance medio</div></div>
-                  <div class="ba-metric"><div class="ba-val ba-muted">1.8%</div><div class="ba-key">engagement</div></div>
-                  <div class="ba-metric"><div class="ba-val ba-muted">23</div><div class="ba-key">guardados</div></div>
-                </div>
-                <div class="ba-col ba-after">
-                  <div class="ba-col-label">Mes 3</div>
-                  <div class="ba-metric"><div class="ba-val ba-good">18.7K</div><div class="ba-key">alcance medio</div></div>
-                  <div class="ba-metric"><div class="ba-val ba-good">6.4%</div><div class="ba-key">engagement</div></div>
-                  <div class="ba-metric"><div class="ba-val ba-good">312</div><div class="ba-key">guardados</div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <div class="sg sg-white-lavender"></div>
 
   <!-- ── Para quién ── -->
   <section class="pq-section" id="para-quien">
-    <div class="pq-content">
-      <div class="container">
-        <div class="section-header pq-header">
-          <span class="tag pq-tag">Para quién</span>
-          <h2>Trabajamos con marcas que quieren datos, no humo</h2>
+    <div class="container">
+      <div class="pq-layout">
+
+        <div class="pq-left fade-in">
+          <p class="section-kicker"><span class="section-kicker-dot"></span>Para quién</p>
+          <h2>Trabajamos con marcas que <em>no quieren llegar tarde</em>.</h2>
         </div>
-        <div class="pq-grid">
-          <div class="pq-card fade-in">
-            <div class="pq-num">01</div>
-            <h3>Startups y scale-ups</h3>
-            <p>Necesitas crecer rápido y cada euro cuenta. Te ayudamos a crear contenido que genere alcance orgánico real, sin quemar presupuesto en ads.</p>
+
+        <div class="pq-right">
+          <div class="pq-item fade-in">
+            <span class="pq-num">01</span>
+            <div class="pq-item-body">
+              <h3>Marketing teams</h3>
+              <p>Que necesitan accionar tendencias sin esperar al brief de la agencia tradicional.</p>
+            </div>
           </div>
-          <div class="pq-card fade-in">
-            <div class="pq-num">02</div>
-            <h3>Marcas establecidas</h3>
-            <p>Tu competencia ya usa datos para crear contenido. Si sigues publicando por intuición, estás perdiendo terreno cada día que pasa.</p>
+          <div class="pq-item fade-in">
+            <span class="pq-num">02</span>
+            <div class="pq-item-body">
+              <h3>Departamentos de trend</h3>
+              <p>Que quieren un reporte ya convertido en pieza publicable, no un PDF.</p>
+            </div>
           </div>
-          <div class="pq-card fade-in">
-            <div class="pq-num">03</div>
-            <h3>E-commerce y D2C</h3>
-            <p>Contenido que posiciona tus productos justo cuando la demanda empieza a subir. Llega antes que tu competencia al siguiente trend.</p>
+          <div class="pq-item fade-in">
+            <span class="pq-num">03</span>
+            <div class="pq-item-body">
+              <h3>Agencias</h3>
+              <p>Que buscan escalar la detección de tendencias sin ampliar equipo.</p>
+            </div>
           </div>
-          <div class="pq-card fade-in">
-            <div class="pq-num">04</div>
-            <h3>Marcas personales</h3>
-            <p>Creadores, consultores, speakers. Te posicionamos como la voz de referencia en tu nicho con contenido que llega en el momento justo.</p>
+          <div class="pq-item fade-in">
+            <span class="pq-num">04</span>
+            <div class="pq-item-body">
+              <h3>Marca personal</h3>
+              <p>Que quieren ser la primera voz en su nicho cuando el tema explota.</p>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <div class="sg sg-lavender-white"></div>
+  <div class="sg sg-dark-white"></div>
+
+  <!-- ── Demo Preview ── -->
+  <section class="section dp-section" id="demo-preview">
+    <div class="container">
+
+      <div class="dp-header dp-header-simple fade-in">
+        <p class="section-kicker"><span class="section-kicker-dot"></span>El dashboard</p>
+        <h2>El sistema, <em>por dentro</em>.</h2>
+      </div>
+
+      <div class="dp-browser fade-in">
+        <div class="dp-browser-bar">
+          <div class="dp-dots"><span></span><span></span><span></span></div>
+          <div class="dp-url">predictaflow.me/demo</div>
+          <div class="dp-live-badge">● DEMO</div>
+        </div>
+        <div class="dp-browser-body">
+
+          <!-- Sidebar -->
+          <div class="dp-sidebar">
+            <div class="dp-brand">predicta<em>flow</em></div>
+            <nav class="dp-nav">
+              <span class="dp-nav-item dp-nav-active">📊 Tendencias</span>
+              <span class="dp-nav-item">🎯 Estrategia</span>
+              <span class="dp-nav-item">📅 Calendario</span>
+              <span class="dp-nav-item">📈 Resultados</span>
+            </nav>
+            <div class="dp-sector-box">
+              <div class="dp-sector-label">Sector</div>
+              <div class="dp-sector-name">Solar · Domótica</div>
+              <div class="dp-sector-sub">España · B2C</div>
+            </div>
+          </div>
+
+          <!-- Main -->
+          <div class="dp-main">
+            <div class="dp-main-head">
+              <span class="dp-eyebrow">Dashboard · Q2 2026</span>
+              <h3 class="dp-main-title">Tendencias detectadas <em>esta semana</em></h3>
+              <div class="dp-tab-nav">
+                <button class="dp-tab dp-tab-active" data-dp="general">Visión general</button>
+                <button class="dp-tab" data-dp="plataformas">Plataformas</button>
+                <button class="dp-tab" data-dp="contenido">Top contenido</button>
+                <button class="dp-tab" data-dp="recomendaciones">Recomendaciones</button>
+                <span class="dp-badge">+18 nuevas</span>
+                <span class="dp-badge dp-badge-outline">5 plataformas</span>
+              </div>
+            </div>
+
+            <!-- Panel: Visión general -->
+            <div class="dp-panel dp-panel-active" id="dp-general">
+              <table class="dp-table">
+                <thead><tr>
+                  <th>Señal</th><th>Score</th><th>30 días</th><th>Fase</th><th>Canales sugeridos</th><th>Crec.</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Placas solares residenciales</td>
+                    <td class="dp-score">91</td>
+                    <td><svg width="40" height="20" viewBox="0 0 40 20"><polyline points="0,18 10,13 20,7 30,4 40,2" fill="none" stroke="#5E3DF0" stroke-width="1.5"/></svg></td>
+                    <td><span class="dp-fase dp-fase-pico">Pico en 2 sem.</span></td>
+                    <td class="dp-ch">Reels · YouTube</td>
+                    <td class="dp-up">+280%</td>
+                  </tr>
+                  <tr>
+                    <td>Autoconsumo energético</td>
+                    <td class="dp-score">84</td>
+                    <td><svg width="40" height="20" viewBox="0 0 40 20"><polyline points="0,17 10,13 20,9 30,6 40,4" fill="none" stroke="#5E3DF0" stroke-width="1.5"/></svg></td>
+                    <td><span class="dp-fase dp-fase-up">Acelerando</span></td>
+                    <td class="dp-ch">YouTube · LinkedIn</td>
+                    <td class="dp-up">+195%</td>
+                  </tr>
+                  <tr>
+                    <td>Domótica asequible</td>
+                    <td class="dp-score">72</td>
+                    <td><svg width="40" height="20" viewBox="0 0 40 20"><polyline points="0,16 10,14 20,11 30,9 40,7" fill="none" stroke="#5E3DF0" stroke-width="1.5" opacity="0.75"/></svg></td>
+                    <td><span class="dp-fase dp-fase-up">Creciendo</span></td>
+                    <td class="dp-ch">TikTok · Instagram</td>
+                    <td class="dp-up">+128%</td>
+                  </tr>
+                  <tr>
+                    <td>Batería doméstica</td>
+                    <td class="dp-score">61</td>
+                    <td><svg width="40" height="20" viewBox="0 0 40 20"><polyline points="0,17 10,15 20,13 30,11 40,9" fill="none" stroke="#5E3DF0" stroke-width="1.5" opacity="0.55"/></svg></td>
+                    <td><span class="dp-fase dp-fase-emer">Emergente</span></td>
+                    <td class="dp-ch">Pinterest · Blog</td>
+                    <td class="dp-up">+87%</td>
+                  </tr>
+                  <tr>
+                    <td>Influencer instaladores</td>
+                    <td class="dp-score">29</td>
+                    <td><svg width="40" height="20" viewBox="0 0 40 20"><polyline points="0,4 10,7 20,12 30,15 40,18" fill="none" stroke="#e05050" stroke-width="1.5" opacity="0.7"/></svg></td>
+                    <td><span class="dp-fase dp-fase-dec">En declive</span></td>
+                    <td class="dp-ch">—</td>
+                    <td class="dp-down">−34%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Panel: Plataformas -->
+            <div class="dp-panel" id="dp-plataformas">
+              <div class="dp-plat-grid">
+                <div class="dp-plat-item">
+                  <div class="dp-plat-head"><span class="dp-plat-icon dp-plat-yt">YT</span><span class="dp-plat-name">YouTube</span><span class="dp-plat-val dp-up">+195%</span></div>
+                  <div class="dp-bar-wrap"><div class="dp-bar-fill" style="width:78%"></div></div>
+                  <div class="dp-plat-sub">Tutoriales largos · mayor tiempo de retención</div>
+                </div>
+                <div class="dp-plat-item">
+                  <div class="dp-plat-head"><span class="dp-plat-icon dp-plat-tt">TT</span><span class="dp-plat-name">TikTok</span><span class="dp-plat-val dp-up">+340%</span></div>
+                  <div class="dp-bar-wrap"><div class="dp-bar-fill" style="width:95%"></div></div>
+                  <div class="dp-plat-sub">Mayor alcance orgánico · formato vertical 45s</div>
+                </div>
+                <div class="dp-plat-item">
+                  <div class="dp-plat-head"><span class="dp-plat-icon dp-plat-ig">IG</span><span class="dp-plat-name">Instagram</span><span class="dp-plat-val dp-up">+128%</span></div>
+                  <div class="dp-bar-wrap"><div class="dp-bar-fill" style="width:61%"></div></div>
+                  <div class="dp-plat-sub">Carruseles con datos · 8.4% engagement medio</div>
+                </div>
+                <div class="dp-plat-item">
+                  <div class="dp-plat-head"><span class="dp-plat-icon dp-plat-li">LI</span><span class="dp-plat-name">LinkedIn</span><span class="dp-plat-val dp-up">+87%</span></div>
+                  <div class="dp-bar-wrap"><div class="dp-bar-fill" style="width:44%"></div></div>
+                  <div class="dp-plat-sub">Decisores B2B · instaladores y promotores</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel: Top contenido -->
+            <div class="dp-panel" id="dp-contenido">
+              <div class="dp-content-list">
+                <div class="dp-content-item">
+                  <span class="dp-content-num">01</span>
+                  <div class="dp-content-body">
+                    <div class="dp-content-title">"¿Te salen a cuenta las placas solares?" — caso real</div>
+                    <div class="dp-content-meta"><span class="dp-chip">Reel 60s</span><span class="dp-chip">TikTok · Reels</span><span class="dp-stat">89K views</span><span class="dp-stat dp-up">+340%</span></div>
+                  </div>
+                </div>
+                <div class="dp-content-item">
+                  <span class="dp-content-num">02</span>
+                  <div class="dp-content-body">
+                    <div class="dp-content-title">Error que comete el 90% al instalar domótica en casa</div>
+                    <div class="dp-content-meta"><span class="dp-chip">Carrusel</span><span class="dp-chip">Instagram</span><span class="dp-stat">12.4K guardados</span><span class="dp-stat dp-up">+195%</span></div>
+                  </div>
+                </div>
+                <div class="dp-content-item">
+                  <span class="dp-content-num">03</span>
+                  <div class="dp-content-body">
+                    <div class="dp-content-title">Factura de luz antes y después — instalación real en 30 días</div>
+                    <div class="dp-content-meta"><span class="dp-chip">Reel</span><span class="dp-chip">YouTube Shorts</span><span class="dp-stat">45K views</span><span class="dp-stat dp-up">+128%</span></div>
+                  </div>
+                </div>
+                <div class="dp-content-item">
+                  <span class="dp-content-num">04</span>
+                  <div class="dp-content-body">
+                    <div class="dp-content-title">ROI de la batería doméstica: cuánto tardas en amortizarla</div>
+                    <div class="dp-content-meta"><span class="dp-chip">Artículo + Shorts</span><span class="dp-chip">LinkedIn · YouTube</span><span class="dp-stat">28K views</span><span class="dp-stat dp-up">+87%</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel: Recomendaciones -->
+            <div class="dp-panel" id="dp-recomendaciones">
+              <div class="dp-reco-list">
+                <div class="dp-reco-item dp-reco-urgent">
+                  <div class="dp-reco-icon">↑</div>
+                  <div class="dp-reco-body">
+                    <div class="dp-reco-title">Publica sobre autoconsumo antes del jueves</div>
+                    <div class="dp-reco-desc">La señal está en máximos esta semana. Ventana óptima: martes 19h o miércoles 9h en TikTok.</div>
+                  </div>
+                  <span class="dp-reco-tag">Alta prioridad</span>
+                </div>
+                <div class="dp-reco-item dp-reco-format">
+                  <div class="dp-reco-icon">▶</div>
+                  <div class="dp-reco-body">
+                    <div class="dp-reco-title">Formato recomendado: Reel vertical 45s</div>
+                    <div class="dp-reco-desc">Hook en los 3 primeros segundos con dato de ahorro. Caso real de cliente con antes/después.</div>
+                  </div>
+                  <span class="dp-reco-tag">Estrategia</span>
+                </div>
+                <div class="dp-reco-item dp-reco-platform">
+                  <div class="dp-reco-icon">✦</div>
+                  <div class="dp-reco-body">
+                    <div class="dp-reco-title">LinkedIn: artículo sobre ROI de instalación solar</div>
+                    <div class="dp-reco-desc">El perfil B2B (promotores, instaladores) está buscando contenido con datos concretos de retorno.</div>
+                  </div>
+                  <span class="dp-reco-tag">Plataforma</span>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /dp-main -->
+        </div><!-- /dp-browser-body -->
+      </div><!-- /dp-browser -->
+
+    </div>
+  </section>
+
+
+  <div class="sg sg-white-dark"></div>
+
+  <!-- ── Manifiesto ── -->
+  <section class="manif-section" id="manifiesto">
+    <div class="manif-inner">
+      <p class="section-kicker manif-kicker"><span class="section-kicker-dot"></span>Manifiesto</p>
+      <blockquote class="manif-quote">
+        Creemos en datos con criterio. En equipos pequeños y precisos.
+        En que <em>publicar tarde</em> es peor que no publicar.
+        Y que cada tendencia es <em>una historia</em> que aún no se ha escrito.
+      </blockquote>
+      <a href="/manifiesto.html" class="manif-cta">Leer el manifiesto →</a>
+    </div>
+  </section>
+
+  <div class="sg sg-dark-white"></div>
 
   <!-- ── Diferenciador ── -->
-  <section class="section" id="diferencia">
+  <section class="section diff-section" id="diferencia">
     <div class="container">
+
+      <div class="diff-intro fade-in">
+        <p class="section-kicker"><span class="section-kicker-dot"></span>Por qué nosotros</p>
+        <h2>La diferencia es <em>predecir</em>,<br>no adivinar.</h2>
+      </div>
+
       <div class="diff-grid">
+
+        <!-- Tabla comparativa -->
         <div class="diff-content fade-in">
-          <span class="tag" style="background:var(--accent);color:var(--text);">Por qué nosotros</span>
-          <h2>La diferencia es <em>predecir</em>, no adivinar</h2>
-          <p>Llevamos más de diez años viendo el mismo error: marcas que crean contenido <strong>sin datos</strong>, o con los datos equivocados, o demasiado tarde para que sirvan de algo.</p>
-          <p style="margin-top:0.75rem;"><strong>Los datos no son el final del proceso. Son el principio.</strong> Antes de crear, durante y después para aprender. Desde el segundo cero.</p>
-          <a href="/manifiesto.html" target="_blank" style="display:inline-block;margin:1.25rem 0 1.5rem;font-weight:700;color:#C8B6F8;text-decoration:none;font-size:15px;">Leer nuestro manifiesto →</a>
           <div class="diff-comparison">
             <div class="diff-col">
               <h4 class="diff-col-title diff-col-bad">Agencia tradicional</h4>
@@ -513,26 +481,33 @@
             </div>
           </div>
         </div>
-        <div class="diff-visual fade-in">
+
+        <!-- Gráfico animado -->
+        <div class="diff-visual fade-in" id="diff-chart-container">
           <div class="diff-chart">
             <div class="diff-bar-group">
-              <div class="diff-bar others" style="height:35%"></div>
+              <span class="diff-bar-pct">35%</span>
+              <div class="diff-bar others" data-height="35" style="height:0%"></div>
               <span class="diff-bar-label">Intuición</span>
             </div>
             <div class="diff-bar-group">
-              <div class="diff-bar others" style="height:50%"></div>
+              <span class="diff-bar-pct">52%</span>
+              <div class="diff-bar others" data-height="52" style="height:0%"></div>
               <span class="diff-bar-label">Agencia</span>
             </div>
             <div class="diff-bar-group">
-              <div class="diff-bar predicta" style="height:90%"></div>
+              <span class="diff-bar-pct diff-bar-pct-main">90%</span>
+              <div class="diff-bar predicta" data-height="90" style="height:0%"></div>
               <span class="diff-bar-label">Predicta Flow</span>
             </div>
           </div>
           <p class="diff-caption">Probabilidad de acertar con el contenido</p>
         </div>
+
       </div>
     </div>
   </section>
+
 
   <!-- ── CTA ── -->
   <section class="cta" id="contacto">
@@ -591,12 +566,11 @@
         <div class="footer-nav">
           <h4>Navegación</h4>
           <ul>
-            <li><a href="#proceso">Proceso</a></li>
-            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#proceso">Cómo trabajamos</a></li>
             <li><a href="#para-quien">Para quién</a></li>
+            <li><a href="#demo-preview">Dashboard</a></li>
             <li><a href="#diferencia">Por qué nosotros</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="/demo">Ver demo</a></li>
           </ul>
         </div>
         <div class="footer-nav">
@@ -665,15 +639,37 @@
     document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
 
     // Process tabs (Flow-style)
-    const procesoTabs = document.querySelectorAll('.proceso-tab');
-    const procesoPanels = document.querySelectorAll('.proceso-panel');
-    procesoTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.dataset.tab;
-        procesoTabs.forEach(t => t.classList.remove('active'));
-        procesoPanels.forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        document.querySelector(`.proceso-panel[data-panel="${target}"]`).classList.add('active');
+    // Animate diff bars on scroll
+    const diffChartEl = document.getElementById('diff-chart-container');
+    if (diffChartEl) {
+      const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const bars = entry.target.querySelectorAll('.diff-bar');
+            const pcts = entry.target.querySelectorAll('.diff-bar-pct');
+            bars.forEach((bar, i) => {
+              const targetH = bar.dataset.height;
+              setTimeout(() => {
+                bar.style.height = targetH + '%';
+                if (pcts[i]) pcts[i].classList.add('visible');
+              }, i * 200);
+            });
+            barObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      barObserver.observe(diffChartEl);
+    }
+
+    // Demo preview tabs
+    document.querySelectorAll('.dp-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.dp;
+        document.querySelectorAll('.dp-tab').forEach(b => b.classList.remove('dp-tab-active'));
+        document.querySelectorAll('.dp-panel').forEach(p => p.classList.remove('dp-panel-active'));
+        btn.classList.add('dp-tab-active');
+        const panel = document.getElementById('dp-' + target);
+        if (panel) panel.classList.add('dp-panel-active');
       });
     });
   </script>

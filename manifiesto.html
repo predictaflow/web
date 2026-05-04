@@ -108,6 +108,39 @@
       color: var(--text);
       font-weight: 800;
     }
+    .manifesto-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .manifesto-bullets li {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: #444;
+      font-weight: 400;
+      padding-left: 20px;
+      position: relative;
+    }
+    .manifesto-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .manifesto-bullets li strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .manifesto-closing {
+      margin-top: 20px !important;
+      font-size: clamp(14px, 1.6vw, 17px) !important;
+      color: #666 !important;
+      font-weight: 500 !important;
+      font-style: italic;
+    }
     .manifesto-block.highlight p {
       color: var(--text);
       font-weight: 600;
@@ -162,6 +195,13 @@
       flex-shrink: 0;
     }
     .manifesto-cta a:hover { background: #BEE5F3; }
+    .manifesto-cta em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+    }
+    /* En esta página el fondo siempre es blanco — mostrar solo el logo oscuro */
+    #nav .logo-hero { display: none !important; }
+    #nav .logo-scrolled { display: block !important; }
   </style>
 </head>
 <body>
@@ -205,7 +245,12 @@
 
       <div class="manifesto-block highlight">
         <p>Creemos que los datos no son el final del proceso. Son el principio.</p>
-        <p style="margin-top:12px; font-weight:400; color:#555;">Antes de crear, para saber qué merece existir. Durante, para ajustar en tiempo real. Después, para entender qué funcionó y por qué, y aplicarlo al siguiente. Eso es lo que llamamos estar orientado a datos desde el segundo cero.</p>
+        <ul class="manifesto-bullets">
+          <li><strong>Antes de crear</strong>, para saber qué merece existir.</li>
+          <li><strong>Durante</strong>, para ajustar en tiempo real.</li>
+          <li><strong>Después</strong>, para entender qué funcionó y por qué, y aplicarlo al siguiente.</li>
+        </ul>
+        <p class="manifesto-closing">Eso es lo que llamamos estar orientado a datos desde el segundo cero.</p>
       </div>
 
       <div class="manifesto-block">
@@ -234,34 +279,34 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <img src="images/logo-tinta.svg" alt="Predicta Flow" height="32">
-        <p>Agencia de contenido data-driven.<br>Madrid, España.</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="images/logo-crema-lila.svg" alt="Predicta Flow" height="36">
+          </a>
+          <p>Contenido estratégico basado en datos e IA.</p>
+        </div>
+        <div class="footer-nav">
           <h4>Navegación</h4>
           <ul>
-            <li><a href="/#proceso">Proceso</a></li>
-            <li><a href="/#servicios">Servicios</a></li>
+            <li><a href="/#proceso">Cómo trabajamos</a></li>
             <li><a href="/#para-quien">Para quién</a></li>
+            <li><a href="/#demo-preview">Dashboard</a></li>
             <li><a href="/#diferencia">Por qué nosotros</a></li>
             <li><a href="/#faq">FAQ</a></li>
           </ul>
         </div>
-        <div class="footer-col">
-          <h4>Legal</h4>
+        <div class="footer-nav">
+          <h4>Contacto</h4>
           <ul>
-            <li><a href="/privacidad.html">Privacidad y cookies</a></li>
-            <li><a href="/manifiesto.html">Manifiesto</a></li>
+            <li><a href="mailto:judy@predictaflow.me">judy@predictaflow.me</a></li>
           </ul>
         </div>
       </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© 2026 Predicta Flow. Todos los derechos reservados.</span>
-      <a href="/privacidad.html">Política de privacidad</a>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Predicta Flow. Anticipamos la tendencia, creamos el impacto. &nbsp;·&nbsp; <a href="/privacidad.html" style="color:rgba(255,255,255,0.45);">Privacidad y cookies</a></p>
+      </div>
     </div>
   </footer>
 
