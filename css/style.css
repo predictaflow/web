@@ -1390,6 +1390,17 @@ strong { font-weight: 600; }
 /* ── FAQ ── */
 .faq-section { background: var(--crema); }
 
+.faq-header {
+  margin-bottom: 52px;
+}
+
+.faq-header h2 {
+  font-size: clamp(32px, 4vw, 52px);
+  letter-spacing: -0.03em;
+  color: var(--tinta);
+  margin-top: 4px;
+}
+
 .cta-form {
   max-width: 540px;
   margin: 40px auto 0;
