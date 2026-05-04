@@ -197,6 +197,7 @@
     /* ── Estrategia ── */
     .gz-enfoque { background: var(--crema); padding: 0 0 96px; }
     .gz-enfoque .gz-h2 { color: var(--tinta); }
+    .gz-enfoque .gz-h2 em { color: var(--violeta); }
     .gz-pilares {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -219,6 +220,7 @@
     /* ── Formatos ── */
     .gz-formatos { background: var(--crema); padding: 0 0 96px; }
     .gz-formatos .gz-h2 { color: var(--tinta); }
+    .gz-formatos .gz-h2 em { color: var(--violeta); }
     .gz-formato-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .gz-formato-card {
       border-radius: 16px; overflow: hidden; background: white;
@@ -248,6 +250,7 @@
     /* ── Estáticos y carruseles ── */
     .gz-estaticos { background: var(--crema); padding: 96px 0; }
     .gz-estaticos .gz-h2 { color: var(--tinta); margin-bottom: 16px; }
+    .gz-estaticos .gz-h2 em { color: var(--violeta); }
     .gz-estaticos-desc {
       font-size: 16px; color: var(--text-muted);
       max-width: 480px; line-height: 1.65; margin-bottom: 52px;
@@ -470,12 +473,20 @@
     .gz-cta-inner .section-kicker { justify-content: center; }
     .gz-cta-inner h2 {
       font-size: clamp(32px, 4vw, 52px);
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 700;
       letter-spacing: -0.03em;
       color: var(--tinta);
       margin-top: 4px;
       margin-bottom: 24px;
+      line-height: 1.05;
     }
-    .gz-cta-inner h2 em { color: var(--violeta); }
+    .gz-cta-inner h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--violeta);
+    }
     .gz-cta-inner > p {
       font-size: 17px; color: var(--text-muted);
       line-height: 1.7; margin-bottom: 36px;
