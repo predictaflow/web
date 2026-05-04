@@ -245,16 +245,16 @@
     .gz-formato-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
 
     /* ── Estáticos y carruseles ── */
-    .gz-estaticos { background: var(--tinta); padding: 96px 0; }
-    .gz-estaticos .gz-h2 { color: var(--crema); margin-bottom: 16px; }
+    .gz-estaticos { background: var(--crema); padding: 96px 0; }
+    .gz-estaticos .gz-h2 { color: var(--tinta); margin-bottom: 16px; }
     .gz-estaticos-desc {
-      font-size: 16px; color: rgba(244,241,236,0.55);
+      font-size: 16px; color: var(--text-muted);
       max-width: 480px; line-height: 1.65; margin-bottom: 52px;
     }
     .gz-cards-scroll { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
     .gz-card {
       border-radius: 16px; overflow: hidden; position: relative;
-      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      box-shadow: 0 8px 32px rgba(26,21,48,0.14);
       transition: transform 0.3s ease;
     }
     .gz-card:hover { transform: translateY(-6px); }
@@ -311,14 +311,14 @@
     }
 
     /* ── Tutoriales YouTube mockup ── */
-    .gz-tutoriales { background: var(--tinta); padding: 96px 0; }
-    .gz-tutoriales .gz-h2 { color: var(--crema); margin-bottom: 52px; }
-    .gz-tutoriales .gz-h2 em { color: var(--lila); }
+    .gz-tutoriales { background: var(--crema); padding: 96px 0; }
+    .gz-tutoriales .gz-h2 { color: var(--tinta); margin-bottom: 52px; }
+    .gz-tutoriales .gz-h2 em { color: var(--violeta); }
     .gz-yt-mockup {
       background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.45);
+      box-shadow: 0 8px 40px rgba(26,21,48,0.14);
     }
     .gz-yt-header {
       padding: 28px 32px 20px;
@@ -460,7 +460,7 @@
     .gz-tut-note {
       margin-top: 28px;
       font-size: 14px;
-      color: rgba(244,241,236,0.5);
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
@@ -685,7 +685,7 @@
   <!-- ── Estáticos y carruseles ── -->
   <section class="gz-estaticos">
     <div class="container">
-      <p class="section-kicker fade-in" style="color:rgba(200,182,248,0.6);"><span class="section-kicker-dot" style="background:var(--lila);opacity:0.6;"></span>Estáticos y carruseles</p>
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Estáticos y carruseles</p>
       <h2 class="gz-h2 fade-in">Contenido visual<br>de <em>producto</em>.</h2>
       <p class="gz-estaticos-desc fade-in">Piezas diseñadas para detener el scroll. Cada imagen responde a una búsqueda real o una ventana de oportunidad detectada en datos.</p>
       <div class="gz-cards-scroll">
@@ -753,7 +753,7 @@
   <!-- ── Tutoriales ── -->
   <section class="gz-tutoriales">
     <div class="container">
-      <p class="section-kicker fade-in" style="color:rgba(200,182,248,0.6);"><span class="section-kicker-dot" style="background:var(--lila);opacity:0.6;"></span>Vídeo tutoriales</p>
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Vídeo tutoriales</p>
       <h2 class="gz-h2 fade-in">Instalación paso<br>a <em>paso</em>.</h2>
 
       <div class="gz-yt-mockup fade-in">
