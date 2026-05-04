@@ -12,22 +12,32 @@
   <link rel="icon" type="image/svg+xml" href="images/iso-predictaflow.svg">
   <style>
 
-    /* ── Nav override ── */
-    #nav .logo-hero     { display: none !important; }
-    #nav .logo-scrolled { display: block !important; }
+    /* ── Nav: logo claro sobre fondo oscuro, luego oscuro al scroll ── */
+    /* (comportamiento por defecto del nav — sin override) */
+
+    /* ── Shared ── */
+    .gz-h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 52px;
+      line-height: 1.1;
+    }
+    .gz-h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+    }
 
     /* ── Hero ── */
     .gz-hero {
       background: var(--tinta);
       padding: 140px 0 100px;
     }
-
     .gz-hero-inner {
       max-width: 1120px;
       margin: 0 auto;
       padding: 0 24px;
     }
-
     .gz-back {
       display: inline-block;
       margin-bottom: 48px;
@@ -39,7 +49,6 @@
       transition: color 0.2s;
     }
     .gz-back:hover { color: var(--lila); }
-
     .gz-eyebrow {
       font-size: 10px;
       font-weight: 700;
@@ -61,7 +70,6 @@
       opacity: 0.6;
       flex-shrink: 0;
     }
-
     .gz-hero h1 {
       font-size: clamp(40px, 6vw, 80px);
       font-weight: 800;
@@ -70,25 +78,17 @@
       letter-spacing: -0.03em;
       margin-bottom: 40px;
     }
-
     .gz-hero h1 em {
       font-family: 'Fraunces', serif;
       font-style: italic;
       color: var(--lila);
     }
-
     .gz-meta {
       display: flex;
       gap: 32px;
       flex-wrap: wrap;
     }
-
-    .gz-meta-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
+    .gz-meta-item { display: flex; flex-direction: column; gap: 4px; }
     .gz-meta-label {
       font-size: 9px;
       font-weight: 700;
@@ -96,444 +96,431 @@
       letter-spacing: 0.18em;
       color: rgba(200,182,248,0.45);
     }
-
     .gz-meta-value {
       font-size: 15px;
       font-weight: 600;
       color: var(--crema);
     }
 
-    /* ── Punto de partida ── */
-    .gz-partida {
+    /* ── Mapa de calor ── */
+    .gz-heatmap {
       background: var(--crema);
       padding: 96px 0;
     }
-
-    .gz-partida-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .gz-partida-left h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--tinta);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 24px;
-    }
-
-    .gz-partida-left p {
-      font-size: 17px;
+    .gz-heatmap .gz-h2 { color: var(--tinta); }
+    .gz-heatmap .gz-h2 em { color: var(--violeta); }
+    .gz-heatmap-desc {
+      font-size: 15px;
       color: var(--text-muted);
-      line-height: 1.75;
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 52px;
     }
-
-    .gz-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      background: var(--gris);
-      border-radius: 16px;
-      overflow: hidden;
+    .gz-heatmap-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
-
-    .gz-stat-row {
-      background: white;
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    .gz-heatmap-table {
+      width: 100%;
+      min-width: 600px;
+      border-collapse: separate;
+      border-spacing: 5px;
     }
-
-    .gz-stat-icon {
-      font-size: 28px;
-      flex-shrink: 0;
+    .gz-heatmap-table th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      text-align: center;
     }
-
-    .gz-stat-body h4 {
-      font-size: 16px;
+    .gz-heatmap-table th:first-child { text-align: left; }
+    .gz-heatmap-table td {
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .gz-heatmap-table td.hm-label {
+      text-align: left;
+      font-size: 14px;
       font-weight: 700;
       color: var(--tinta);
-      margin-bottom: 4px;
-      letter-spacing: -0.01em;
+      background: rgba(26,21,48,0.05);
+      border-radius: 10px;
+      padding: 18px 20px;
+      white-space: nowrap;
     }
-
-    .gz-stat-body p {
-      font-size: 13px;
+    .gz-heatmap-table td.hm-label .hm-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
       color: var(--text-muted);
-      line-height: 1.5;
+      margin-top: 3px;
     }
-
-    /* ── Enfoque ── */
-    .gz-enfoque {
-      background: var(--tinta);
-      padding: 96px 0;
+    .hm-low  { background: rgba(210,60,60,0.1); color: rgba(180,50,50,0.8); }
+    .hm-mid  { background: rgba(210,130,30,0.12); color: rgba(170,100,20,0.9); }
+    .hm-high { background: rgba(67,67,255,0.1); color: var(--violeta); }
+    .hm-star {
+      background: var(--violeta);
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 4px 16px rgba(67,67,255,0.25);
     }
-
-    .gz-enfoque h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--crema);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 56px;
+    .hm-star::after { content: ' ★'; font-size: 12px; }
+    .hm-legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      align-items: center;
     }
+    .hm-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .hm-legend-dot {
+      width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0;
+    }
+    .hm-legend-dot.low  { background: rgba(210,60,60,0.4); }
+    .hm-legend-dot.mid  { background: rgba(210,130,30,0.5); }
+    .hm-legend-dot.high { background: rgba(67,67,255,0.3); }
+    .hm-legend-dot.star { background: var(--violeta); }
 
+    /* ── Estrategia ── */
+    .gz-enfoque { background: var(--crema); padding: 0 0 96px; }
+    .gz-enfoque .gz-h2 { color: var(--tinta); }
     .gz-pilares {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 2px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(26,21,48,0.08);
       border-radius: 16px;
       overflow: hidden;
     }
-
-    .gz-pilar {
-      background: rgba(26,21,48,0.8);
-      padding: 36px 28px;
-    }
-
+    .gz-pilar { background: var(--crema); padding: 36px 28px; }
     .gz-pilar-num {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--lila);
-      opacity: 0.45;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
+      font-size: 10px; font-weight: 700; color: var(--violeta);
+      opacity: 0.45; letter-spacing: 0.1em; margin-bottom: 16px;
     }
-
     .gz-pilar h3 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--crema);
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
+      font-size: 18px; font-weight: 700; color: var(--tinta);
+      margin-bottom: 10px; letter-spacing: -0.02em;
     }
-
-    .gz-pilar p {
-      font-size: 13px;
-      color: rgba(244,241,236,0.5);
-      line-height: 1.6;
-    }
+    .gz-pilar p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
 
     /* ── Formatos ── */
-    .gz-formatos {
-      background: white;
-      padding: 96px 0;
+    .gz-formatos { background: var(--crema); padding: 0 0 96px; }
+    .gz-formatos .gz-h2 { color: var(--tinta); }
+    .gz-formato-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .gz-formato-card {
+      border-radius: 16px; overflow: hidden; background: white;
+      border: 1px solid rgba(26,21,48,0.08);
+      box-shadow: 0 4px 20px rgba(26,21,48,0.06);
+    }
+    .gz-formato-img {
+      width: 100%; aspect-ratio: 9/16; object-fit: cover;
+      object-position: top; display: block;
+    }
+    .gz-formato-body { padding: 24px; }
+    .gz-formato-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .gz-formato-tag::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--violeta); flex-shrink: 0;
+    }
+    .gz-formato-body h3 {
+      font-size: 20px; font-weight: 700; color: var(--tinta);
+      margin-bottom: 8px; letter-spacing: -0.02em;
+    }
+    .gz-formato-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── Estáticos y carruseles ── */
+    .gz-estaticos { background: var(--tinta); padding: 96px 0; }
+    .gz-estaticos .gz-h2 { color: var(--crema); margin-bottom: 16px; }
+    .gz-estaticos-desc {
+      font-size: 16px; color: rgba(244,241,236,0.55);
+      max-width: 480px; line-height: 1.65; margin-bottom: 52px;
+    }
+    .gz-cards-scroll { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .gz-card {
+      border-radius: 16px; overflow: hidden; position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+      transition: transform 0.3s ease;
+    }
+    .gz-card:hover { transform: translateY(-6px); }
+    .gz-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+    .gz-card-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 20px;
+      background: linear-gradient(to top, rgba(26,21,48,0.85) 0%, transparent 100%);
+      font-size: 12px; font-weight: 700; color: rgba(244,241,236,0.65);
+      letter-spacing: 0.08em; text-transform: uppercase;
     }
 
-    .gz-formatos h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--tinta);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 56px;
+    /* ── UGC ── */
+    .gz-ugc { background: var(--crema); padding: 96px 0; }
+    .gz-ugc .gz-h2 { color: var(--tinta); margin-bottom: 16px; }
+    .gz-ugc .gz-h2 em { color: var(--violeta); }
+    .gz-ugc-desc {
+      font-size: 16px; color: var(--text-muted);
+      max-width: 560px; line-height: 1.7; margin-bottom: 52px;
     }
-
-    .gz-formato-grid {
+    .gz-ugc-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
+    .gz-ugc-card {
+      border-radius: 16px; overflow: hidden; position: relative;
+      box-shadow: 0 8px 32px rgba(26,21,48,0.12);
+      transition: transform 0.3s ease;
+      background: white;
+    }
+    .gz-ugc-card:hover { transform: translateY(-5px); }
+    .gz-ugc-card-img {
+      width: 100%; aspect-ratio: 9/16; object-fit: cover; display: block;
+    }
+    .gz-ugc-card-foot {
+      padding: 16px 18px;
+      border-top: 1px solid rgba(26,21,48,0.07);
+    }
+    .gz-ugc-card-handle {
+      font-size: 13px; font-weight: 700; color: var(--tinta);
+      margin-bottom: 4px;
+    }
+    .gz-ugc-card-product {
+      font-size: 12px; color: var(--text-muted); line-height: 1.4;
+    }
+    .gz-ugc-stat {
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(26,21,48,0.72);
+      color: rgba(244,241,236,0.9);
+      font-size: 12px; font-weight: 700;
+      padding: 5px 10px; border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
 
-    .gz-formato-card {
+    /* ── Tutoriales YouTube mockup ── */
+    .gz-tutoriales { background: var(--tinta); padding: 96px 0; }
+    .gz-tutoriales .gz-h2 { color: var(--crema); margin-bottom: 52px; }
+    .gz-tutoriales .gz-h2 em { color: var(--lila); }
+    .gz-yt-mockup {
+      background: #fff;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--gris);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45);
     }
-
-    .gz-formato-img {
-      width: 100%;
-      aspect-ratio: 9/16;
-      object-fit: cover;
-      display: block;
-    }
-
-    .gz-formato-body {
-      padding: 24px;
-    }
-
-    .gz-formato-tag {
-      display: inline-flex;
+    .gz-yt-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: 10px;
+      gap: 20px;
+    }
+    .gz-yt-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--violeta);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .gz-yt-avatar svg { width: 36px; height: 36px; }
+    .gz-yt-channel-info h3 {
+      font-size: 18px; font-weight: 700; color: #0f0f0f;
+      margin-bottom: 2px; letter-spacing: -0.01em;
+    }
+    .gz-yt-channel-info p {
+      font-size: 13px; color: #606060; font-weight: 400;
+    }
+    .gz-yt-sub-btn {
+      margin-left: auto;
+      background: #0f0f0f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Familjen Grotesk', sans-serif;
+      cursor: default;
+      flex-shrink: 0;
+    }
+    .gz-yt-tabs {
+      padding: 0 32px;
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .gz-yt-tab {
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #606060;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+    .gz-yt-tab.active {
+      color: #0f0f0f;
+      border-bottom-color: #0f0f0f;
+    }
+    .gz-yt-videos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      padding: 24px 32px 32px;
+      gap: 16px;
+    }
+    .gz-yt-video { cursor: default; }
+    .gz-yt-thumb {
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      background: #1a1530;
+      margin-bottom: 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gz-yt-thumb-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 12px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .gz-yt-thumb-inner::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 50%;
+      background: radial-gradient(circle at top right, rgba(255,180,0,0.2), transparent 70%);
+    }
+    .gz-yt-thumb-product {
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-
-    .gz-formato-tag::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--violeta);
-      flex-shrink: 0;
-    }
-
-    .gz-formato-body h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--tinta);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
-    }
-
-    .gz-formato-body p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* ── Galería ── */
-    .gz-galeria {
-      background: var(--crema);
-      padding: 96px 0;
-    }
-
-    .gz-galeria h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--tinta);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 56px;
-    }
-
-    .gz-galeria-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 16px;
-    }
-
-    .gz-gal-item {
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .gz-gal-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .gz-gal-item:hover img { transform: scale(1.04); }
-
-    .gz-gal-item--tall {
-      grid-row: span 2;
-    }
-
-    .gz-gal-item--tall img {
-      height: 100%;
-    }
-
-    /* ── UGC ── */
-    .gz-ugc {
-      background: var(--tinta);
-      padding: 96px 0;
-    }
-
-    .gz-ugc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .gz-ugc-left h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--crema);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 24px;
-    }
-
-    .gz-ugc-left h2 em {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      color: var(--lila);
-    }
-
-    .gz-ugc-left p {
-      font-size: 16px;
-      color: rgba(244,241,236,0.65);
-      line-height: 1.75;
-      margin-bottom: 16px;
-    }
-
-    .gz-ugc-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .gz-chip {
-      font-size: 12px;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(200,182,248,0.12);
-      color: var(--lila);
-      border: 1px solid rgba(200,182,248,0.2);
-    }
-
-    .gz-ugc-right {
+      color: rgba(255,200,0,0.9);
+      background: rgba(255,180,0,0.15);
+      border: 1px solid rgba(255,180,0,0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-bottom: 5px;
       position: relative;
+      z-index: 1;
     }
-
-    .gz-ugc-img {
-      width: 100%;
-      border-radius: 16px;
-      display: block;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-    }
-
-    .gz-ugc-badge {
-      position: absolute;
-      bottom: -16px;
-      right: -16px;
-      background: var(--violeta);
-      color: white;
-      border-radius: 12px;
-      padding: 16px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.3;
-      box-shadow: 0 8px 24px rgba(94,61,240,0.4);
-    }
-
-    .gz-ugc-badge span {
-      display: block;
-      font-size: 22px;
+    .gz-yt-thumb-title {
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 2px;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
     }
-
-    /* ── Tutoriales ── */
-    .gz-tutoriales {
-      background: white;
-      padding: 96px 0;
+    .gz-yt-thumb-title em {
+      font-style: normal;
+      color: rgba(255,200,0,0.95);
+      display: block;
     }
-
-    .gz-tutoriales h2 {
-      font-size: clamp(28px, 3.5vw, 44px);
-      color: var(--tinta);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 56px;
-    }
-
-    .gz-tut-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--gris);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .gz-tut-item {
-      background: white;
-      padding: 32px 28px;
-    }
-
-    .gz-tut-icon {
-      font-size: 28px;
-      margin-bottom: 16px;
-    }
-
-    .gz-tut-item h3 {
-      font-size: 17px;
+    .gz-yt-thumb-duration {
+      position: absolute;
+      bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      font-size: 10px;
       font-weight: 700;
-      color: var(--tinta);
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
+      padding: 2px 5px;
+      border-radius: 3px;
     }
-
-    .gz-tut-item p {
-      font-size: 13px;
-      color: var(--text-muted);
+    .gz-yt-video-meta h4 {
+      font-size: 13px; font-weight: 600; color: #0f0f0f;
+      line-height: 1.3; margin-bottom: 4px; letter-spacing: -0.01em;
+    }
+    .gz-yt-video-meta p {
+      font-size: 12px; color: #606060; font-weight: 400;
+    }
+    .gz-tut-note {
+      margin-top: 28px;
+      font-size: 14px;
+      color: rgba(244,241,236,0.5);
       line-height: 1.6;
     }
 
     /* ── CTA ── */
-    .gz-cta {
-      background: var(--crema);
-      padding: 96px 0;
-      text-align: center;
-    }
-
+    .gz-cta { background: var(--crema); padding: 96px 0; }
     .gz-cta-inner {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 24px;
+      max-width: 560px; margin: 0 auto; padding: 0 24px; text-align: center;
     }
-
-    .gz-cta h2 {
-      font-size: clamp(28px, 4vw, 48px);
-      color: var(--tinta);
-      letter-spacing: -0.03em;
-      margin-top: 4px;
-      margin-bottom: 20px;
-    }
-
-    .gz-cta h2 em {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      color: var(--violeta);
-    }
-
+    .gz-cta .gz-h2 { color: var(--tinta); margin-bottom: 20px; }
+    .gz-cta .gz-h2 em { color: var(--violeta); }
     .gz-cta p {
-      font-size: 17px;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 36px;
+      font-size: 17px; color: var(--text-muted);
+      line-height: 1.7; margin-bottom: 36px;
     }
-
     .gz-cta-btn {
       display: inline-block;
-      background: var(--violeta);
-      color: white;
+      background: var(--violeta); color: white;
       font-family: 'Familjen Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 16px 36px;
-      border-radius: 999px;
+      font-weight: 700; font-size: 15px;
+      padding: 16px 36px; border-radius: 999px;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .gz-cta-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(94,61,240,0.35);
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .gz-hero { padding: 120px 0 72px; }
-      .gz-partida-grid,
-      .gz-ugc-grid { grid-template-columns: 1fr; gap: 48px; }
-      .gz-pilares { grid-template-columns: 1fr 1fr; }
-      .gz-formato-grid { grid-template-columns: 1fr; }
-      .gz-galeria-grid { grid-template-columns: 1fr 1fr; }
-      .gz-gal-item--tall { grid-row: span 1; }
-      .gz-tut-grid { grid-template-columns: 1fr 1fr; }
-      .gz-ugc-badge { position: static; margin-top: 16px; display: inline-block; }
-      .gz-meta { gap: 20px; }
+    /* ── Footer override ── */
+    .gz-footer-cta-link {
+      display: inline-block; margin-top: 8px;
+      background: var(--violeta); color: #fff !important;
+      font-weight: 700; font-size: 13px;
+      padding: 8px 18px; border-radius: 999px; text-decoration: none;
     }
 
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .gz-yt-videos { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .gz-pilares { grid-template-columns: 1fr 1fr; }
+      .gz-formato-grid { grid-template-columns: 1fr 1fr; }
+      .gz-ugc-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .gz-hero { padding: 120px 0 72px; }
+      .gz-cards-scroll { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .gz-cards-scroll .gz-card:last-child { display: none; }
+      .gz-meta { gap: 20px; }
+      .gz-yt-header { flex-wrap: wrap; }
+      .gz-yt-sub-btn { display: none; }
+      .gz-yt-tabs { padding: 0 16px; }
+      .gz-yt-videos { padding: 16px; }
+    }
     @media (max-width: 480px) {
       .gz-pilares,
-      .gz-tut-grid { grid-template-columns: 1fr; }
-      .gz-galeria-grid { grid-template-columns: 1fr; }
+      .gz-formato-grid,
+      .gz-ugc-grid { grid-template-columns: 1fr; }
+      .gz-yt-videos { grid-template-columns: repeat(2, 1fr); }
     }
 
   </style>
@@ -553,13 +540,9 @@
   <!-- ── Hero ── -->
   <section class="gz-hero">
     <div class="gz-hero-inner">
-
       <a href="/" class="gz-back">← Volver a inicio</a>
-
       <div class="gz-eyebrow">Caso de estudio</div>
-
       <h1>De cero a comunidad<br>con <em>contenido</em><br>que anticipa.</h1>
-
       <div class="gz-meta">
         <div class="gz-meta-item">
           <span class="gz-meta-label">Cliente</span>
@@ -575,62 +558,75 @@
         </div>
         <div class="gz-meta-item">
           <span class="gz-meta-label">Plataformas</span>
-          <span class="gz-meta-value">TikTok · Instagram</span>
+          <span class="gz-meta-value">TikTok · Instagram · YouTube</span>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── Punto de partida ── -->
-  <section class="gz-partida">
+  <!-- ── Mapa de calor ── -->
+  <section class="gz-heatmap">
     <div class="container">
-      <div class="gz-partida-grid">
-
-        <div class="gz-partida-left fade-in">
-          <p class="section-kicker"><span class="section-kicker-dot"></span>El punto de partida</p>
-          <h2>Una marca con producto sólido y presencia digital en pausa.</h2>
-          <p>Garza tenía cuentas abiertas en Instagram y TikTok pero sin actividad real. En TikTok, un único vídeo subido. Sin comunidad, sin voz de marca, sin estrategia de contenido. El producto era bueno — faltaba el sistema para que el algoritmo lo descubriera.</p>
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Mapa de calor</p>
+      <h2 class="gz-h2 fade-in">Los contenidos con más<br><em>potencial</em>, antes de crearlos.</h2>
+      <p class="gz-heatmap-desc fade-in">Mapeamos los temas de Garza contra los perfiles de audiencia. Así identificamos dónde concentrar el esfuerzo y qué tiene más probabilidad de escalar.</p>
+      <div class="gz-heatmap-wrap fade-in">
+        <table class="gz-heatmap-table">
+          <thead>
+            <tr>
+              <th>Tema</th>
+              <th>Consumidor general</th>
+              <th>Con interés previo</th>
+              <th>Early adopter</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hm-label">DIY / Instalación<span class="hm-sub">Tutoriales paso a paso</span></td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-high">Alto</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Ahorro energético<span class="hm-sub">Factura, solar, eficiencia</span></td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-star">Máximo</td>
+              <td class="hm-mid">Medio</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Smart home<span class="hm-sub">Domótica, automatización</span></td>
+              <td class="hm-low">Bajo</td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Solar doméstico<span class="hm-sub">Decorativo, funcional</span></td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hm-legend">
+          <div class="hm-legend-item"><div class="hm-legend-dot low"></div>Baja oportunidad</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot mid"></div>Media</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot high"></div>Alta</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot star"></div>Sweet spot ★</div>
         </div>
-
-        <div class="gz-stats fade-in">
-          <div class="gz-stat-row">
-            <div class="gz-stat-icon">📱</div>
-            <div class="gz-stat-body">
-              <h4>TikTok: 1 vídeo publicado</h4>
-              <p>Cuenta activa pero sin estrategia ni frecuencia de publicación.</p>
-            </div>
-          </div>
-          <div class="gz-stat-row">
-            <div class="gz-stat-icon">📸</div>
-            <div class="gz-stat-body">
-              <h4>Instagram: abierto, sin comunidad</h4>
-              <p>Presencia sin movimiento. Sin interacción ni contenido propio con sentido.</p>
-            </div>
-          </div>
-          <div class="gz-stat-row">
-            <div class="gz-stat-icon">🎯</div>
-            <div class="gz-stat-body">
-              <h4>Arranque: julio 2025</h4>
-              <p>Primera publicación con estrategia. Construcción desde cero.</p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── Enfoque ── -->
+  <!-- ── Estrategia ── -->
   <section class="gz-enfoque">
     <div class="container">
-      <p class="section-kicker" style="color:var(--lila);opacity:0.65;"><span class="section-kicker-dot" style="background:var(--lila);"></span>La estrategia</p>
-      <h2 class="gz-enfoque-h2" style="color:var(--crema);font-size:clamp(28px,3.5vw,44px);letter-spacing:-0.03em;margin-top:4px;margin-bottom:56px;">Cuatro pilares de contenido para<br>construir marca y vender.</h2>
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>La estrategia</p>
+      <h2 class="gz-h2 fade-in">Cuatro pilares para<br>construir marca y vender.</h2>
       <div class="gz-pilares">
         <div class="gz-pilar fade-in">
           <div class="gz-pilar-num">01</div>
           <h3>Educativo</h3>
-          <p>Desmontamos mitos y explicamos cómo funcionan los productos. Contenido que responde búsquedas reales.</p>
+          <p>Desmontamos mitos y explicamos cómo funcionan los productos. Responde búsquedas reales del sector.</p>
         </div>
         <div class="gz-pilar fade-in">
           <div class="gz-pilar-num">02</div>
@@ -640,7 +636,7 @@
         <div class="gz-pilar fade-in">
           <div class="gz-pilar-num">03</div>
           <h3>Autoridad</h3>
-          <p>Entrevistas con expertos del sector y equipo de producto. Construye confianza y diferencial de marca.</p>
+          <p>Entrevistas con expertos y equipo de producto. Construye confianza y diferencial de marca.</p>
         </div>
         <div class="gz-pilar fade-in">
           <div class="gz-pilar-num">04</div>
@@ -654,55 +650,55 @@
   <!-- ── Formatos ── -->
   <section class="gz-formatos">
     <div class="container">
-      <p class="section-kicker"><span class="section-kicker-dot"></span>Trabajo real</p>
-      <h2>Formatos más destacados.</h2>
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Trabajo real</p>
+      <h2 class="gz-h2 fade-in">Formatos más destacados.</h2>
       <div class="gz-formato-grid">
-
         <div class="gz-formato-card fade-in">
           <img src="images/garza/formato-desenrollando.jpg" alt="Desenrollando Cables" class="gz-formato-img">
           <div class="gz-formato-body">
-            <span class="gz-formato-tag">Formato educativo</span>
+            <span class="gz-formato-tag">Educativo</span>
             <h3>Desenrollando Cables</h3>
-            <p>Desmontamos mitos del producto. Responde búsquedas frecuentes: ¿<em>funciona sin cables?</em>, ¿<em>consume batería?</em></p>
+            <p>Desmontamos mitos del producto con creadores del sector. Responde las búsquedas reales de los compradores.</p>
           </div>
         </div>
-
         <div class="gz-formato-card fade-in">
-          <img src="images/garza/formato-lifestyle.jpg" alt="Lifestyle Solar" class="gz-formato-img">
+          <img src="images/garza/formato-divulgativo.jpg" alt="Ahorra en tu factura de la luz" class="gz-formato-img">
           <div class="gz-formato-body">
-            <span class="gz-formato-tag">Formato lifestyle</span>
-            <h3>Terraza y hogar</h3>
-            <p>Contenido aspiracional que conecta el producto con momentos reales. Aprovecha el pico estacional del outdoor.</p>
+            <span class="gz-formato-tag">Divulgativo</span>
+            <h3>Ahorra en tu factura</h3>
+            <p>Tendencia detectada antes de su pico: ahorro energético y solar, convertido en vídeos optimizados para el algoritmo.</p>
           </div>
         </div>
-
         <div class="gz-formato-card fade-in">
           <img src="images/garza/formato-charlas.jpg" alt="Charlas Garza" class="gz-formato-img">
           <div class="gz-formato-body">
-            <span class="gz-formato-tag">Formato entrevista</span>
+            <span class="gz-formato-tag">Entrevista</span>
             <h3>Charlas Garza</h3>
             <p>Conversaciones con expertos del sector que construyen autoridad de marca y abren el producto a nuevas audiencias.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── Galería ── -->
-  <section class="gz-galeria">
+  <!-- ── Estáticos y carruseles ── -->
+  <section class="gz-estaticos">
     <div class="container">
-      <p class="section-kicker"><span class="section-kicker-dot"></span>Estáticos y carruseles</p>
-      <h2>Contenido visual de producto.</h2>
-      <div class="gz-galeria-grid">
-        <div class="gz-gal-item gz-gal-item--tall">
-          <img src="images/garza/ugc-producto.jpg" alt="Producto lifestyle" loading="lazy">
+      <p class="section-kicker fade-in" style="color:rgba(200,182,248,0.6);"><span class="section-kicker-dot" style="background:var(--lila);opacity:0.6;"></span>Estáticos y carruseles</p>
+      <h2 class="gz-h2 fade-in">Contenido visual<br>de producto.</h2>
+      <p class="gz-estaticos-desc fade-in">Piezas diseñadas para detener el scroll. Cada imagen responde a una búsqueda real o una ventana de oportunidad detectada en datos.</p>
+      <div class="gz-cards-scroll">
+        <div class="gz-card fade-in">
+          <img src="images/garza/carrusel-seguridad.jpg" alt="Tu casa siempre protegida" loading="lazy">
+          <div class="gz-card-label">Seguridad</div>
         </div>
-        <div class="gz-gal-item">
-          <img src="images/garza/lifestyle-solar.jpg" alt="Solar lifestyle" loading="lazy">
+        <div class="gz-card fade-in">
+          <img src="images/garza/carrusel-termostato.jpg" alt="Cambiar tu confort es fácil" loading="lazy">
+          <div class="gz-card-label">Termostato</div>
         </div>
-        <div class="gz-gal-item">
-          <img src="images/garza/formato-lifestyle.jpg" alt="Terraza lifestyle" loading="lazy">
+        <div class="gz-card fade-in">
+          <img src="images/garza/carrusel-iluminacion.jpg" alt="Luz donde quieras" loading="lazy">
+          <div class="gz-card-label">Iluminación</div>
         </div>
       </div>
     </div>
@@ -711,26 +707,41 @@
   <!-- ── UGC ── -->
   <section class="gz-ugc">
     <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Estrategia UGC</p>
+      <h2 class="gz-h2 fade-in">Contenido de<br>usuarios <em>reales</em>.</h2>
+      <p class="gz-ugc-desc fade-in">4–5 vídeos semanales con perfiles variados. Sin filtros de aspiracionalidad: los productos Garza son para cualquier persona. Contenido auténtico que el algoritmo favorece.</p>
       <div class="gz-ugc-grid">
 
-        <div class="gz-ugc-left fade-in">
-          <p class="section-kicker" style="color:var(--lila);opacity:0.65;"><span class="section-kicker-dot" style="background:var(--lila);"></span>Estrategia UGC</p>
-          <h2>Contenido de<br>usuarios <em>reales</em>.</h2>
-          <p>Diseñamos una estrategia de UGC orgánico con 4-5 vídeos semanales. Perfiles variados, sin filtros de aspiracionalidad. El mensaje: los productos Garza son para cualquier persona.</p>
-          <p>Contenido auténtico que el algoritmo favorece y que construye confianza antes de la compra.</p>
-          <div class="gz-ugc-chips">
-            <span class="gz-chip">4–5 vídeos / semana</span>
-            <span class="gz-chip">Perfiles orgánicos</span>
-            <span class="gz-chip">Cualquier tipo de usuario</span>
-            <span class="gz-chip">TikTok Shop</span>
+        <div class="gz-ugc-card fade-in">
+          <div style="position:relative;">
+            <img src="images/garza/ugc-creator-tastet.jpg" alt="@tastet_dedeco" class="gz-ugc-card-img">
+            <div class="gz-ugc-stat">6.8K views</div>
+          </div>
+          <div class="gz-ugc-card-foot">
+            <div class="gz-ugc-card-handle">@tastet_dedeco</div>
+            <div class="gz-ugc-card-product">Sensor de Riego · Sistema inteligente de zonas</div>
           </div>
         </div>
 
-        <div class="gz-ugc-right fade-in">
-          <img src="images/garza/ugc-producto.jpg" alt="UGC Garza" class="gz-ugc-img">
-          <div class="gz-ugc-badge">
-            <span>4–5</span>
-            vídeos UGC<br>por semana
+        <div class="gz-ugc-card fade-in">
+          <div style="position:relative;">
+            <img src="images/garza/ugc-creator-srtadeco.jpg" alt="@srtadeco" class="gz-ugc-card-img">
+            <div class="gz-ugc-stat">12.1K views</div>
+          </div>
+          <div class="gz-ugc-card-foot">
+            <div class="gz-ugc-card-handle">@srtadeco</div>
+            <div class="gz-ugc-card-product">Guirnalda Solar Selene</div>
+          </div>
+        </div>
+
+        <div class="gz-ugc-card fade-in">
+          <div style="position:relative;">
+            <img src="images/garza/ugc-creator-mami.jpg" alt="@una_mami_del_monton" class="gz-ugc-card-img">
+            <div class="gz-ugc-stat">22.2K views</div>
+          </div>
+          <div class="gz-ugc-card-foot">
+            <div class="gz-ugc-card-handle">@una_mami_del_monton</div>
+            <div class="gz-ugc-card-product">Cabezal WiFi termostático Arán</div>
           </div>
         </div>
 
@@ -741,40 +752,102 @@
   <!-- ── Tutoriales ── -->
   <section class="gz-tutoriales">
     <div class="container">
-      <p class="section-kicker"><span class="section-kicker-dot"></span>Vídeo tutoriales</p>
-      <h2>Instalación paso a paso.</h2>
-      <div class="gz-tut-grid">
-        <div class="gz-tut-item fade-in">
-          <div class="gz-tut-icon">☀️</div>
-          <h3>Solar</h3>
-          <p>Instalación de placas, cargadores y luces solares. El contenido más buscado del sector en 2025–2026.</p>
+      <p class="section-kicker fade-in" style="color:rgba(200,182,248,0.6);"><span class="section-kicker-dot" style="background:var(--lila);opacity:0.6;"></span>Vídeo tutoriales</p>
+      <h2 class="gz-h2 fade-in">Instalación paso<br>a <em>paso</em>.</h2>
+
+      <div class="gz-yt-mockup fade-in">
+        <!-- Header canal -->
+        <div class="gz-yt-header">
+          <div class="gz-yt-avatar">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="18" cy="18" r="18" fill="#4343FF"/>
+              <path d="M10 18C10 13.58 13.58 10 18 10C22.42 10 26 13.58 26 18C26 22.42 22.42 26 18 26C13.58 26 10 22.42 10 18Z" fill="rgba(255,255,255,0.15)"/>
+              <path d="M15.5 14.5L23 18L15.5 21.5V14.5Z" fill="white"/>
+            </svg>
+          </div>
+          <div class="gz-yt-channel-info">
+            <h3>GarzaSpain</h3>
+            <p>@GarzaSpain · 2,35 K suscriptores · 134 vídeos</p>
+          </div>
+          <button class="gz-yt-sub-btn">Suscribirse</button>
         </div>
-        <div class="gz-tut-item fade-in">
-          <div class="gz-tut-icon">🌡️</div>
-          <h3>Termostatos</h3>
-          <p>Guías de instalación y configuración. Responde las dudas de compra antes de que lleguen al servicio técnico.</p>
+
+        <!-- Tabs -->
+        <div class="gz-yt-tabs">
+          <div class="gz-yt-tab">Inicio</div>
+          <div class="gz-yt-tab active">Vídeos</div>
+          <div class="gz-yt-tab">Shorts</div>
+          <div class="gz-yt-tab">Listas</div>
         </div>
-        <div class="gz-tut-item fade-in">
-          <div class="gz-tut-icon">🔍</div>
-          <h3>Detectores</h3>
-          <p>Tutoriales de uso y configuración de detectores de movimiento, humo y alarmas del hogar.</p>
-        </div>
-        <div class="gz-tut-item fade-in">
-          <div class="gz-tut-icon">💡</div>
-          <h3>Domótica</h3>
-          <p>Integración de productos en el hogar conectado. Contenido técnico adaptado a cualquier nivel de usuario.</p>
+
+        <!-- Videos grid -->
+        <div class="gz-yt-videos">
+          <div class="gz-yt-video">
+            <div class="gz-yt-thumb">
+              <div class="gz-yt-thumb-inner">
+                <div class="gz-yt-thumb-product">DETECTOR · EROS</div>
+                <div class="gz-yt-thumb-title">DETECTOR WIFI<em>MONÓXIDO CO</em></div>
+                <div class="gz-yt-thumb-duration">5:38</div>
+              </div>
+            </div>
+            <div class="gz-yt-video-meta">
+              <h4>Instalación de tu Detector de Monóxido Carbono WiFi EROS</h4>
+              <p>51 visualizaciones · hace 1 mes</p>
+            </div>
+          </div>
+          <div class="gz-yt-video">
+            <div class="gz-yt-thumb">
+              <div class="gz-yt-thumb-inner">
+                <div class="gz-yt-thumb-product">DETECTOR · EATE</div>
+                <div class="gz-yt-thumb-title">DETECTOR WIFI<em>HUMO</em></div>
+                <div class="gz-yt-thumb-duration">1:00</div>
+              </div>
+            </div>
+            <div class="gz-yt-video-meta">
+              <h4>Detector de Humo WiFi Eate para uso doméstico</h4>
+              <p>64 visualizaciones · hace 1 mes</p>
+            </div>
+          </div>
+          <div class="gz-yt-video">
+            <div class="gz-yt-thumb">
+              <div class="gz-yt-thumb-inner">
+                <div class="gz-yt-thumb-product">TERMOSTATO · ARÁN</div>
+                <div class="gz-yt-thumb-title">INSTALACIÓN<em>PASO A PASO</em></div>
+                <div class="gz-yt-thumb-duration">4:22</div>
+              </div>
+            </div>
+            <div class="gz-yt-video-meta">
+              <h4>Instalación del Cabezal Termostático WiFi Arán</h4>
+              <p>90 visualizaciones · hace 1 mes</p>
+            </div>
+          </div>
+          <div class="gz-yt-video">
+            <div class="gz-yt-thumb">
+              <div class="gz-yt-thumb-inner">
+                <div class="gz-yt-thumb-product">TERMOSTATO · IBIZA</div>
+                <div class="gz-yt-thumb-title">CONECTA A<em>LA APP</em></div>
+                <div class="gz-yt-thumb-duration">3:45</div>
+              </div>
+            </div>
+            <div class="gz-yt-video-meta">
+              <h4>Cómo conectar el Termostato Ibiza a la app Garza Smart</h4>
+              <p>76 visualizaciones · hace 2 meses</p>
+            </div>
+          </div>
         </div>
       </div>
+
+      <p class="gz-tut-note">134 vídeos en el canal de YouTube de GarzaSpain. Guías de instalación para termostatos, detectores, solar y domótica — el contenido más buscado del sector.</p>
     </div>
   </section>
 
   <!-- ── CTA ── -->
   <section class="gz-cta">
     <div class="gz-cta-inner">
-      <p class="section-kicker" style="justify-content:center;"><span class="section-kicker-dot"></span>¿Trabajamos juntos?</p>
-      <h2>¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
-      <p>Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
-      <a href="/#contacto" class="gz-cta-btn">Reservar llamada →</a>
+      <p class="section-kicker fade-in" style="justify-content:center;"><span class="section-kicker-dot"></span>¿Trabajamos juntos?</p>
+      <h2 class="gz-h2 fade-in">¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
+      <p class="fade-in">Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
+      <a href="/#contacto" class="gz-cta-btn fade-in">Reservar llamada →</a>
     </div>
   </section>
 
@@ -808,7 +881,7 @@
           <h4>Contacto</h4>
           <ul>
             <li><a href="mailto:judy@predictaflow.me">judy@predictaflow.me</a></li>
-            <li><a href="/#contacto" class="footer-cta-link">Hablemos →</a></li>
+            <li><a href="/#contacto" class="gz-footer-cta-link">Hablemos →</a></li>
           </ul>
         </div>
       </div>
