@@ -1392,6 +1392,11 @@ strong { font-weight: 600; }
 
 .faq-header {
   margin-bottom: 52px;
+  text-align: center;
+}
+
+.faq-header .section-kicker {
+  justify-content: center;
 }
 
 .faq-header h2 {
