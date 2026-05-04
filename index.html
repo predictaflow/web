@@ -49,54 +49,14 @@
   <!-- ── Hero ── -->
   <section class="hero" id="hero">
 
-    <!-- Galería de fondo: 12 SVGs creados, 3 filas a distinta velocidad -->
-    <div class="hero-gallery" aria-hidden="true">
-      <!-- Fila 1 — izquierda, 34s -->
-      <div class="hero-gallery-row">
-        <div class="hero-gtrack hg-left" style="animation-duration:34s;">
-          <img src="images/hc-01.svg" alt=""><img src="images/hc-04.svg" alt="">
-          <img src="images/hc-07.svg" alt=""><img src="images/hc-10.svg" alt="">
-          <img src="images/hc-03.svg" alt=""><img src="images/hc-06.svg" alt="">
-          <img src="images/hc-09.svg" alt=""><img src="images/hc-12.svg" alt="">
-          <img src="images/hc-01.svg" alt=""><img src="images/hc-04.svg" alt="">
-          <img src="images/hc-07.svg" alt=""><img src="images/hc-10.svg" alt="">
-          <img src="images/hc-03.svg" alt=""><img src="images/hc-06.svg" alt="">
-          <img src="images/hc-09.svg" alt=""><img src="images/hc-12.svg" alt="">
-        </div>
-      </div>
-      <!-- Fila 2 — derecha, 24s -->
-      <div class="hero-gallery-row">
-        <div class="hero-gtrack hg-right" style="animation-duration:24s;">
-          <img src="images/hc-02.svg" alt=""><img src="images/hc-05.svg" alt="">
-          <img src="images/hc-08.svg" alt=""><img src="images/hc-11.svg" alt="">
-          <img src="images/hc-04.svg" alt=""><img src="images/hc-07.svg" alt="">
-          <img src="images/hc-01.svg" alt=""><img src="images/hc-09.svg" alt="">
-          <img src="images/hc-02.svg" alt=""><img src="images/hc-05.svg" alt="">
-          <img src="images/hc-08.svg" alt=""><img src="images/hc-11.svg" alt="">
-          <img src="images/hc-04.svg" alt=""><img src="images/hc-07.svg" alt="">
-          <img src="images/hc-01.svg" alt=""><img src="images/hc-09.svg" alt="">
-        </div>
-      </div>
-      <!-- Fila 3 — izquierda, 44s -->
-      <div class="hero-gallery-row">
-        <div class="hero-gtrack hg-left" style="animation-duration:44s;">
-          <img src="images/hc-06.svg" alt=""><img src="images/hc-11.svg" alt="">
-          <img src="images/hc-02.svg" alt=""><img src="images/hc-08.svg" alt="">
-          <img src="images/hc-05.svg" alt=""><img src="images/hc-12.svg" alt="">
-          <img src="images/hc-03.svg" alt=""><img src="images/hc-10.svg" alt="">
-          <img src="images/hc-06.svg" alt=""><img src="images/hc-11.svg" alt="">
-          <img src="images/hc-02.svg" alt=""><img src="images/hc-08.svg" alt="">
-          <img src="images/hc-05.svg" alt=""><img src="images/hc-12.svg" alt="">
-          <img src="images/hc-03.svg" alt=""><img src="images/hc-10.svg" alt="">
-        </div>
-      </div>
-    </div>
+    <!-- Trend network animation background -->
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
-    <!-- Solo logo + tagline + scroll — igual que Google Flow -->
+    <!-- Logo + tagline + CTA -->
     <div class="hero-center">
       <img src="images/logo-crema-lila.svg" alt="Predicta Flow" class="hero-logo">
       <p class="hero-tagline">Anticipamos la tendencia, creamos el impacto.</p>
-      <a href="#contacto" class="btn btn-primary hero-cta">Reservar llamada →</a>
+      <a href="#contacto" class="hero-cta">Reservar llamada →</a>
     </div>
 
     <!-- Scroll hint -->
@@ -715,6 +675,219 @@
         document.querySelector(`.proceso-panel[data-panel="${target}"]`).classList.add('active');
       });
     });
+  </script>
+
+  <!-- ── Trend Network Hero Animation ── -->
+  <script>
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // Paleta
+    const BG      = [26, 21, 48];
+    const VIOLETA = [94, 61, 240];
+    const LILA    = [200, 182, 248];
+    const CIELO   = [190, 229, 243];
+    const CREMA   = [244, 241, 236];
+
+    function rgba(rgb, a) {
+      return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')';
+    }
+
+    // Temas de tendencias
+    const TOPICS = [
+      '#colágeno marino', '#gut health', '#slow living', '#longevidad',
+      '#micro-content', '#UGC 2026', '#mindful tech', '#fermentados',
+      '#bienestar digital', '#B2B creators', '#AI content', '#data stories',
+      '#viral formats', '#brand voice', '#tendencias IA', '#short-form'
+    ];
+    const BADGES = ['+340%', '+180%', '+92%', '+280%', '+140%', '+420%', '+210%'];
+
+    let W, H, nodes, animId;
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+
+    function makeNode(i) {
+      const hasLabel = i < TOPICS.length && Math.random() < 0.45;
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        baseR: 1.5 + Math.random() * 4.5,
+        r: 0,
+        alpha: 0.2 + Math.random() * 0.55,
+        label: hasLabel ? TOPICS[i % TOPICS.length] : null,
+        badge: hasLabel ? BADGES[Math.floor(Math.random() * BADGES.length)] : null,
+        colorArr: Math.random() < 0.45 ? LILA : Math.random() < 0.5 ? CIELO : VIOLETA,
+        // trend state
+        trending: false,
+        trendPhase: 0,
+        cooldown: Math.floor(100 + Math.random() * 500)
+      };
+    }
+
+    function init() {
+      const count = Math.min(75, Math.max(40, Math.floor(W * H / 13000)));
+      nodes = [];
+      for (let i = 0; i < count; i++) {
+        const n = makeNode(i);
+        n.r = n.baseR;
+        nodes.push(n);
+      }
+    }
+
+    function update() {
+      nodes.forEach(function (n) {
+        // Move
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0)  { n.x = 0;  n.vx *= -1; }
+        if (n.x > W)  { n.x = W;  n.vx *= -1; }
+        if (n.y < 0)  { n.y = 0;  n.vy *= -1; }
+        if (n.y > H)  { n.y = H;  n.vy *= -1; }
+
+        // Trend cycle
+        if (!n.trending) {
+          n.cooldown--;
+          if (n.cooldown <= 0) {
+            n.trending = true;
+            n.trendPhase = 0;
+            n.cooldown = 300 + Math.floor(Math.random() * 500);
+          }
+        } else {
+          n.trendPhase += 0.005;
+          if (n.trendPhase >= 1) {
+            n.trending = false;
+            n.trendPhase = 0;
+            n.r = n.baseR;
+          } else {
+            var pulse = Math.sin(n.trendPhase * Math.PI);
+            n.r = n.baseR * (1 + pulse * 0.9);
+          }
+        }
+        if (!n.trending) n.r = n.baseR;
+      });
+    }
+
+    function drawBackground() {
+      ctx.fillStyle = rgba(BG, 1);
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    function drawEdges() {
+      var maxDist = Math.min(W, H) * 0.19;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var a = nodes[i], b = nodes[j];
+          var dx = a.x - b.x, dy = a.y - b.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            var t = 1 - dist / maxDist;
+            var boost = (a.trending || b.trending) ? 3 : 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = rgba(LILA, t * t * 0.11 * boost);
+            ctx.lineWidth = 0.4 + t * 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function drawNodes() {
+      nodes.forEach(function (n) {
+        var isHot = n.trending;
+        var pulse = isHot ? Math.sin(n.trendPhase * Math.PI) : 0;
+
+        // Glow halo when trending
+        if (isHot && pulse > 0.05) {
+          var grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+          grad.addColorStop(0, rgba(VIOLETA, 0.22 * pulse));
+          grad.addColorStop(1, rgba(VIOLETA, 0));
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+
+          // Expanding ring
+          var ringR = n.baseR + 28 * pulse;
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, ringR, 0, Math.PI * 2);
+          ctx.strokeStyle = rgba(VIOLETA, 0.4 * pulse);
+          ctx.lineWidth = 1;
+          ctx.stroke();
+
+          // Second ring
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, ringR * 1.55, 0, Math.PI * 2);
+          ctx.strokeStyle = rgba(LILA, 0.18 * pulse);
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        var coreAlpha = isHot ? Math.min(n.alpha * (1 + pulse * 0.7), 1) : n.alpha;
+        ctx.fillStyle = isHot ? rgba(VIOLETA, coreAlpha) : rgba(n.colorArr, coreAlpha);
+        ctx.fill();
+
+        // Label + badge
+        if (n.label && n.alpha > 0.3) {
+          var lAlpha = isHot ? (0.5 + pulse * 0.5) : n.alpha * 0.65;
+          ctx.font = (isHot ? '600 ' : '') + '10.5px "Familjen Grotesk", sans-serif';
+          ctx.fillStyle = isHot ? rgba(CREMA, lAlpha) : rgba(LILA, lAlpha * 0.85);
+          ctx.fillText(n.label, n.x + n.r + 7, n.y + 4);
+
+          if (isHot && n.badge && pulse > 0.15 && pulse < 0.95) {
+            ctx.font = '600 9.5px "Familjen Grotesk", sans-serif';
+            ctx.fillStyle = rgba(CIELO, pulse * 0.85);
+            ctx.fillText(n.badge, n.x + n.r + 7, n.y + 17);
+          }
+        }
+      });
+    }
+
+    function draw() {
+      drawBackground();
+      drawEdges();
+      drawNodes();
+      update();
+      animId = requestAnimationFrame(draw);
+    }
+
+    // Init
+    resize();
+    init();
+    draw();
+
+    // Resize handler (debounced)
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        cancelAnimationFrame(animId);
+        resize();
+        init();
+        draw();
+      }, 200);
+    });
+
+    // Pause on hidden tab
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        draw();
+      }
+    });
+  })();
   </script>
 
   <!-- ── Cookie banner ── -->
