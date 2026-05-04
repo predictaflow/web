@@ -202,6 +202,18 @@
     /* En esta página el fondo siempre es blanco — mostrar solo el logo oscuro */
     #nav .logo-hero { display: none !important; }
     #nav .logo-scrolled { display: block !important; }
+    /* Footer 4 columnas igual que index */
+    .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    .footer-cta-link {
+      display: inline-block;
+      margin-top: 8px;
+      background: var(--primary);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
   </style>
 </head>
 <body>
@@ -298,9 +310,16 @@
           </ul>
         </div>
         <div class="footer-nav">
+          <h4>Manifiesto</h4>
+          <ul>
+            <li><a href="/manifiesto.html">Nuestro manifiesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
           <h4>Contacto</h4>
           <ul>
             <li><a href="mailto:judy@predictaflow.me">judy@predictaflow.me</a></li>
+            <li><a href="/#contacto" class="footer-cta-link">Hablemos →</a></li>
           </ul>
         </div>
       </div>
