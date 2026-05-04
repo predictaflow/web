@@ -459,11 +459,20 @@
       font-size: 12px; color: #606060; font-weight: 400;
     }
     .gz-tut-note {
-      margin-top: 28px;
       font-size: 14px;
       color: var(--text-muted);
       line-height: 1.6;
     }
+    .gz-yt-btn {
+      display: inline-block;
+      font-size: 14px; font-weight: 700;
+      color: var(--tinta);
+      border: 1.5px solid rgba(26,21,48,0.25);
+      padding: 10px 22px; border-radius: 999px;
+      text-decoration: none; white-space: nowrap;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .gz-yt-btn:hover { border-color: var(--tinta); color: var(--tinta); }
 
     /* ── CTA ── */
     .gz-cta { background: var(--crema); padding: 96px 0; }
@@ -841,7 +850,10 @@
         </div>
       </div>
 
-      <p class="gz-tut-note">Vídeo tutoriales de termostatos, detectores y solar · dic 2025 – jun 2026</p>
+      <div style="display:flex;align-items:center;gap:24px;margin-top:28px;flex-wrap:wrap;">
+        <p class="gz-tut-note" style="margin-top:0;">Vídeo tutoriales de termostatos, detectores y solar · dic 2025 – jun 2026</p>
+        <a href="https://www.youtube.com/@GarzaSpain" target="_blank" rel="noopener" class="gz-yt-btn">Ver canal en YouTube →</a>
+      </div>
     </div>
   </section>
 
