@@ -712,7 +712,7 @@
     }
 
     function makeNode(i) {
-      const hasLabel = i < TOPICS.length && Math.random() < 0.3;
+      const hasLabel = i < TOPICS.length && Math.random() < 0.65;
       return {
         x: Math.random() * W,
         y: Math.random() * H,
@@ -831,16 +831,16 @@
         ctx.fillStyle = isHot ? rgba(LILA, coreAlpha) : rgba(n.colorArr, coreAlpha);
         ctx.fill();
 
-        // Labels: solo visibles cuando trendan
-        if (n.label && isHot && pulse > 0.2) {
-          var lAlpha = pulse * 0.55;
+        // Labels: siempre visibles (tenues), se iluminan al trendar
+        if (n.label) {
+          var lAlpha = isHot ? (0.22 + pulse * 0.5) : 0.2;
           ctx.font = '9px "Familjen Grotesk", sans-serif';
           ctx.fillStyle = rgba(LILA, lAlpha);
           ctx.fillText(n.label, n.x + n.r + 5, n.y + 3);
 
-          if (n.badge && pulse > 0.35 && pulse < 0.9) {
+          if (isHot && n.badge && pulse > 0.35 && pulse < 0.9) {
             ctx.font = '9px "Familjen Grotesk", sans-serif';
-            ctx.fillStyle = rgba(CIELO, (pulse - 0.35) * 0.7);
+            ctx.fillStyle = rgba(CIELO, (pulse - 0.35) * 0.65);
             ctx.fillText(n.badge, n.x + n.r + 5, n.y + 14);
           }
         }
