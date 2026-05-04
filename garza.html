@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso Garza — Predicta Flow</title>
+  <meta name="description" content="Cómo construimos la presencia en redes de Garza desde cero: estrategia de contenido, formatos propios y UGC para iluminación, domótica y solar.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="images/iso-predictaflow.svg">
+  <style>
+
+    /* ── Nav override ── */
+    #nav .logo-hero     { display: none !important; }
+    #nav .logo-scrolled { display: block !important; }
+
+    /* ── Hero ── */
+    .gz-hero {
+      background: var(--tinta);
+      padding: 140px 0 100px;
+    }
+
+    .gz-hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .gz-back {
+      display: inline-block;
+      margin-bottom: 48px;
+      color: rgba(200,182,248,0.65);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .gz-back:hover { color: var(--lila); }
+
+    .gz-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lila);
+      opacity: 0.6;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .gz-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--lila);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    .gz-hero h1 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 800;
+      color: var(--crema);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+
+    .gz-hero h1 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--lila);
+    }
+
+    .gz-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .gz-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .gz-meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(200,182,248,0.45);
+    }
+
+    .gz-meta-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--crema);
+    }
+
+    /* ── Punto de partida ── */
+    .gz-partida {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+
+    .gz-partida-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .gz-partida-left h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--tinta);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+
+    .gz-partida-left p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .gz-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--gris);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .gz-stat-row {
+      background: white;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .gz-stat-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .gz-stat-body h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .gz-stat-body p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Enfoque ── */
+    .gz-enfoque {
+      background: var(--tinta);
+      padding: 96px 0;
+    }
+
+    .gz-enfoque h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--crema);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 56px;
+    }
+
+    .gz-pilares {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .gz-pilar {
+      background: rgba(26,21,48,0.8);
+      padding: 36px 28px;
+    }
+
+    .gz-pilar-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--lila);
+      opacity: 0.45;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .gz-pilar h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--crema);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .gz-pilar p {
+      font-size: 13px;
+      color: rgba(244,241,236,0.5);
+      line-height: 1.6;
+    }
+
+    /* ── Formatos ── */
+    .gz-formatos {
+      background: white;
+      padding: 96px 0;
+    }
+
+    .gz-formatos h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--tinta);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 56px;
+    }
+
+    .gz-formato-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .gz-formato-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gris);
+    }
+
+    .gz-formato-img {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gz-formato-body {
+      padding: 24px;
+    }
+
+    .gz-formato-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .gz-formato-tag::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violeta);
+      flex-shrink: 0;
+    }
+
+    .gz-formato-body h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .gz-formato-body p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Galería ── */
+    .gz-galeria {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+
+    .gz-galeria h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--tinta);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 56px;
+    }
+
+    .gz-galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .gz-gal-item {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .gz-gal-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .gz-gal-item:hover img { transform: scale(1.04); }
+
+    .gz-gal-item--tall {
+      grid-row: span 2;
+    }
+
+    .gz-gal-item--tall img {
+      height: 100%;
+    }
+
+    /* ── UGC ── */
+    .gz-ugc {
+      background: var(--tinta);
+      padding: 96px 0;
+    }
+
+    .gz-ugc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .gz-ugc-left h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--crema);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+
+    .gz-ugc-left h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--lila);
+    }
+
+    .gz-ugc-left p {
+      font-size: 16px;
+      color: rgba(244,241,236,0.65);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .gz-ugc-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .gz-chip {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(200,182,248,0.12);
+      color: var(--lila);
+      border: 1px solid rgba(200,182,248,0.2);
+    }
+
+    .gz-ugc-right {
+      position: relative;
+    }
+
+    .gz-ugc-img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+
+    .gz-ugc-badge {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--violeta);
+      color: white;
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.3;
+      box-shadow: 0 8px 24px rgba(94,61,240,0.4);
+    }
+
+    .gz-ugc-badge span {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+
+    /* ── Tutoriales ── */
+    .gz-tutoriales {
+      background: white;
+      padding: 96px 0;
+    }
+
+    .gz-tutoriales h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      color: var(--tinta);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 56px;
+    }
+
+    .gz-tut-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--gris);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .gz-tut-item {
+      background: white;
+      padding: 32px 28px;
+    }
+
+    .gz-tut-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    .gz-tut-item h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .gz-tut-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .gz-cta {
+      background: var(--crema);
+      padding: 96px 0;
+      text-align: center;
+    }
+
+    .gz-cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .gz-cta h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      color: var(--tinta);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    .gz-cta h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--violeta);
+    }
+
+    .gz-cta p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .gz-cta-btn {
+      display: inline-block;
+      background: var(--violeta);
+      color: white;
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .gz-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(94,61,240,0.35);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .gz-hero { padding: 120px 0 72px; }
+      .gz-partida-grid,
+      .gz-ugc-grid { grid-template-columns: 1fr; gap: 48px; }
+      .gz-pilares { grid-template-columns: 1fr 1fr; }
+      .gz-formato-grid { grid-template-columns: 1fr; }
+      .gz-galeria-grid { grid-template-columns: 1fr 1fr; }
+      .gz-gal-item--tall { grid-row: span 1; }
+      .gz-tut-grid { grid-template-columns: 1fr 1fr; }
+      .gz-ugc-badge { position: static; margin-top: 16px; display: inline-block; }
+      .gz-meta { gap: 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .gz-pilares,
+      .gz-tut-grid { grid-template-columns: 1fr; }
+      .gz-galeria-grid { grid-template-columns: 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="/" class="nav-logo">
+        <img src="images/logo-crema-lila.svg" class="logo-hero" alt="Predicta Flow" height="68">
+        <img src="images/logo-tinta.svg" class="logo-scrolled" alt="Predicta Flow" height="68">
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="gz-hero">
+    <div class="gz-hero-inner">
+
+      <a href="/" class="gz-back">← Volver a inicio</a>
+
+      <div class="gz-eyebrow">Caso de estudio</div>
+
+      <h1>De cero a comunidad<br>con <em>contenido</em><br>que anticipa.</h1>
+
+      <div class="gz-meta">
+        <div class="gz-meta-item">
+          <span class="gz-meta-label">Cliente</span>
+          <span class="gz-meta-value">Garza</span>
+        </div>
+        <div class="gz-meta-item">
+          <span class="gz-meta-label">Sector</span>
+          <span class="gz-meta-value">Iluminación · Domótica · Solar</span>
+        </div>
+        <div class="gz-meta-item">
+          <span class="gz-meta-label">Periodo</span>
+          <span class="gz-meta-value">Jul 2025 → Actualidad</span>
+        </div>
+        <div class="gz-meta-item">
+          <span class="gz-meta-label">Plataformas</span>
+          <span class="gz-meta-value">TikTok · Instagram</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Punto de partida ── -->
+  <section class="gz-partida">
+    <div class="container">
+      <div class="gz-partida-grid">
+
+        <div class="gz-partida-left fade-in">
+          <p class="section-kicker"><span class="section-kicker-dot"></span>El punto de partida</p>
+          <h2>Una marca con producto sólido y presencia digital en pausa.</h2>
+          <p>Garza tenía cuentas abiertas en Instagram y TikTok pero sin actividad real. En TikTok, un único vídeo subido. Sin comunidad, sin voz de marca, sin estrategia de contenido. El producto era bueno — faltaba el sistema para que el algoritmo lo descubriera.</p>
+        </div>
+
+        <div class="gz-stats fade-in">
+          <div class="gz-stat-row">
+            <div class="gz-stat-icon">📱</div>
+            <div class="gz-stat-body">
+              <h4>TikTok: 1 vídeo publicado</h4>
+              <p>Cuenta activa pero sin estrategia ni frecuencia de publicación.</p>
+            </div>
+          </div>
+          <div class="gz-stat-row">
+            <div class="gz-stat-icon">📸</div>
+            <div class="gz-stat-body">
+              <h4>Instagram: abierto, sin comunidad</h4>
+              <p>Presencia sin movimiento. Sin interacción ni contenido propio con sentido.</p>
+            </div>
+          </div>
+          <div class="gz-stat-row">
+            <div class="gz-stat-icon">🎯</div>
+            <div class="gz-stat-body">
+              <h4>Arranque: julio 2025</h4>
+              <p>Primera publicación con estrategia. Construcción desde cero.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Enfoque ── -->
+  <section class="gz-enfoque">
+    <div class="container">
+      <p class="section-kicker" style="color:var(--lila);opacity:0.65;"><span class="section-kicker-dot" style="background:var(--lila);"></span>La estrategia</p>
+      <h2 class="gz-enfoque-h2" style="color:var(--crema);font-size:clamp(28px,3.5vw,44px);letter-spacing:-0.03em;margin-top:4px;margin-bottom:56px;">Cuatro pilares de contenido para<br>construir marca y vender.</h2>
+      <div class="gz-pilares">
+        <div class="gz-pilar fade-in">
+          <div class="gz-pilar-num">01</div>
+          <h3>Educativo</h3>
+          <p>Desmontamos mitos y explicamos cómo funcionan los productos. Contenido que responde búsquedas reales.</p>
+        </div>
+        <div class="gz-pilar fade-in">
+          <div class="gz-pilar-num">02</div>
+          <h3>Divulgativo</h3>
+          <p>Ahorro en factura, beneficios del solar, uso práctico en el hogar. Tendencias detectadas antes de su pico.</p>
+        </div>
+        <div class="gz-pilar fade-in">
+          <div class="gz-pilar-num">03</div>
+          <h3>Autoridad</h3>
+          <p>Entrevistas con expertos del sector y equipo de producto. Construye confianza y diferencial de marca.</p>
+        </div>
+        <div class="gz-pilar fade-in">
+          <div class="gz-pilar-num">04</div>
+          <h3>UGC</h3>
+          <p>Perfiles reales, cualquier tipo de usuario. El mensaje: los productos Garza son para todos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Formatos ── -->
+  <section class="gz-formatos">
+    <div class="container">
+      <p class="section-kicker"><span class="section-kicker-dot"></span>Trabajo real</p>
+      <h2>Formatos más destacados.</h2>
+      <div class="gz-formato-grid">
+
+        <div class="gz-formato-card fade-in">
+          <img src="images/garza/formato-desenrollando.jpg" alt="Desenrollando Cables" class="gz-formato-img">
+          <div class="gz-formato-body">
+            <span class="gz-formato-tag">Formato educativo</span>
+            <h3>Desenrollando Cables</h3>
+            <p>Desmontamos mitos del producto. Responde búsquedas frecuentes: ¿<em>funciona sin cables?</em>, ¿<em>consume batería?</em></p>
+          </div>
+        </div>
+
+        <div class="gz-formato-card fade-in">
+          <img src="images/garza/formato-lifestyle.jpg" alt="Lifestyle Solar" class="gz-formato-img">
+          <div class="gz-formato-body">
+            <span class="gz-formato-tag">Formato lifestyle</span>
+            <h3>Terraza y hogar</h3>
+            <p>Contenido aspiracional que conecta el producto con momentos reales. Aprovecha el pico estacional del outdoor.</p>
+          </div>
+        </div>
+
+        <div class="gz-formato-card fade-in">
+          <img src="images/garza/formato-charlas.jpg" alt="Charlas Garza" class="gz-formato-img">
+          <div class="gz-formato-body">
+            <span class="gz-formato-tag">Formato entrevista</span>
+            <h3>Charlas Garza</h3>
+            <p>Conversaciones con expertos del sector que construyen autoridad de marca y abren el producto a nuevas audiencias.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Galería ── -->
+  <section class="gz-galeria">
+    <div class="container">
+      <p class="section-kicker"><span class="section-kicker-dot"></span>Estáticos y carruseles</p>
+      <h2>Contenido visual de producto.</h2>
+      <div class="gz-galeria-grid">
+        <div class="gz-gal-item gz-gal-item--tall">
+          <img src="images/garza/ugc-producto.jpg" alt="Producto lifestyle" loading="lazy">
+        </div>
+        <div class="gz-gal-item">
+          <img src="images/garza/lifestyle-solar.jpg" alt="Solar lifestyle" loading="lazy">
+        </div>
+        <div class="gz-gal-item">
+          <img src="images/garza/formato-lifestyle.jpg" alt="Terraza lifestyle" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── UGC ── -->
+  <section class="gz-ugc">
+    <div class="container">
+      <div class="gz-ugc-grid">
+
+        <div class="gz-ugc-left fade-in">
+          <p class="section-kicker" style="color:var(--lila);opacity:0.65;"><span class="section-kicker-dot" style="background:var(--lila);"></span>Estrategia UGC</p>
+          <h2>Contenido de<br>usuarios <em>reales</em>.</h2>
+          <p>Diseñamos una estrategia de UGC orgánico con 4-5 vídeos semanales. Perfiles variados, sin filtros de aspiracionalidad. El mensaje: los productos Garza son para cualquier persona.</p>
+          <p>Contenido auténtico que el algoritmo favorece y que construye confianza antes de la compra.</p>
+          <div class="gz-ugc-chips">
+            <span class="gz-chip">4–5 vídeos / semana</span>
+            <span class="gz-chip">Perfiles orgánicos</span>
+            <span class="gz-chip">Cualquier tipo de usuario</span>
+            <span class="gz-chip">TikTok Shop</span>
+          </div>
+        </div>
+
+        <div class="gz-ugc-right fade-in">
+          <img src="images/garza/ugc-producto.jpg" alt="UGC Garza" class="gz-ugc-img">
+          <div class="gz-ugc-badge">
+            <span>4–5</span>
+            vídeos UGC<br>por semana
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Tutoriales ── -->
+  <section class="gz-tutoriales">
+    <div class="container">
+      <p class="section-kicker"><span class="section-kicker-dot"></span>Vídeo tutoriales</p>
+      <h2>Instalación paso a paso.</h2>
+      <div class="gz-tut-grid">
+        <div class="gz-tut-item fade-in">
+          <div class="gz-tut-icon">☀️</div>
+          <h3>Solar</h3>
+          <p>Instalación de placas, cargadores y luces solares. El contenido más buscado del sector en 2025–2026.</p>
+        </div>
+        <div class="gz-tut-item fade-in">
+          <div class="gz-tut-icon">🌡️</div>
+          <h3>Termostatos</h3>
+          <p>Guías de instalación y configuración. Responde las dudas de compra antes de que lleguen al servicio técnico.</p>
+        </div>
+        <div class="gz-tut-item fade-in">
+          <div class="gz-tut-icon">🔍</div>
+          <h3>Detectores</h3>
+          <p>Tutoriales de uso y configuración de detectores de movimiento, humo y alarmas del hogar.</p>
+        </div>
+        <div class="gz-tut-item fade-in">
+          <div class="gz-tut-icon">💡</div>
+          <h3>Domótica</h3>
+          <p>Integración de productos en el hogar conectado. Contenido técnico adaptado a cualquier nivel de usuario.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="gz-cta">
+    <div class="gz-cta-inner">
+      <p class="section-kicker" style="justify-content:center;"><span class="section-kicker-dot"></span>¿Trabajamos juntos?</p>
+      <h2>¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
+      <p>Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
+      <a href="/#contacto" class="gz-cta-btn">Reservar llamada →</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top" style="grid-template-columns:2fr 1fr 1fr 1fr;">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="images/logo-crema-lila.svg" alt="Predicta Flow" height="36">
+          </a>
+          <p>Contenido estratégico basado en datos e IA.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="/#proceso">Cómo trabajamos</a></li>
+            <li><a href="/#para-quien">Para quién</a></li>
+            <li><a href="/#demo-preview">Dashboard</a></li>
+            <li><a href="/#diferencia">Por qué nosotros</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>Manifiesto</h4>
+          <ul>
+            <li><a href="/manifiesto.html">Nuestro manifiesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:judy@predictaflow.me">judy@predictaflow.me</a></li>
+            <li><a href="/#contacto" class="footer-cta-link">Hablemos →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Predicta Flow. Anticipamos la tendencia, creamos el impacto. &nbsp;·&nbsp; <a href="/privacidad.html" style="color:rgba(255,255,255,0.45);">Privacidad y cookies</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
