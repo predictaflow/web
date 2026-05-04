@@ -94,9 +94,9 @@ strong { font-weight: 600; }
 
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: var(--primary); color: #ffffff; }
-.btn-primary:hover { box-shadow: 0 8px 24px rgba(205,193,255,0.4); }
+.btn-primary:hover { box-shadow: 0 8px 24px rgba(94,61,240,0.35); }
 .btn-accent { background: var(--primary); color: #ffffff; }
-.btn-accent:hover { box-shadow: 0 8px 24px rgba(205,193,255,0.4); }
+.btn-accent:hover { box-shadow: 0 8px 24px rgba(94,61,240,0.35); }
 .btn-outline {
   background: transparent;
   color: var(--text);
@@ -765,8 +765,8 @@ strong { font-weight: 600; }
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 20px;
-  background: #f0eeff;
-  color: #6b5fad;
+  background: rgba(200,182,248,0.18);
+  color: var(--violeta);
 }
 
 /* Formats grid (paso 3) */
@@ -794,9 +794,9 @@ strong { font-weight: 600; }
   font-size: 20px;
 }
 
-.format-portada { background: #CDC1FF; }
-.format-carrusel { background: #FFCCEA; }
-.format-estatico { background: #BFECFF; }
+.format-portada { background: var(--lila); }
+.format-carrusel { background: var(--cielo); }
+.format-estatico { background: var(--crema); }
 
 .format-label {
   font-size: 11px;
@@ -821,7 +821,7 @@ strong { font-weight: 600; }
 
 .service-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(205,193,255,0.18);
+  box-shadow: 0 20px 48px rgba(94,61,240,0.14);
 }
 
 .service-card h3 {
@@ -839,7 +839,7 @@ strong { font-weight: 600; }
 /* ── Para quién ── */
 .pq-section {
   position: relative;
-  background: linear-gradient(160deg, #edeaff 0%, #CDC1FF 45%, #BFECFF 100%);
+  background: linear-gradient(160deg, #e8e2f8 0%, var(--lila) 45%, var(--cielo) 100%);
   padding: 100px 0;
   overflow: hidden;
 }
@@ -888,7 +888,7 @@ strong { font-weight: 600; }
 .pq-card:hover {
   background: rgba(255,255,255,0.88);
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(45,37,80,0.12);
+  box-shadow: 0 16px 40px rgba(26,21,48,0.12);
 }
 
 .pq-num {
@@ -910,7 +910,7 @@ strong { font-weight: 600; }
 
 .pq-card p {
   font-size: 14px;
-  color: rgba(45,37,80,0.65);
+  color: rgba(26,21,48,0.65);
   line-height: 1.75;
 }
 
@@ -1109,8 +1109,8 @@ strong { font-weight: 600; }
 .cta h2 em {
   font-family: 'Familjen Grotesk', sans-serif;
   font-style: italic;
-  color: #FFF6E3;
-  background: #2d2550;
+  color: var(--crema);
+  background: var(--tinta);
   display: inline-block;
   border-radius: 14px;
   padding: 2px 14px;
@@ -1175,11 +1175,11 @@ strong { font-weight: 600; }
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #4343FF;
+  border-color: var(--primary);
 }
 
 .cta-submit {
-  background: #4343FF;
+  background: var(--primary);
   color: #fff;
   font-weight: 700;
   padding: 14px 32px;
@@ -1189,7 +1189,7 @@ strong { font-weight: 600; }
 }
 
 .cta-submit:hover {
-  background: #3030dd;
+  background: #4c2fc0;
 }
 
 .cta-divider {
@@ -1202,8 +1202,8 @@ strong { font-weight: 600; }
   display: inline-block;
   margin-top: 12px;
   background: transparent;
-  border: 2px solid #4343FF;
-  color: #4343FF;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   font-weight: 700;
   padding: 12px 28px;
   text-decoration: none;
@@ -1212,7 +1212,7 @@ strong { font-weight: 600; }
 }
 
 .cta-calendly-btn:hover {
-  background: #4343FF;
+  background: var(--primary);
   color: #fff;
 }
 
@@ -1397,7 +1397,7 @@ strong { font-weight: 600; }
   bottom: 0;
   left: 0;
   right: 0;
-  background: #2d2550;
+  background: var(--bg-dark);
   color: #fff;
   padding: 16px 24px;
   display: flex;
@@ -1411,13 +1411,13 @@ strong { font-weight: 600; }
 }
 
 .cookie-banner p { margin: 0; color: rgba(255,255,255,0.85); }
-.cookie-banner a { color: #CDC2FF; }
+.cookie-banner a { color: var(--lila); }
 
 .cookie-actions { display: flex; gap: 10px; flex-shrink: 0; }
 
 .btn-cookie-accept {
-  background: #CDC2FF;
-  color: #2d2550;
+  background: var(--lila);
+  color: var(--bg-dark);
   border: none;
   padding: 8px 20px;
   border-radius: 20px;
@@ -1497,8 +1497,8 @@ strong { font-weight: 600; }
 /* ── Service Mockups ── */
 .svc-mockup {
   margin-top: 20px;
-  background: #f0eeff;
-  border: 1px solid rgba(205,193,255,0.15);
+  background: rgba(200,182,248,0.12);
+  border: 1px solid rgba(94,61,240,0.12);
   border-radius: 10px;
   padding: 14px 16px;
 }
@@ -1538,7 +1538,7 @@ strong { font-weight: 600; }
 .trend-bar-wrap {
   flex: 1;
   height: 5px;
-  background: rgba(205,193,255,0.15);
+  background: rgba(94,61,240,0.12);
   border-radius: 3px;
   overflow: hidden;
 }
