@@ -1597,11 +1597,24 @@ strong { font-weight: 600; }
 
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 48px;
   padding-bottom: 40px;
   border-bottom: 1px solid rgba(255,255,255,0.15);
 }
+
+.footer-cta-link {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--violeta);
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  transition: opacity 0.2s;
+}
+.footer-cta-link:hover { opacity: 0.8; }
 
 .footer-brand p {
   margin-top: 12px;
@@ -1725,7 +1738,8 @@ strong { font-weight: 600; }
   .diff-chart { gap: 20px; height: 180px; }
   .diff-bar { width: 44px; }
 
-  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
   .stat-number { font-size: 36px; }
 }
 
