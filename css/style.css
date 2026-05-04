@@ -1721,6 +1721,9 @@ strong { font-weight: 600; }
   .diff-grid { grid-template-columns: 1fr; gap: 40px; }
   .diff-comparison { grid-template-columns: 1fr; }
   .diff-intro { margin-bottom: 40px; }
+  .diff-visual { padding: 32px 20px; }
+  .diff-chart { gap: 20px; height: 180px; }
+  .diff-bar { width: 44px; }
 
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
   .stat-number { font-size: 36px; }
