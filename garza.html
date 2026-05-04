@@ -464,12 +464,18 @@
     /* ── CTA ── */
     .gz-cta { background: var(--crema); padding: 96px 0; }
     .gz-cta-inner {
-      max-width: 560px; margin: 0 auto; padding: 0 24px; text-align: center;
+      max-width: 640px; margin: 0 auto; padding: 0 24px; text-align: center;
     }
     .gz-cta-inner .section-kicker { justify-content: center; }
-    .gz-cta .gz-h2 { color: var(--tinta); margin-bottom: 20px; }
-    .gz-cta .gz-h2 em { color: var(--violeta); }
-    .gz-cta p {
+    .gz-cta-inner h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -0.03em;
+      color: var(--tinta);
+      margin-top: 4px;
+      margin-bottom: 24px;
+    }
+    .gz-cta-inner h2 em { color: var(--violeta); }
+    .gz-cta-inner > p {
       font-size: 17px; color: var(--text-muted);
       line-height: 1.7; margin-bottom: 36px;
     }
@@ -831,7 +837,7 @@
   <section class="gz-cta">
     <div class="gz-cta-inner">
       <p class="section-kicker fade-in" style="justify-content:center;"><span class="section-kicker-dot"></span>¿Trabajamos juntos?</p>
-      <h2 class="gz-h2 fade-in">¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
+      <h2 class="fade-in">¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
       <p class="fade-in">Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
       <a href="/#contacto" class="gz-cta-btn fade-in">Reservar llamada →</a>
     </div>
