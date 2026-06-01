@@ -27,11 +27,22 @@ En producción, el CSS (`css/style.css`) debe estar en sync con el JSON.
 
 ## Archivos clave
 
-| Archivo        | Descripción                           |
-|----------------|---------------------------------------|
-| `index.html`   | Landing page completa                 |
-| `css/style.css`| Estilos principales                   |
-| `images/`      | Logos, iconos, fondos, portfolio      |
+| Archivo          | Descripción                                                         |
+|------------------|---------------------------------------------------------------------|
+| `index.html`     | Landing page principal de Predicta Flow                             |
+| `garza.html`     | Caso de estudio Garza (referencia de estilo para páginas internas)  |
+| `prueba1.html`   | Borrador landing de servicios personales de Judy Moneva             |
+| `css/style.css`  | Sistema de diseño compartido por todas las páginas                  |
+| `images/`        | Logos, iconos, fondos, portfolio                                    |
+
+## Contexto arquitectónico — prueba1.html
+
+`prueba1.html` es el borrador de la sección de servicios de Judy dentro de un **colectivo** que está formando con Alejandro (datos/PIM) y Sergio (branding). La idea es que cada uno tenga su propia sección en una web conjunta futura.
+
+- **Estructura de la página**: 7 secciones — Hero, Qué hago (5 tipos de servicio: Orgánico / UGC / Influencer / IA / Paid), Cómo trabajo (3 fases: Detección → Estrategia → Ejecución), Metodología (heatmap contenido×audiencia), Caso Garza, La diferencia (tabla comparativa), CTA.
+- **Sistema de diseño**: usa `css/style.css` y las mismas tipografías y colores que el resto del sitio.
+- **Pendiente de decidir**: nombre y dominio del colectivo — la URL final no está cerrada.
+- `predictaflow.me` (index.html) se mantiene intacta y separada de este borrador.
 
 ## Reglas
 
