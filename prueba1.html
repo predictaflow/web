@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Judy Moneva — Contenido Digital · Predicta Flow</title>
+  <meta name="description" content="Creo contenido digital que el algoritmo quiere distribuir. Orgánico, UGC, Influencer, IA y Paid — siempre desde datos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style>
+
+    /* ── Hero ── */
+    .j-hero {
+      background: var(--tinta);
+      padding: 160px 0 100px;
+    }
+    .j-hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .j-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lila);
+      opacity: 0.6;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .j-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--lila);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .j-hero h1 {
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 800;
+      color: var(--crema);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 36px;
+    }
+    .j-hero h1 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: var(--lila);
+    }
+    .j-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .j-pill {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(200,182,248,0.2);
+      color: rgba(200,182,248,0.55);
+      background: rgba(200,182,248,0.05);
+    }
+    .j-pill.active {
+      background: var(--violeta);
+      border-color: var(--violeta);
+      color: white;
+    }
+    .j-hero-cta {
+      display: inline-block;
+      background: var(--violeta);
+      color: white;
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .j-hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(94,61,240,0.4);
+    }
+
+    /* ── Shared heading ── */
+    .j-h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+      margin-bottom: 52px;
+      line-height: 1.1;
+      color: var(--tinta);
+    }
+    .j-h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: #5E3DF0;
+    }
+
+    /* ── Qué hago ── */
+    .j-services {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+    .j-service-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      background: rgba(26,21,48,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .j-service-card {
+      background: var(--crema);
+      padding: 36px 28px;
+    }
+    .j-service-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: #5E3DF0;
+      opacity: 0.45;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .j-service-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--tinta);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .j-service-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Cómo trabajo ── */
+    .j-proceso {
+      background: var(--crema);
+      padding: 0 0 96px;
+    }
+    .j-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(26,21,48,0.07);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .j-card {
+      background: var(--crema);
+      padding: 40px 32px;
+    }
+    .j-card-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .j-card-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: #5E3DF0;
+      opacity: 0.5;
+      letter-spacing: 0.1em;
+    }
+    .j-card-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--tinta);
+      letter-spacing: -0.02em;
+    }
+    .j-card-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .j-rows { display: flex; flex-direction: column; }
+    .j-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(26,21,48,0.07);
+      gap: 12px;
+    }
+    .j-row:last-child { border-bottom: none; }
+    .j-row-label { font-size: 13px; color: var(--tinta); font-weight: 500; }
+    .j-row-meta {
+      font-size: 12px;
+      color: var(--violeta);
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .j-proceso-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 24px;
+      padding: 20px 28px;
+      background: var(--tinta);
+      border-radius: 12px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .j-proceso-footer-cycle {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(200,182,248,0.5);
+    }
+    .j-proceso-footer-cta {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--lila);
+    }
+
+    /* ── Heatmap metodología ── */
+    .j-heatmap {
+      background: white;
+      padding: 96px 0;
+    }
+    .j-heatmap-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 52px;
+    }
+    .j-heatmap-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .j-hm-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: separate;
+      border-spacing: 5px;
+    }
+    .j-hm-table th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .j-hm-table th:first-child { text-align: left; }
+    .j-hm-table td {
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .j-hm-table td.hm-label {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tinta);
+      background: rgba(26,21,48,0.05);
+      border-radius: 10px;
+      padding: 18px 20px;
+      white-space: nowrap;
+    }
+    .j-hm-table td.hm-label .hm-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .hm-low  { background: rgba(210,60,60,0.1); color: rgba(180,50,50,0.8); }
+    .hm-mid  { background: rgba(210,130,30,0.12); color: rgba(170,100,20,0.9); }
+    .hm-high { background: rgba(67,67,255,0.1); color: #5E3DF0; }
+    .hm-star { background: var(--violeta); color: #fff; font-weight: 800; box-shadow: 0 4px 16px rgba(67,67,255,0.25); }
+    .hm-star::after { content: ' ★'; font-size: 12px; }
+    .hm-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+    .hm-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+    .hm-legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .hm-legend-dot.low  { background: rgba(210,60,60,0.4); }
+    .hm-legend-dot.mid  { background: rgba(210,130,30,0.5); }
+    .hm-legend-dot.high { background: rgba(67,67,255,0.3); }
+    .hm-legend-dot.star { background: var(--violeta); }
+
+    /* ── Caso Garza ── */
+    .j-caso {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+    .j-caso-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .j-caso-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(26,21,48,0.1);
+    }
+    .j-caso-meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .j-caso-meta-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+    .j-caso-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tinta);
+    }
+    .j-caso-right { padding-top: 8px; }
+    .j-caso-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+    .j-caso-link {
+      display: inline-block;
+      margin-top: 32px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--violeta);
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(94,61,240,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .j-caso-link:hover { border-color: var(--violeta); }
+    .j-caso-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .j-caso-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(26,21,48,0.14);
+      transition: transform 0.3s ease;
+    }
+    .j-caso-card:hover { transform: translateY(-6px); }
+    .j-caso-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .j-caso-card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 20px;
+      background: linear-gradient(to top, rgba(26,21,48,0.85) 0%, transparent 100%);
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(244,241,236,0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── La diferencia ── */
+    .j-diff {
+      background: white;
+      padding: 96px 0;
+    }
+    .j-diff-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: rgba(26,21,48,0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 860px;
+    }
+    .j-diff-col { padding: 40px 36px; }
+    .j-diff-col.bad { background: var(--crema); }
+    .j-diff-col.good { background: var(--tinta); }
+    .j-diff-col-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .j-diff-col-title.bad  { color: var(--text-muted); }
+    .j-diff-col-title.good { color: var(--lila); }
+    .j-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .j-check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .j-check-item.no  { color: var(--text-muted); }
+    .j-check-item.yes { color: var(--crema); }
+    .j-check-icon {
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 16px;
+    }
+    .j-check-item.no  .j-check-icon { color: rgba(210,60,60,0.6); }
+    .j-check-item.yes .j-check-icon { color: var(--lila); }
+
+    /* ── CTA ── */
+    .j-cta {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+    .j-cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .j-cta-inner h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--tinta);
+      margin-top: 4px;
+      margin-bottom: 20px;
+      line-height: 1.05;
+    }
+    .j-cta-inner h2 em {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      color: #5E3DF0;
+    }
+    .j-cta-inner p {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .j-cta-btn {
+      display: inline-block;
+      background: var(--violeta);
+      color: white;
+      font-family: 'Familjen Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 36px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .j-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(94,61,240,0.35);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1100px) {
+      .j-service-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .j-caso-intro { grid-template-columns: 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .j-hero { padding: 120px 0 72px; }
+      .j-service-grid { grid-template-columns: 1fr 1fr; }
+      .j-cards { grid-template-columns: 1fr; }
+      .j-caso-grid { grid-template-columns: 1fr 1fr; }
+      .j-diff-comparison { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .j-service-grid { grid-template-columns: 1fr; }
+      .j-caso-grid { grid-template-columns: 1fr; }
+      .j-caso-grid .j-caso-card:last-child { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <a href="/" class="nav-logo">
+        <img src="images/logo-crema-lila.svg" class="logo-hero" alt="Predicta Flow" height="68">
+        <img src="images/logo-tinta.svg" class="logo-scrolled" alt="Predicta Flow" height="68">
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#que-hago">Qué hago</a></li>
+        <li><a href="#proceso">Cómo trabajo</a></li>
+        <li><a href="#metodologia">Metodología</a></li>
+        <li><a href="#caso-garza">Caso real</a></li>
+        <li><a href="#diferencia">Por qué yo</a></li>
+        <li><a href="/#contacto" class="btn btn-primary btn-sm nav-cta">Hablemos</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="j-hero">
+    <div class="j-hero-inner">
+      <div class="j-eyebrow">Creación de Contenido Digital · Predicta Flow</div>
+      <h1>Creo contenido que el<br><em>algoritmo</em> quiere distribuir.</h1>
+      <div class="j-pills">
+        <span class="j-pill active">Orgánico</span>
+        <span class="j-pill active">UGC</span>
+        <span class="j-pill active">Influencer</span>
+        <span class="j-pill active">IA</span>
+        <span class="j-pill active">Paid</span>
+      </div>
+      <a href="/#contacto" class="j-hero-cta">Hablemos →</a>
+    </div>
+  </section>
+
+  <!-- ── Qué hago ── -->
+  <section class="j-services section" id="que-hago">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Servicios</p>
+      <h2 class="j-h2 fade-in">Lo que hago,<br>en <em>cinco formatos</em>.</h2>
+      <div class="j-service-grid">
+
+        <div class="j-service-card fade-in">
+          <div class="j-service-num">01</div>
+          <h3>Orgánico</h3>
+          <p>Estrategia y producción nativa para TikTok, Reels e Instagram. Tendencias detectadas antes de que exploten.</p>
+        </div>
+
+        <div class="j-service-card fade-in">
+          <div class="j-service-num">02</div>
+          <h3>UGC</h3>
+          <p>Contenido de usuario real para marcas. Auténtico, escalable y diseñado para convertir en cada plataforma.</p>
+        </div>
+
+        <div class="j-service-card fade-in">
+          <div class="j-service-num">03</div>
+          <h3>Influencer</h3>
+          <p>Selección, brief y coordinación de perfiles afines. El mensaje correcto, a la audiencia correcta.</p>
+        </div>
+
+        <div class="j-service-card fade-in">
+          <div class="j-service-num">04</div>
+          <h3>IA</h3>
+          <p>Producción acelerada con inteligencia artificial. Más volumen sin perder la voz de marca del cliente.</p>
+        </div>
+
+        <div class="j-service-card fade-in">
+          <div class="j-service-num">05</div>
+          <h3>Paid</h3>
+          <p>Creatividades para campañas de pago. Assets testeados antes de invertir un euro de presupuesto.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Cómo trabajo ── -->
+  <section class="j-proceso" id="proceso">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Metodología · 3 fases</p>
+      <h2 class="j-h2 fade-in">Cómo trabajo <em>contigo</em>.</h2>
+
+      <div class="j-cards">
+
+        <div class="j-card fade-in">
+          <div class="j-card-header">
+            <span class="j-card-num">01</span>
+            <h3 class="j-card-title">Detección</h3>
+          </div>
+          <p class="j-card-sub">Social Listening + IA</p>
+          <div class="j-rows">
+            <div class="j-row">
+              <span class="j-row-label">Análisis predictivo propio</span>
+              <span class="j-row-meta">500+ fuentes</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Alertas de tendencia</span>
+              <span class="j-row-meta">24h de anticipación</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Briefing semanal</span>
+              <span class="j-row-meta">listo el lunes</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Análisis de competencia</span>
+              <span class="j-row-meta">incluido</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="j-card fade-in">
+          <div class="j-card-header">
+            <span class="j-card-num">02</span>
+            <h3 class="j-card-title">Estrategia</h3>
+          </div>
+          <p class="j-card-sub">Contenido con propósito</p>
+          <div class="j-rows">
+            <div class="j-row">
+              <span class="j-row-label">Guión y copy</span>
+              <span class="j-row-meta">hook optimizado</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Formato por plataforma</span>
+              <span class="j-row-meta">TikTok · Reels · LinkedIn</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">A/B testing de hooks</span>
+              <span class="j-row-meta">probado antes de publicar</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Retención predicha</span>
+              <span class="j-row-meta">datos antes del lanzamiento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="j-card fade-in">
+          <div class="j-card-header">
+            <span class="j-card-num">03</span>
+            <h3 class="j-card-title">Ejecución</h3>
+          </div>
+          <p class="j-card-sub">De la pieza a la publicación</p>
+          <div class="j-rows">
+            <div class="j-row">
+              <span class="j-row-label">Creatividades</span>
+              <span class="j-row-meta">reels · carruseles · estáticos</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Calendar de publicación</span>
+              <span class="j-row-meta">ventanas óptimas por datos</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Community management</span>
+              <span class="j-row-meta">comunidad + algoritmo</span>
+            </div>
+            <div class="j-row">
+              <span class="j-row-label">Informe mensual</span>
+              <span class="j-row-meta">qué funcionó y por qué</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="j-proceso-footer">
+        <span class="j-proceso-footer-cycle">Ciclo completo · 7 días · Detección → Publicación</span>
+        <span class="j-proceso-footer-cta">→ tu marca, siempre primera.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Metodología: heatmap genérico ── -->
+  <section class="j-heatmap" id="metodologia">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Antes de crear</p>
+      <h2 class="j-h2 fade-in">Primero el estudio.<br>Luego el <em>contenido</em>.</h2>
+      <p class="j-heatmap-desc fade-in">No empezamos mirando qué publica la competencia ni qué está trending en este momento. Mapeamos tu audiencia contra los tipos de contenido para identificar dónde está la oportunidad real — antes de producir nada.</p>
+      <div class="j-heatmap-wrap fade-in">
+        <table class="j-hm-table">
+          <thead>
+            <tr>
+              <th>Tipo de contenido</th>
+              <th>Audiencia fría</th>
+              <th>Seguidores activos</th>
+              <th>Con intención de compra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hm-label">Tendencia / Viral<span class="hm-sub">Hooks de alta difusión orgánica</span></td>
+              <td class="hm-star">Máximo</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-low">Bajo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">UGC / Testimonial<span class="hm-sub">Personas reales con el producto</span></td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-high">Alto</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Educativo / Tutorial<span class="hm-sub">Responde búsquedas del sector</span></td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Producto / Review<span class="hm-sub">Demostración y argumentario</span></td>
+              <td class="hm-low">Bajo</td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Entretenimiento<span class="hm-sub">Branded content, humor, cultura</span></td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-low">Bajo</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hm-legend">
+          <div class="hm-legend-item"><div class="hm-legend-dot low"></div>Baja oportunidad</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot mid"></div>Media</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot high"></div>Alta</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot star"></div>Sweet spot ★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Caso Garza ── -->
+  <section class="j-caso" id="caso-garza">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Caso real</p>
+      <div class="j-caso-intro">
+        <div>
+          <h2 class="j-h2 fade-in" style="margin-bottom: 0;">Garza: de cero<br>a <em>comunidad</em>.</h2>
+          <div class="j-caso-meta fade-in">
+            <div class="j-caso-meta-item">
+              <span class="j-caso-meta-label">Cliente</span>
+              <span class="j-caso-meta-value">Garza Spain</span>
+            </div>
+            <div class="j-caso-meta-item">
+              <span class="j-caso-meta-label">Sector</span>
+              <span class="j-caso-meta-value">Iluminación · Domótica · Solar</span>
+            </div>
+            <div class="j-caso-meta-item">
+              <span class="j-caso-meta-label">Plataformas</span>
+              <span class="j-caso-meta-value">TikTok · Instagram · YouTube</span>
+            </div>
+            <div class="j-caso-meta-item">
+              <span class="j-caso-meta-label">Inicio</span>
+              <span class="j-caso-meta-value">Jul 2025</span>
+            </div>
+          </div>
+        </div>
+        <div class="j-caso-right fade-in">
+          <p class="j-caso-desc">Garza llegó sin presencia en redes. Empezamos mapeando qué contenido conectaba mejor con cada segmento de su audiencia — consumidor general, interesado en ahorro energético y early adopter de domótica. Con ese mapa definimos la estrategia: orgánico, UGC con perfiles reales y tutoriales YouTube para búsquedas del sector.</p>
+          <a href="/garza.html" class="j-caso-link">Ver el caso completo →</a>
+        </div>
+      </div>
+
+      <div class="j-caso-grid">
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/formato-divulgativo.jpg" alt="Contenido educativo Garza" loading="lazy">
+          <div class="j-caso-card-label">Orgánico · Educativo</div>
+        </div>
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/ugc-creator-mami.jpg" alt="UGC @una_mami_del_monton" loading="lazy">
+          <div class="j-caso-card-label">UGC · 22K views</div>
+        </div>
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/ugc-creator-srtadeco.jpg" alt="UGC @srtadeco" loading="lazy">
+          <div class="j-caso-card-label">UGC · 12K views</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── La diferencia ── -->
+  <section class="j-diff section" id="diferencia">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Por qué yo</p>
+      <h2 class="j-h2 fade-in">La diferencia es <em>predecir</em>,<br>no adivinar.</h2>
+      <div class="j-diff-comparison fade-in">
+        <div class="j-diff-col bad">
+          <div class="j-diff-col-title bad">Social media tradicional</div>
+          <ul class="j-check-list">
+            <li class="j-check-item no"><span class="j-check-icon">×</span>Contenido basado en brainstorming</li>
+            <li class="j-check-item no"><span class="j-check-icon">×</span>Publican cuando "toca" o cuando hay tiempo</li>
+            <li class="j-check-item no"><span class="j-check-icon">×</span>Miden los resultados después de publicar</li>
+            <li class="j-check-item no"><span class="j-check-icon">×</span>Reaccionan a tendencias que ya explotaron</li>
+            <li class="j-check-item no"><span class="j-check-icon">×</span>Un formato para todas las plataformas</li>
+          </ul>
+        </div>
+        <div class="j-diff-col good">
+          <div class="j-diff-col-title good">Judy Moneva</div>
+          <ul class="j-check-list">
+            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Contenido basado en datos reales de audiencia</li>
+            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Publico cuando el dato dice que hay que publicar</li>
+            <li class="j-check-item yes"><span class="j-check-icon">✓</span>El resultado se predice antes del lanzamiento</li>
+            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Anticipo tendencias con 24h de margen</li>
+            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Formato nativo por plataforma, siempre</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="j-cta">
+    <div class="j-cta-inner">
+      <p class="section-kicker fade-in" style="justify-content:center;"><span class="section-kicker-dot"></span>Hablemos</p>
+      <h2 class="fade-in">¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
+      <p class="fade-in">Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
+      <a href="/#contacto" class="j-cta-btn fade-in">Reservar llamada →</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="images/logo-crema-lila.svg" alt="Predicta Flow" height="36">
+          </a>
+          <p>Contenido estratégico basado en datos e IA.</p>
+        </div>
+        <div class="footer-nav">
+          <h4>Esta página</h4>
+          <ul>
+            <li><a href="#que-hago">Qué hago</a></li>
+            <li><a href="#proceso">Cómo trabajo</a></li>
+            <li><a href="#metodologia">Metodología</a></li>
+            <li><a href="#diferencia">Por qué yo</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>Casos</h4>
+          <ul>
+            <li><a href="/garza.html">Garza</a></li>
+          </ul>
+          <h4 style="margin-top:28px;">Predicta Flow</h4>
+          <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/manifiesto.html">Manifiesto</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:judy@predictaflow.me">judy@predictaflow.me</a></li>
+            <li><a href="/#contacto" class="footer-cta-link" style="display:inline-block;margin-top:8px;background:var(--violeta);color:#fff;font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;text-decoration:none;">Hablemos →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Predicta Flow. Anticipamos la tendencia, creamos el impacto. &nbsp;·&nbsp; <a href="/privacidad.html" style="color:rgba(255,255,255,0.45);">Privacidad</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const navToggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navLinks.classList.remove('active'));
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
