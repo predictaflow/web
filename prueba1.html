@@ -60,7 +60,7 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 52px;
+      margin-bottom: 36px;
     }
     .j-pill {
       font-size: 12px;
@@ -76,6 +76,13 @@
       background: var(--violeta);
       border-color: var(--violeta);
       color: white;
+    }
+    .j-hero-sub {
+      font-size: 17px;
+      color: rgba(200,182,248,0.65);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: 48px;
     }
     .j-hero-cta {
       display: inline-block;
@@ -109,42 +116,209 @@
       color: #5E3DF0;
     }
 
-    /* ── Qué hago ── */
-    .j-services {
+    /* ── El problema ── */
+    .j-problema {
+      background: white;
+      padding: 96px 0;
+    }
+    .j-problema-desc {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    /* ── Síntomas ── */
+    .j-sintomas {
       background: var(--crema);
       padding: 96px 0;
     }
-    .j-service-grid {
+    .j-sintomas-list {
+      list-style: none;
+      max-width: 700px;
+    }
+    .j-sintomas-list li {
+      font-size: 16px;
+      color: var(--tinta);
+      line-height: 1.5;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(26,21,48,0.08);
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .j-sintomas-list li:last-child { border-bottom: none; }
+    .j-sintomas-dot {
+      color: var(--violeta);
+      font-weight: 800;
+      font-size: 22px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    /* ── Lo que hacemos ── */
+    .j-hace {
+      background: var(--crema);
+      padding: 0 0 96px;
+    }
+    .j-hace-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2px;
       background: rgba(26,21,48,0.08);
       border-radius: 16px;
       overflow: hidden;
     }
-    .j-service-card {
+    .j-hace-item {
       background: var(--crema);
-      padding: 36px 28px;
+      padding: 40px 36px;
     }
-    .j-service-num {
+    .j-hace-num {
       font-size: 10px;
       font-weight: 700;
       color: #5E3DF0;
-      opacity: 0.45;
+      opacity: 0.5;
       letter-spacing: 0.1em;
-      margin-bottom: 16px;
+      display: block;
+      margin-bottom: 14px;
     }
-    .j-service-card h3 {
-      font-size: 18px;
+    .j-hace-item h3 {
+      font-size: 20px;
       font-weight: 700;
       color: var(--tinta);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
-    .j-service-card p {
-      font-size: 13px;
+    .j-hace-item p {
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
+    }
+
+    /* ── Heatmap metodología ── */
+    .j-heatmap {
+      background: white;
+      padding: 96px 0;
+    }
+    .j-heatmap-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: 52px;
+    }
+    .j-heatmap-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .j-hm-table {
+      width: 100%;
+      min-width: 620px;
+      border-collapse: separate;
+      border-spacing: 5px;
+    }
+    .j-hm-table th {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .j-hm-table th:first-child { text-align: left; }
+    .j-hm-table td {
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .j-hm-table td.hm-label {
+      text-align: left;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tinta);
+      background: rgba(26,21,48,0.05);
+      border-radius: 10px;
+      padding: 18px 20px;
+      white-space: nowrap;
+    }
+    .j-hm-table td.hm-label .hm-sub {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .hm-low  { background: rgba(210,60,60,0.1); color: rgba(180,50,50,0.8); }
+    .hm-mid  { background: rgba(210,130,30,0.12); color: rgba(170,100,20,0.9); }
+    .hm-high { background: rgba(67,67,255,0.1); color: #5E3DF0; }
+    .hm-star { background: var(--violeta); color: #fff; font-weight: 800; box-shadow: 0 4px 16px rgba(67,67,255,0.25); }
+    .hm-star::after { content: ' ★'; font-size: 12px; }
+    .hm-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+    .hm-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
+    .hm-legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+    .hm-legend-dot.low  { background: rgba(210,60,60,0.4); }
+    .hm-legend-dot.mid  { background: rgba(210,130,30,0.5); }
+    .hm-legend-dot.high { background: rgba(67,67,255,0.3); }
+    .hm-legend-dot.star { background: var(--violeta); }
+
+    /* ── En qué nos apoyamos ── */
+    .j-track {
+      background: var(--crema);
+      padding: 96px 0;
+    }
+    .j-track-desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+    .j-caso-link {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--violeta);
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(94,61,240,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+      margin-bottom: 60px;
+    }
+    .j-caso-link:hover { border-color: var(--violeta); }
+    .j-caso-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .j-caso-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(26,21,48,0.14);
+      transition: transform 0.3s ease;
+    }
+    .j-caso-card:hover { transform: translateY(-6px); }
+    .j-caso-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .j-caso-card-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 40px 20px 20px;
+      background: linear-gradient(to top, rgba(26,21,48,0.85) 0%, transparent 100%);
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(244,241,236,0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     /* ── Cómo trabajo ── */
@@ -230,205 +404,6 @@
       color: var(--lila);
     }
 
-    /* ── Heatmap metodología ── */
-    .j-heatmap {
-      background: white;
-      padding: 96px 0;
-    }
-    .j-heatmap-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 560px;
-      line-height: 1.65;
-      margin-bottom: 52px;
-    }
-    .j-heatmap-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .j-hm-table {
-      width: 100%;
-      min-width: 620px;
-      border-collapse: separate;
-      border-spacing: 5px;
-    }
-    .j-hm-table th {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 10px 18px;
-      color: var(--text-muted);
-      text-align: center;
-    }
-    .j-hm-table th:first-child { text-align: left; }
-    .j-hm-table td {
-      padding: 18px 20px;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 600;
-      vertical-align: middle;
-      text-align: center;
-    }
-    .j-hm-table td.hm-label {
-      text-align: left;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--tinta);
-      background: rgba(26,21,48,0.05);
-      border-radius: 10px;
-      padding: 18px 20px;
-      white-space: nowrap;
-    }
-    .j-hm-table td.hm-label .hm-sub {
-      display: block;
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-top: 3px;
-    }
-    .hm-low  { background: rgba(210,60,60,0.1); color: rgba(180,50,50,0.8); }
-    .hm-mid  { background: rgba(210,130,30,0.12); color: rgba(170,100,20,0.9); }
-    .hm-high { background: rgba(67,67,255,0.1); color: #5E3DF0; }
-    .hm-star { background: var(--violeta); color: #fff; font-weight: 800; box-shadow: 0 4px 16px rgba(67,67,255,0.25); }
-    .hm-star::after { content: ' ★'; font-size: 12px; }
-    .hm-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
-    .hm-legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--text-muted); }
-    .hm-legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-    .hm-legend-dot.low  { background: rgba(210,60,60,0.4); }
-    .hm-legend-dot.mid  { background: rgba(210,130,30,0.5); }
-    .hm-legend-dot.high { background: rgba(67,67,255,0.3); }
-    .hm-legend-dot.star { background: var(--violeta); }
-
-    /* ── Caso Garza ── */
-    .j-caso {
-      background: var(--crema);
-      padding: 96px 0;
-    }
-    .j-caso-intro {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-      margin-bottom: 60px;
-    }
-    .j-caso-meta {
-      display: flex;
-      gap: 32px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-      padding-top: 28px;
-      border-top: 1px solid rgba(26,21,48,0.1);
-    }
-    .j-caso-meta-item { display: flex; flex-direction: column; gap: 4px; }
-    .j-caso-meta-label {
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-    }
-    .j-caso-meta-value {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--tinta);
-    }
-    .j-caso-right { padding-top: 8px; }
-    .j-caso-desc {
-      font-size: 16px;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-    .j-caso-link {
-      display: inline-block;
-      margin-top: 32px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--violeta);
-      text-decoration: none;
-      border-bottom: 1.5px solid rgba(94,61,240,0.3);
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .j-caso-link:hover { border-color: var(--violeta); }
-    .j-caso-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .j-caso-card {
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 8px 32px rgba(26,21,48,0.14);
-      transition: transform 0.3s ease;
-    }
-    .j-caso-card:hover { transform: translateY(-6px); }
-    .j-caso-card img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-    .j-caso-card-label {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 40px 20px 20px;
-      background: linear-gradient(to top, rgba(26,21,48,0.85) 0%, transparent 100%);
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(244,241,236,0.7);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    /* ── La diferencia ── */
-    .j-diff {
-      background: white;
-      padding: 96px 0;
-    }
-    .j-diff-comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      background: rgba(26,21,48,0.08);
-      border-radius: 16px;
-      overflow: hidden;
-      max-width: 860px;
-    }
-    .j-diff-col { padding: 40px 36px; }
-    .j-diff-col.bad { background: var(--crema); }
-    .j-diff-col.good { background: var(--tinta); }
-    .j-diff-col-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-    }
-    .j-diff-col-title.bad  { color: var(--text-muted); }
-    .j-diff-col-title.good { color: var(--lila); }
-    .j-check-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-    .j-check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .j-check-item.no  { color: var(--text-muted); }
-    .j-check-item.yes { color: var(--crema); }
-    .j-check-icon {
-      font-size: 13px;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 2px;
-      width: 16px;
-    }
-    .j-check-item.no  .j-check-icon { color: rgba(210,60,60,0.6); }
-    .j-check-item.yes .j-check-icon { color: var(--lila); }
-
     /* ── CTA ── */
     .j-cta {
       background: var(--crema);
@@ -478,21 +453,15 @@
     }
 
     /* ── Responsive ── */
-    @media (max-width: 1100px) {
-      .j-service-grid { grid-template-columns: repeat(3, 1fr); }
-    }
     @media (max-width: 900px) {
-      .j-caso-intro { grid-template-columns: 1fr; gap: 32px; }
+      .j-hace-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
       .j-hero { padding: 120px 0 72px; }
-      .j-service-grid { grid-template-columns: 1fr 1fr; }
       .j-cards { grid-template-columns: 1fr; }
       .j-caso-grid { grid-template-columns: 1fr 1fr; }
-      .j-diff-comparison { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
-      .j-service-grid { grid-template-columns: 1fr; }
       .j-caso-grid { grid-template-columns: 1fr; }
       .j-caso-grid .j-caso-card:last-child { display: none; }
     }
@@ -509,11 +478,10 @@
         <img src="images/logo-tinta.svg" class="logo-scrolled" alt="Predicta Flow" height="68">
       </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#que-hago">Qué hago</a></li>
-        <li><a href="#proceso">Cómo trabajo</a></li>
+        <li><a href="#que-hago">Lo que hago</a></li>
         <li><a href="#metodologia">Metodología</a></li>
-        <li><a href="#caso-garza">Caso real</a></li>
-        <li><a href="#diferencia">Por qué yo</a></li>
+        <li><a href="#track-record">Caso real</a></li>
+        <li><a href="#proceso">Cómo trabajo</a></li>
         <li><a href="/#contacto" class="btn btn-primary btn-sm nav-cta">Hablemos</a></li>
       </ul>
       <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
@@ -522,11 +490,11 @@
     </div>
   </nav>
 
-  <!-- ── Hero ── -->
+  <!-- ── 1. Hero ── -->
   <section class="j-hero">
     <div class="j-hero-inner">
       <div class="j-eyebrow">Creación de Contenido Digital · Predicta Flow</div>
-      <h1>Creo contenido que el<br><em>algoritmo</em> quiere distribuir.</h1>
+      <h1>Creo el contenido que tu audiencia<br>quiere ver, con los <em>datos</em> primero.</h1>
       <div class="j-pills">
         <span class="j-pill active">Orgánico</span>
         <span class="j-pill active">UGC</span>
@@ -534,53 +502,155 @@
         <span class="j-pill active">IA</span>
         <span class="j-pill active">Paid</span>
       </div>
+      <p class="j-hero-sub fade-in">Antes de producir nada, mapeamos qué tipo de contenido conecta con cada segmento de tu audiencia. No adivinamos ni copiamos a la competencia: sabemos dónde está la oportunidad real y construimos desde ahí.</p>
       <a href="/#contacto" class="j-hero-cta">Hablemos →</a>
     </div>
   </section>
 
-  <!-- ── Qué hago ── -->
-  <section class="j-services section" id="que-hago">
+  <!-- ── 2. El problema ── -->
+  <section class="j-problema section" id="problema">
     <div class="container">
-      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Servicios</p>
-      <h2 class="j-h2 fade-in">Lo que hago,<br>en <em>cinco formatos</em>.</h2>
-      <div class="j-service-grid">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>El problema</p>
+      <h2 class="j-h2 fade-in">Publicas contenido.<br>Los resultados no <em>llegan</em>.</h2>
+      <p class="j-problema-desc fade-in">Publicas contenido, inviertes tiempo y energía, y los resultados no llegan. El problema casi siempre es el mismo: se produce sin saber qué quiere ver tu audiencia ni en qué formato.</p>
+    </div>
+  </section>
 
-        <div class="j-service-card fade-in">
-          <div class="j-service-num">01</div>
-          <h3>Orgánico</h3>
-          <p>Estrategia y producción nativa para TikTok, Reels e Instagram. Tendencias detectadas antes de que exploten.</p>
+  <!-- ── 3. Síntomas ── -->
+  <section class="j-sintomas section" id="sintomas">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>¿Te pasa esto?</p>
+      <h2 class="j-h2 fade-in">Señales de que algo<br>no está <em>funcionando</em>.</h2>
+      <ul class="j-sintomas-list fade-in">
+        <li><span class="j-sintomas-dot">·</span>Publicas con regularidad pero el alcance y el engagement se estancan.</li>
+        <li><span class="j-sintomas-dot">·</span>Copias lo que hace la competencia sin saber si esos formatos funcionan en tu sector.</li>
+        <li><span class="j-sintomas-dot">·</span>No tienes criterio claro para decidir si invertir en vídeo orgánico, UGC o contenido educativo.</li>
+        <li><span class="j-sintomas-dot">·</span>Cada mes empiezas la planificación de contenido desde cero.</li>
+        <li><span class="j-sintomas-dot">·</span>Tienes presupuesto de producción pero no sabes cómo distribuirlo entre formatos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── 4. Lo que hacemos ── -->
+  <section class="j-hace section" id="que-hago">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Lo que hacemos</p>
+      <h2 class="j-h2 fade-in">Cómo lo <em>resolvemos</em>.</h2>
+      <div class="j-hace-grid">
+
+        <div class="j-hace-item fade-in">
+          <span class="j-hace-num">01</span>
+          <h3>Mapeamos tu audiencia</h3>
+          <p>Cruzamos los segmentos de tu audiencia (fría, activa, con intención de compra) con los tipos de contenido para encontrar dónde está la oportunidad real, antes de producir nada.</p>
         </div>
 
-        <div class="j-service-card fade-in">
-          <div class="j-service-num">02</div>
-          <h3>UGC</h3>
-          <p>Contenido de usuario real para marcas. Auténtico, escalable y diseñado para convertir en cada plataforma.</p>
+        <div class="j-hace-item fade-in">
+          <span class="j-hace-num">02</span>
+          <h3>Definimos la mezcla de formatos</h3>
+          <p>Orgánico, UGC, educativo, viral o producto, según el objetivo de negocio y el momento de la audiencia.</p>
         </div>
 
-        <div class="j-service-card fade-in">
-          <div class="j-service-num">03</div>
-          <h3>Influencer</h3>
-          <p>Selección, brief y coordinación de perfiles afines. El mensaje correcto, a la audiencia correcta.</p>
+        <div class="j-hace-item fade-in">
+          <span class="j-hace-num">03</span>
+          <h3>Producimos el contenido</h3>
+          <p>Coordinamos o producimos las piezas con los formatos y mensajes definidos en el mapa. Cada pieza tiene un propósito.</p>
         </div>
 
-        <div class="j-service-card fade-in">
-          <div class="j-service-num">04</div>
-          <h3>IA</h3>
-          <p>Producción acelerada con inteligencia artificial. Más volumen sin perder la voz de marca del cliente.</p>
-        </div>
-
-        <div class="j-service-card fade-in">
-          <div class="j-service-num">05</div>
-          <h3>Paid</h3>
-          <p>Creatividades para campañas de pago. Assets testeados antes de invertir un euro de presupuesto.</p>
+        <div class="j-hace-item fade-in">
+          <span class="j-hace-num">04</span>
+          <h3>Medimos y ajustamos</h3>
+          <p>Revisamos los resultados con datos reales y ajustamos la estrategia. Sin intuición, sin esperar a que algo falle.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- ── Cómo trabajo ── -->
-  <section class="j-proceso" id="proceso">
+  <!-- ── Heatmap (visual del punto 01) ── -->
+  <section class="j-heatmap" id="metodologia">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Antes de crear</p>
+      <h2 class="j-h2 fade-in">Primero el estudio.<br>Luego el <em>contenido</em>.</h2>
+      <p class="j-heatmap-desc fade-in">No empezamos mirando qué publica la competencia ni qué está trending en este momento. Mapeamos tu audiencia contra los tipos de contenido para identificar dónde está la oportunidad real, antes de producir nada.</p>
+      <div class="j-heatmap-wrap fade-in">
+        <table class="j-hm-table">
+          <thead>
+            <tr>
+              <th>Tipo de contenido</th>
+              <th>Audiencia fría</th>
+              <th>Seguidores activos</th>
+              <th>Con intención de compra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hm-label">Tendencia / Viral<span class="hm-sub">Hooks de alta difusión orgánica</span></td>
+              <td class="hm-star">Máximo</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-low">Bajo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">UGC / Testimonial<span class="hm-sub">Personas reales con el producto</span></td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-high">Alto</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Educativo / Tutorial<span class="hm-sub">Responde búsquedas del sector</span></td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Producto / Review<span class="hm-sub">Demostración y argumentario</span></td>
+              <td class="hm-low">Bajo</td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-star">Máximo</td>
+            </tr>
+            <tr>
+              <td class="hm-label">Entretenimiento<span class="hm-sub">Branded content, humor, cultura</span></td>
+              <td class="hm-high">Alto</td>
+              <td class="hm-mid">Medio</td>
+              <td class="hm-low">Bajo</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="hm-legend">
+          <div class="hm-legend-item"><div class="hm-legend-dot low"></div>Baja oportunidad</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot mid"></div>Media</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot high"></div>Alta</div>
+          <div class="hm-legend-item"><div class="hm-legend-dot star"></div>Sweet spot ★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5. En qué nos apoyamos ── -->
+  <section class="j-track section" id="track-record">
+    <div class="container">
+      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>En qué nos apoyamos</p>
+      <h2 class="j-h2 fade-in">Más de 10 años<br>creando <em>contenido</em>.</h2>
+      <p class="j-track-desc fade-in">El trabajo habla solo. Puedes ver cómo lo aplicamos en Garza Spain, una marca de iluminación y domótica a la que acompañamos desde cero en TikTok, Instagram y YouTube.</p>
+      <a href="/garza.html" class="j-caso-link fade-in">Ver el caso completo →</a>
+      <div class="j-caso-grid">
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/formato-divulgativo.jpg" alt="Contenido educativo Garza" loading="lazy">
+          <div class="j-caso-card-label">Orgánico · Educativo</div>
+        </div>
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/ugc-creator-mami.jpg" alt="UGC @una_mami_del_monton" loading="lazy">
+          <div class="j-caso-card-label">UGC · 22K views</div>
+        </div>
+        <div class="j-caso-card fade-in">
+          <img src="images/garza/ugc-creator-srtadeco.jpg" alt="UGC @srtadeco" loading="lazy">
+          <div class="j-caso-card-label">UGC · 12K views</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. Cómo trabajo contigo ── -->
+  <section class="j-proceso section" id="proceso">
     <div class="container">
       <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Metodología · 3 fases</p>
       <h2 class="j-h2 fade-in">Cómo trabajo <em>contigo</em>.</h2>
@@ -674,151 +744,13 @@
     </div>
   </section>
 
-  <!-- ── Metodología: heatmap genérico ── -->
-  <section class="j-heatmap" id="metodologia">
-    <div class="container">
-      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Antes de crear</p>
-      <h2 class="j-h2 fade-in">Primero el estudio.<br>Luego el <em>contenido</em>.</h2>
-      <p class="j-heatmap-desc fade-in">No empezamos mirando qué publica la competencia ni qué está trending en este momento. Mapeamos tu audiencia contra los tipos de contenido para identificar dónde está la oportunidad real — antes de producir nada.</p>
-      <div class="j-heatmap-wrap fade-in">
-        <table class="j-hm-table">
-          <thead>
-            <tr>
-              <th>Tipo de contenido</th>
-              <th>Audiencia fría</th>
-              <th>Seguidores activos</th>
-              <th>Con intención de compra</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="hm-label">Tendencia / Viral<span class="hm-sub">Hooks de alta difusión orgánica</span></td>
-              <td class="hm-star">Máximo</td>
-              <td class="hm-high">Alto</td>
-              <td class="hm-low">Bajo</td>
-            </tr>
-            <tr>
-              <td class="hm-label">UGC / Testimonial<span class="hm-sub">Personas reales con el producto</span></td>
-              <td class="hm-high">Alto</td>
-              <td class="hm-high">Alto</td>
-              <td class="hm-high">Alto</td>
-            </tr>
-            <tr>
-              <td class="hm-label">Educativo / Tutorial<span class="hm-sub">Responde búsquedas del sector</span></td>
-              <td class="hm-mid">Medio</td>
-              <td class="hm-high">Alto</td>
-              <td class="hm-star">Máximo</td>
-            </tr>
-            <tr>
-              <td class="hm-label">Producto / Review<span class="hm-sub">Demostración y argumentario</span></td>
-              <td class="hm-low">Bajo</td>
-              <td class="hm-mid">Medio</td>
-              <td class="hm-star">Máximo</td>
-            </tr>
-            <tr>
-              <td class="hm-label">Entretenimiento<span class="hm-sub">Branded content, humor, cultura</span></td>
-              <td class="hm-high">Alto</td>
-              <td class="hm-mid">Medio</td>
-              <td class="hm-low">Bajo</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="hm-legend">
-          <div class="hm-legend-item"><div class="hm-legend-dot low"></div>Baja oportunidad</div>
-          <div class="hm-legend-item"><div class="hm-legend-dot mid"></div>Media</div>
-          <div class="hm-legend-item"><div class="hm-legend-dot high"></div>Alta</div>
-          <div class="hm-legend-item"><div class="hm-legend-dot star"></div>Sweet spot ★</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Caso Garza ── -->
-  <section class="j-caso" id="caso-garza">
-    <div class="container">
-      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Caso real</p>
-      <div class="j-caso-intro">
-        <div>
-          <h2 class="j-h2 fade-in" style="margin-bottom: 0;">Garza: de cero<br>a <em>comunidad</em>.</h2>
-          <div class="j-caso-meta fade-in">
-            <div class="j-caso-meta-item">
-              <span class="j-caso-meta-label">Cliente</span>
-              <span class="j-caso-meta-value">Garza Spain</span>
-            </div>
-            <div class="j-caso-meta-item">
-              <span class="j-caso-meta-label">Sector</span>
-              <span class="j-caso-meta-value">Iluminación · Domótica · Solar</span>
-            </div>
-            <div class="j-caso-meta-item">
-              <span class="j-caso-meta-label">Plataformas</span>
-              <span class="j-caso-meta-value">TikTok · Instagram · YouTube</span>
-            </div>
-            <div class="j-caso-meta-item">
-              <span class="j-caso-meta-label">Inicio</span>
-              <span class="j-caso-meta-value">Jul 2025</span>
-            </div>
-          </div>
-        </div>
-        <div class="j-caso-right fade-in">
-          <p class="j-caso-desc">Garza llegó sin presencia en redes. Empezamos mapeando qué contenido conectaba mejor con cada segmento de su audiencia — consumidor general, interesado en ahorro energético y early adopter de domótica. Con ese mapa definimos la estrategia: orgánico, UGC con perfiles reales y tutoriales YouTube para búsquedas del sector.</p>
-          <a href="/garza.html" class="j-caso-link">Ver el caso completo →</a>
-        </div>
-      </div>
-
-      <div class="j-caso-grid">
-        <div class="j-caso-card fade-in">
-          <img src="images/garza/formato-divulgativo.jpg" alt="Contenido educativo Garza" loading="lazy">
-          <div class="j-caso-card-label">Orgánico · Educativo</div>
-        </div>
-        <div class="j-caso-card fade-in">
-          <img src="images/garza/ugc-creator-mami.jpg" alt="UGC @una_mami_del_monton" loading="lazy">
-          <div class="j-caso-card-label">UGC · 22K views</div>
-        </div>
-        <div class="j-caso-card fade-in">
-          <img src="images/garza/ugc-creator-srtadeco.jpg" alt="UGC @srtadeco" loading="lazy">
-          <div class="j-caso-card-label">UGC · 12K views</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── La diferencia ── -->
-  <section class="j-diff section" id="diferencia">
-    <div class="container">
-      <p class="section-kicker fade-in"><span class="section-kicker-dot"></span>Por qué yo</p>
-      <h2 class="j-h2 fade-in">La diferencia es <em>predecir</em>,<br>no adivinar.</h2>
-      <div class="j-diff-comparison fade-in">
-        <div class="j-diff-col bad">
-          <div class="j-diff-col-title bad">Social media tradicional</div>
-          <ul class="j-check-list">
-            <li class="j-check-item no"><span class="j-check-icon">×</span>Contenido basado en brainstorming</li>
-            <li class="j-check-item no"><span class="j-check-icon">×</span>Publican cuando "toca" o cuando hay tiempo</li>
-            <li class="j-check-item no"><span class="j-check-icon">×</span>Miden los resultados después de publicar</li>
-            <li class="j-check-item no"><span class="j-check-icon">×</span>Reaccionan a tendencias que ya explotaron</li>
-            <li class="j-check-item no"><span class="j-check-icon">×</span>Un formato para todas las plataformas</li>
-          </ul>
-        </div>
-        <div class="j-diff-col good">
-          <div class="j-diff-col-title good">Judy Moneva</div>
-          <ul class="j-check-list">
-            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Contenido basado en datos reales de audiencia</li>
-            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Publico cuando el dato dice que hay que publicar</li>
-            <li class="j-check-item yes"><span class="j-check-icon">✓</span>El resultado se predice antes del lanzamiento</li>
-            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Anticipo tendencias con 24h de margen</li>
-            <li class="j-check-item yes"><span class="j-check-icon">✓</span>Formato nativo por plataforma, siempre</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ── CTA ── -->
   <section class="j-cta">
     <div class="j-cta-inner">
       <p class="section-kicker fade-in" style="justify-content:center;"><span class="section-kicker-dot"></span>Hablemos</p>
       <h2 class="fade-in">¿Tu marca necesita<br>una <em>estrategia así</em>?</h2>
-      <p class="fade-in">Reserva una llamada y ponemos los datos de tu sector encima de la mesa.</p>
-      <a href="/#contacto" class="j-cta-btn fade-in">Reservar llamada →</a>
+      <p class="fade-in">Si quieres ver cómo queda esto aplicado a tu marca, lo vemos juntos.</p>
+      <a href="/#contacto" class="j-cta-btn fade-in">Hablemos →</a>
     </div>
   </section>
 
@@ -835,10 +767,10 @@
         <div class="footer-nav">
           <h4>Esta página</h4>
           <ul>
-            <li><a href="#que-hago">Qué hago</a></li>
-            <li><a href="#proceso">Cómo trabajo</a></li>
+            <li><a href="#que-hago">Lo que hago</a></li>
             <li><a href="#metodologia">Metodología</a></li>
-            <li><a href="#diferencia">Por qué yo</a></li>
+            <li><a href="#track-record">Caso real</a></li>
+            <li><a href="#proceso">Cómo trabajo</a></li>
           </ul>
         </div>
         <div class="footer-nav">
