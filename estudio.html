@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudio de branded content — voz, relevancia y movimiento</title>
+  <meta name="description" content="Estudio de branded content. Le damos voz y estilo a tu marca y creamos contenido relevante que se mueve con su tiempo, del descubrimiento a la conversión.">
+
+  <meta property="og:title" content="Estudio de branded content">
+  <meta property="og:description" content="Voz, relevancia y contenido que se mueve con su tiempo.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ───────────────────────── Tokens ───────────────────────── */
+    :root {
+      --cherry:      #670626;
+      --cherry-deep: #4B041B;
+      --cherry-soft: #97304A;
+      --berry-tint:  #F0DCE1;   /* tinte burdeos muy claro */
+      --matcha:      #BAD797;
+      --matcha-deep: #5F7A3E;   /* verde oscuro para texto sobre claro */
+      --matcha-soft: #E3EDD4;   /* tinte verde claro */
+      --crema:       #F7F4EF;
+      --crema-2:     #FBFAF6;
+      --ink:         #211A16;
+      --ink-60:      rgba(33,26,22,0.62);
+      --ink-40:      rgba(33,26,22,0.42);
+      --on-cherry:   #F4EFE6;
+      --on-cherry-60:rgba(244,239,230,0.66);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--ink); background: var(--crema); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+    em, .serif { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400; }
+
+    .kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 28px; color: var(--cherry); }
+    .kicker::before { content: ''; width: 22px; height: 2px; background: var(--cherry); display: block; flex-shrink: 0; }
+    .kicker.center { justify-content: center; }
+    .kicker.on-dark { color: var(--matcha); }
+    .kicker.on-dark::before { background: var(--matcha); }
+
+    .h2 { font-family: 'Fraunces', Georgia, serif; font-weight: 400; font-size: clamp(30px, 4.4vw, 54px); line-height: 1.04; letter-spacing: -0.01em; margin-bottom: 28px; }
+    .h2 em { color: var(--cherry); }
+    .section { padding: clamp(72px, 10vw, 128px) 0; }
+    .snap { scroll-snap-align: start; }
+    @media (min-width: 901px) and (min-height: 660px) {
+      html { scroll-snap-type: y proximity; }
+      .section.snap { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    }
+
+    .btn { display: inline-block; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: 0.01em; padding: 16px 34px; border-radius: 999px; text-decoration: none; transition: transform .2s, box-shadow .2s, background .2s; }
+    .btn-cherry { background: var(--cherry); color: var(--on-cherry); }
+    .btn-cherry:hover { background: var(--cherry-deep); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(75,4,27,0.25); }
+    .btn-light { background: var(--crema); color: var(--cherry); }
+    .btn-light:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.18); }
+
+    /* ───────────────────────── Nav ───────────────────────── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 0; transition: background .3s, padding .3s, box-shadow .3s; }
+    nav.scrolled { background: rgba(247,244,239,0.92); backdrop-filter: blur(10px); padding: 14px 0; box-shadow: 0 1px 0 rgba(33,26,22,0.06); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .wordmark { font-family: 'Fraunces', serif; font-weight: 500; font-size: 22px; letter-spacing: -0.01em; color: var(--on-cherry); text-decoration: none; transition: color .3s; }
+    .wordmark .dot { color: var(--matcha); }
+    nav.scrolled .wordmark { color: var(--cherry); }
+    nav.scrolled .wordmark .dot { color: var(--cherry); }
+    .nav-links { list-style: none; display: flex; align-items: center; gap: 34px; }
+    .nav-links a { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--on-cherry-60); transition: color .2s; }
+    .nav-links a:hover { color: var(--on-cherry); }
+    nav.scrolled .nav-links a { color: var(--ink-60); }
+    nav.scrolled .nav-links a:hover { color: var(--cherry); }
+    .nav-links .nav-cta { padding: 9px 20px; border-radius: 999px; background: var(--matcha); color: var(--cherry); font-weight: 600; }
+    nav.scrolled .nav-links .nav-cta { background: var(--cherry); color: var(--crema); }
+    .nav-toggle { display: none; background: none; border: 0; cursor: pointer; flex-direction: column; gap: 5px; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--on-cherry); display: block; transition: background .3s; }
+    nav.scrolled .nav-toggle span { background: var(--cherry); }
+
+    /* ───────────────────────── Hero (PF-style, centrado) ───────────────────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; color: var(--on-cherry);
+      background: radial-gradient(120% 90% at 50% 0%, #74122F 0%, var(--cherry) 42%, var(--cherry-deep) 100%);
+    }
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero-inner { position: relative; z-index: 1; padding: 120px 28px; max-width: 920px; }
+    .hero h1 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(40px, 6.4vw, 84px); line-height: 1.03; letter-spacing: -0.02em; margin: 0 auto 30px; max-width: 16ch; }
+    .hero h1 em { color: var(--matcha); }
+    .hero-sub { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.65; color: var(--on-cherry-60); max-width: 52ch; margin: 0 auto 40px; }
+    .hero-cta { display: inline-block; }
+    .hero-scroll { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); z-index: 1; text-align: center; }
+    .hero-scroll span { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--on-cherry-60); display: block; margin-bottom: 12px; }
+    .hero-scroll-line { width: 1px; height: 42px; margin: 0 auto; background: linear-gradient(to bottom, var(--matcha), transparent); position: relative; overflow: hidden; }
+    .hero-scroll-line::after { content: ''; position: absolute; top: -42px; left: 0; width: 1px; height: 42px; background: var(--matcha); animation: scrolldot 2.2s ease-in-out infinite; }
+    @keyframes scrolldot { 0% { top: -42px; } 60%,100% { top: 42px; } }
+
+    /* ───────────────────────── Ticker ───────────────────────── */
+    .ticker { background: var(--crema-2); border-top: 1px solid rgba(75,4,27,0.08); border-bottom: 1px solid rgba(75,4,27,0.08); overflow: hidden; padding: 16px 0; white-space: nowrap; }
+    .ticker-track { display: inline-flex; align-items: center; animation: ticker 34s linear infinite; }
+    .ticker-track span { font-family: 'Fraunces', serif; font-style: italic; font-size: clamp(16px, 1.9vw, 21px); color: var(--cherry); padding: 0 24px; }
+    .ticker-track .sep { color: var(--matcha-deep); font-style: normal; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ───────────────────────── Problema ───────────────────────── */
+    .problema { background: var(--crema-2); }
+    .problema .lead { font-size: clamp(18px, 2.1vw, 22px); line-height: 1.7; color: var(--ink-60); max-width: 62ch; }
+    .problema .lead strong { color: var(--ink); font-weight: 600; }
+
+    /* ───────────────────────── Síntomas ───────────────────────── */
+    .sintomas { background: var(--matcha-soft); }
+    .sintomas-list { list-style: none; max-width: 760px; }
+    .sintomas-list li { display: flex; gap: 18px; align-items: flex-start; padding: 22px 0; border-bottom: 1px solid rgba(75,4,27,0.14); font-size: clamp(16px, 1.8vw, 18px); color: var(--ink); }
+    .sintomas-list li:last-child { border-bottom: 0; }
+    .sintomas-list .mark { font-family: 'Fraunces', serif; font-style: italic; color: var(--cherry); font-size: 22px; line-height: 1; flex-shrink: 0; min-width: 26px; }
+
+    /* ───────────────────────── Lo que hacemos ───────────────────────── */
+    .hacemos { background: var(--crema); }
+    .hacemos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(75,4,27,0.10); border: 1px solid rgba(75,4,27,0.10); border-radius: 18px; overflow: hidden; }
+    .hacemos-item { background: var(--crema); padding: clamp(30px, 4vw, 48px); }
+    .hacemos-num { font-family: 'Fraunces', serif; font-style: italic; font-size: 30px; color: var(--cherry); display: block; margin-bottom: 18px; }
+    .hacemos-item h3 { font-size: 21px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .hacemos-item p { font-size: 15px; line-height: 1.68; color: var(--ink-60); }
+
+    /* ───────────────────────── Metodología / Funnel (ligero) ───────────────────────── */
+    .metodo { background: var(--crema-2); }
+    .metodo-intro { font-size: clamp(17px, 2vw, 20px); line-height: 1.7; color: var(--ink-60); max-width: 60ch; margin-bottom: 60px; }
+    .metodo-intro strong { color: var(--ink); font-weight: 600; }
+
+    .funnel2 { max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+    .fstep { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .fblock { height: 92px; border-radius: 18px; display: flex; align-items: center; justify-content: center; gap: 16px; color: var(--on-cherry); box-shadow: 0 14px 34px rgba(75,4,27,0.16); transition: transform .3s ease, box-shadow .3s ease; }
+    .fstep:hover .fblock { transform: translateY(-5px); box-shadow: 0 22px 44px rgba(75,4,27,0.26); }
+    .fblock .fn { font-family: 'Fraunces', serif; font-weight: 400; font-size: 36px; line-height: 1; }
+    .fblock .fe { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--matcha); }
+    .s1 .fblock { width: 100%; background: linear-gradient(135deg, #9A3650, #7C1E39); }
+    .s2 .fblock { width: 72%;  background: linear-gradient(135deg, #7C1E39, #670626); }
+    .s3 .fblock { width: 48%;  background: linear-gradient(135deg, #670626, #4B041B); }
+    .fcap { text-align: center; max-width: 360px; margin: 18px 0 0; }
+    .fcap h3 { font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px; letter-spacing: -0.01em; color: var(--cherry); margin-bottom: 7px; }
+    .fcap p { font-size: 14.5px; line-height: 1.62; color: var(--ink-60); }
+    .fconn { width: 1px; height: 26px; background: rgba(75,4,27,0.22); position: relative; margin: 18px 0; }
+    .fconn::after { content: '▾'; position: absolute; left: 50%; bottom: -4px; transform: translateX(-50%); font-size: 11px; color: rgba(75,4,27,0.55); }
+    .funnel2 { position: relative; }
+    .floop { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 2; }
+    .floop path { fill: none; stroke: #5F7A3E; stroke-width: 1.6; stroke-dasharray: 5 4; }
+    .floop-label { position: absolute; width: 170px; transform: translateY(-50%); pointer-events: none; }
+    .floop-label .fl-title { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #5F7A3E; margin-bottom: 6px; }
+    .floop-label .fl-desc { display: block; font-size: 13px; line-height: 1.5; color: var(--ink-60); }
+    .floop-mobile { display: none; flex-direction: column; align-items: center; gap: 4px; margin-top: 30px; font-size: 13.5px; color: var(--ink-60); text-align: center; }
+    .floop-mobile strong { color: #5F7A3E; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; }
+    @media (max-width: 900px) { .floop, .floop-label { display: none; } .floop-mobile { display: flex; } }
+
+    /* ───────────────────────── Manifiesto ───────────────────────── */
+    .manifiesto { background: var(--cherry); color: var(--on-cherry); text-align: center; position: relative; overflow: hidden; }
+    .manifiesto::after { content: ''; position: absolute; left: -140px; top: -140px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle at center, rgba(186,215,151,0.18), transparent 70%); }
+    .manifiesto .container { max-width: 920px; position: relative; z-index: 1; }
+    .manifiesto .manifiesto-quote { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(30px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.01em; margin-bottom: 30px; color: var(--on-cherry); max-width: none; text-wrap: balance; }
+    .manifiesto .manifiesto-quote em { color: var(--matcha); }
+    .manifiesto p { font-size: clamp(16px, 1.7vw, 19px); line-height: 1.65; color: var(--on-cherry-60); max-width: 52ch; margin: 0 auto; }
+
+    /* ───────────────────────── CTA ───────────────────────── */
+    .cta { background: var(--matcha-soft); text-align: center; }
+    .cta .container { max-width: 720px; }
+    .cta h2 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(32px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.01em; margin-bottom: 20px; }
+    .cta h2 em { color: var(--cherry); }
+    .cta p { font-size: clamp(16px, 1.9vw, 19px); line-height: 1.7; color: var(--ink-60); margin-bottom: 38px; }
+
+    /* ───────────────────────── Footer ───────────────────────── */
+    footer { background: var(--ink); color: var(--on-cherry-60); padding: 64px 0 36px; }
+    .footer-top { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 48px; }
+    .footer-brand .wordmark { color: var(--crema); font-size: 24px; }
+    .footer-brand p { font-size: 14px; max-width: 30ch; margin-top: 14px; line-height: 1.6; }
+    .footer-col h4 { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,239,230,0.45); margin-bottom: 16px; font-weight: 700; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { color: rgba(244,239,230,0.72); text-decoration: none; font-size: 14px; transition: color .2s; }
+    .footer-col a:hover { color: var(--matcha); }
+    .footer-bottom { border-top: 1px solid rgba(244,239,230,0.12); padding-top: 24px; font-size: 13px; color: rgba(244,239,230,0.4); }
+
+    /* ───────────────────────── Animación ───────────────────────── */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .fade-in { opacity: 1; transform: none; transition: none; } .ticker-track, .hero-scroll-line::after { animation: none; } }
+
+    /* ───────────────────────── Responsive ───────────────────────── */
+    @media (max-width: 900px) {
+      .hacemos-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .s2 .fblock { width: 86%; }
+      .s3 .fblock { width: 66%; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { position: fixed; top: 0; right: 0; bottom: 0; width: min(78vw, 320px); background: var(--cherry); flex-direction: column; align-items: flex-start; justify-content: center; gap: 28px; padding: 0 36px; transform: translateX(100%); transition: transform .3s; }
+      .nav-links.active { transform: none; }
+      .nav-links a { color: var(--on-cherry) !important; font-size: 18px; }
+      .nav-toggle { display: flex; z-index: 110; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="#top" class="wordmark">Estudio<span class="dot">.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hacemos">Qué hacemos</a></li>
+        <li><a href="#metodo">Metodología</a></li>
+        <li><a href="#manifiesto">Nuestro enfoque</a></li>
+        <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="hero snap" id="top">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="hero-inner">
+      <p class="kicker on-dark center">Estudio de branded content</p>
+      <h1>Le damos <em>voz</em> a tu marca.</h1>
+      <p class="hero-sub">Damos a tu marca una voz propia, con criterio. Creamos el contenido que la mantiene viva y relevante con el tiempo.</p>
+      <a href="#contacto" class="btn btn-light hero-cta">Hablemos →</a>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll para descubrir</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ── Ticker ── -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Voz propia</span><span class="sep">/</span>
+      <span>Territorio que solo es tuyo</span><span class="sep">/</span>
+      <span>Relevancia que no caduca</span><span class="sep">/</span>
+      <span>Branded content con criterio</span><span class="sep">/</span>
+      <span>Presencia que permanece</span><span class="sep">/</span>
+      <span>Voz propia</span><span class="sep">/</span>
+      <span>Territorio que solo es tuyo</span><span class="sep">/</span>
+      <span>Relevancia que no caduca</span><span class="sep">/</span>
+      <span>Branded content con criterio</span><span class="sep">/</span>
+      <span>Presencia que permanece</span><span class="sep">/</span>
+    </div>
+  </div>
+
+  <!-- ── El problema ── -->
+  <section class="section problema snap">
+    <div class="container">
+      <p class="kicker fade-in">El punto de partida</p>
+      <h2 class="h2 fade-in">El riesgo no es desaparecer.<br>Es volverse <em>irrelevante</em>.</h2>
+      <p class="lead fade-in">Las marcas no caen de un día para otro. Se quedan atrás poco a poco: dejan de estar en la conversación, persiguen tendencias que no son suyas y, cuando reaccionan, ya suenan a ayer. <strong>El problema de fondo es no tener una voz lo bastante fuerte para seguir siendo relevante.</strong></p>
+    </div>
+  </section>
+
+  <!-- ── Síntomas ── -->
+  <section class="section sintomas snap">
+    <div class="container">
+      <p class="kicker fade-in">¿Te suena?</p>
+      <h2 class="h2 fade-in">Señales de que tu marca está perdiendo <em>relevancia</em>.</h2>
+      <ul class="sintomas-list fade-in">
+        <li><span class="mark">/</span>Tu marca se ve más pequeña de lo que en realidad es tu negocio.</li>
+        <li><span class="mark">/</span>Llegas tarde a tu propia conversación: cuando reaccionas, el momento ya pasó.</li>
+        <li><span class="mark">/</span>Sigues las tendencias del sector en lugar de marcar la tuya.</li>
+        <li><span class="mark">/</span>Te cuesta diferenciarte: de lejos, pareces una más.</li>
+        <li><span class="mark">/</span>Tienes un gran producto, pero la percepción no está a su altura.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Lo que hacemos ── -->
+  <section class="section hacemos snap" id="hacemos">
+    <div class="container">
+      <p class="kicker fade-in">Cómo lo resolvemos</p>
+      <h2 class="h2 fade-in">Voz, contenido y <em>criterio</em>.</h2>
+      <div class="hacemos-grid fade-in">
+        <div class="hacemos-item">
+          <span class="hacemos-num">01</span>
+          <h3>Voz y territorio</h3>
+          <p>Definimos cómo suena, cómo se ve y de qué habla tu marca. Buscamos el ángulo donde es diferente y aporta valor real a su audiencia.</p>
+        </div>
+        <div class="hacemos-item">
+          <span class="hacemos-num">02</span>
+          <h3>Contenido con valor</h3>
+          <p>Nada de relleno ni tendencias del día. Cada pieza dice algo y se apoya en lo que de verdad le importa a tu público.</p>
+        </div>
+        <div class="hacemos-item">
+          <span class="hacemos-num">03</span>
+          <h3>Criterio e intuición</h3>
+          <p>Tu experiencia es parte del valor de tu marca. La ponemos junto a lo que pasa en tu sector para decidir con criterio, no a ciegas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Metodología / Funnel ── -->
+  <section class="section metodo snap" id="metodo">
+    <div class="container">
+      <p class="kicker fade-in">Nuestra metodología</p>
+      <h2 class="h2 fade-in">Del descubrimiento a la <em>conversión</em>.</h2>
+      <p class="metodo-intro fade-in">La mayoría del branded content se queda en lo bonito de arriba del embudo y ahí se acaba. <strong>El nuestro está pensado para recorrerlo entero</strong>: que te descubran, que se queden y que te elijan. Cada pieza sabe en qué punto del camino está.</p>
+
+      <div class="funnel2 fade-in">
+        <div class="fstep s1">
+          <div class="fblock"><span class="fn">01</span><span class="fe">Que te descubran</span></div>
+          <div class="fcap"><h3>Descubrimiento</h3><p>Tu marca entra en la conversación y se vuelve relevante para quien aún no te conoce.</p></div>
+        </div>
+        <div class="fconn"></div>
+        <div class="fstep s2">
+          <div class="fblock"><span class="fn">02</span><span class="fe">Que se queden</span></div>
+          <div class="fcap"><h3>Captación</h3><p>Quien te descubre se queda: comunidad que te sigue, te recuerda y vuelve a buscarte.</p></div>
+        </div>
+        <div class="fconn"></div>
+        <div class="fstep s3">
+          <div class="fblock"><span class="fn">03</span><span class="fe">Que te elijan</span></div>
+          <div class="fcap"><h3>Conversión</h3><p>Ese interés se transforma en cliente. Branded content que trabaja para el negocio.</p></div>
+        </div>
+        <svg class="floop" aria-hidden="true">
+          <defs>
+            <marker id="fidarrow" markerWidth="9" markerHeight="9" refX="5" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+              <path d="M0,0 L9,4.5 L0,9 z" fill="#5F7A3E"></path>
+            </marker>
+          </defs>
+          <path id="floop-path" marker-end="url(#fidarrow)"></path>
+        </svg>
+        <div class="floop-label" id="floop-label">
+          <span class="fl-title">↺ Fidelización</span>
+          <span class="fl-desc">El cliente se hace fan: vuelve, repite y te recomienda.</span>
+        </div>
+      </div>
+      <p class="floop-mobile"><strong>↺ Fidelización</strong>El cliente se hace fan: vuelve, repite y te recomienda.</p>
+    </div>
+  </section>
+
+  <!-- ── Manifiesto ── -->
+  <section class="section manifiesto snap" id="manifiesto">
+    <div class="container">
+      <p class="kicker on-dark center fade-in">Nuestro enfoque</p>
+      <p class="manifiesto-quote fade-in">No seguimos la tendencia. Creamos la <em>tuya</em>.</p>
+      <p class="fade-in">Una marca no es un logotipo bonito ni un calendario lleno de posts. Es un propósito con voz. Trabajamos lo que hay debajo antes de tocar lo de fuera, porque el resultado bonito no es el objetivo: es la consecuencia de haber hecho bien lo difícil.</p>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="section cta snap" id="contacto">
+    <div class="container">
+      <p class="kicker center fade-in">Hablemos</p>
+      <h2 class="fade-in">¿Hablamos de tu <em>marca</em>?</h2>
+      <p class="fade-in">Cuéntanos en qué punto está y te decimos, sin rodeos, qué haríamos con ella.</p>
+      <a href="mailto:hola@predictaflow.me" class="btn btn-cherry fade-in">Escríbenos →</a>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#top" class="wordmark">Estudio<span class="dot" style="color:var(--matcha)">.</span></a>
+          <p>Estudio de branded content. Voz, relevancia y contenido que se mueve con su tiempo.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Estudio</h4>
+          <ul>
+            <li><a href="#hacemos">Qué hacemos</a></li>
+            <li><a href="#metodo">Metodología</a></li>
+            <li><a href="#manifiesto">Nuestro enfoque</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="mailto:hola@predictaflow.me">hola@predictaflow.me</a></li>
+            <li><a href="#contacto">Hablemos →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 · Estudio de branded content. Nombre provisional.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    const toggle = document.getElementById('nav-toggle');
+    const links = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => links.classList.toggle('active'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('active')));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // Flecha de fidelización: bucle de retorno del bloque 03 al 02
+    function drawLoop() {
+      const wrap = document.querySelector('.funnel2');
+      const b2 = document.querySelector('.s2 .fblock');
+      const b3 = document.querySelector('.s3 .fblock');
+      const path = document.getElementById('floop-path');
+      const label = document.getElementById('floop-label');
+      if (!wrap || !b2 || !b3 || !path) return;
+      const wr = wrap.getBoundingClientRect();
+      const r2 = b2.getBoundingClientRect();
+      const r3 = b3.getBoundingClientRect();
+      const x3 = r3.right - wr.left - 6, y3 = r3.top - wr.top + r3.height / 2; // origen (03)
+      const x2 = r2.right - wr.left - 6, y2 = r2.top - wr.top + r2.height / 2; // destino (02)
+      const bulge = Math.max(x2, x3) + 54;
+      path.setAttribute('d', `M ${x3} ${y3} C ${bulge} ${y3}, ${bulge} ${y2}, ${x2} ${y2}`);
+      if (label) { label.style.left = (bulge + 4) + 'px'; label.style.top = ((y2 + y3) / 2) + 'px'; }
+    }
+    window.addEventListener('load', drawLoop);
+    let lt; window.addEventListener('resize', () => { clearTimeout(lt); lt = setTimeout(drawLoop, 150); });
+    drawLoop();
+  </script>
+
+  <!-- ── Hero: puntos flotantes sutiles ── -->
+  <script>
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const CREAM = [244, 239, 230], MATCHA = [186, 215, 151];
+    const WORDS = ['voz propia', 'relevancia', 'territorio', 'criterio', 'marca', 'audiencia', 'cultura', 'contenido', 'presencia', 'identidad', 'branded content', 'conversación', 'estilo', 'comunidad'];
+    let W, H, dots, id;
+    function resize() { W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+    function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+    function init() {
+      const n = Math.min(40, Math.max(20, Math.floor(W * H / 30000)));
+      dots = [];
+      let w = 0;
+      for (let i = 0; i < n; i++) dots.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.12, vy: (Math.random() - 0.5) * 0.12,
+        r: 0.8 + Math.random() * 1.5,
+        a: 0.10 + Math.random() * 0.20,
+        c: Math.random() < 0.3 ? MATCHA : CREAM,
+        label: (i % 2 === 0) ? WORDS[(w++) % WORDS.length] : null
+      });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const a = dots[i], b = dots[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+          const max = Math.min(W, H) * 0.15;
+          if (d < max) { ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.strokeStyle = rgba(CREAM, (1 - d / max) * 0.05); ctx.lineWidth = 0.4; ctx.stroke(); }
+        }
+      }
+      dots.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = rgba(p.c, p.a); ctx.fill();
+        if (p.label) {
+          ctx.font = 'italic 12px "Fraunces", serif';
+          ctx.fillStyle = rgba(p.c === MATCHA ? MATCHA : CREAM, 0.18);
+          ctx.fillText(p.label, p.x + p.r + 7, p.y + 4);
+        }
+      });
+      id = requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { cancelAnimationFrame(id); resize(); init(); draw(); }, 200); });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(id); else draw(); });
+  })();
+  </script>
+
+</body>
+</html>
